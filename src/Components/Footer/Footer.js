@@ -32,7 +32,9 @@ const Footer = () => {
     return (
         <footer className="footer-container">
             <div className='logo-container'>
-                <LogoOng />
+                <hr className="footer-container__hr"/>
+                <LogoOng className='logo-container__svg'/>
+                <hr className="footer-container__hr"/>
             </div>
             <ul className='list-container'>
                 <li className='list-container__li'>Inicio</li>
@@ -42,9 +44,10 @@ const Footer = () => {
                 <li className='list-container__li'>Contacto</li>
                 <li className='list-container__li'>Contribuye</li>
             </ul>
+            <hr className="footer-container__hr"/>
             <div className='socialmedia-container'>
                 <a target="_blank" href={instagram} className='socialmedia-container__a'>
-                    <LogoInstagram />
+                    <LogoInstagram className='socialmedia-container__a-svg'/>
                 </a>
                 <a target="_blank" href={facebook} className='socialmedia-container__a'>
                     <LogoFacebook />
