@@ -20,4 +20,4 @@ const Get = (endpoint, id) => {
         .catch((err) => err);
 };
 
-export default Get;
+export { Get };
