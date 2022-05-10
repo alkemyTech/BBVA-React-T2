@@ -6,15 +6,18 @@ const config = {
     }
 }
 
-const Get = (endpoint, id = '') => {
+const Get = async (endpoint, id = '') => {
 
     if(!endpoint) {
         throw new Error("parameter 'endpoint' is not defined.");
     }
+    try {
+        const response = await axios.get(`https://ongapi.alkemy.org/api/${endpoint}/${id}`);
+        return response; 
+    } catch (error) {
+        console.log(error);
+    }
 
-    axios.get(`https://ongapi.alkemy.org/api/${endpoint}/${id}`)
-    .then(res => console.log(res))
-    .catch(err => console.log(err))
 }
 
-export default Get
+export default Get;
