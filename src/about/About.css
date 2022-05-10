@@ -9,7 +9,8 @@
 
 h1 {
     font-family: "Poppins", sans-serif;
-    text-align: center;
+    text-align: left;
+    padding-left: 20px;
   }
 
 .main-text {
@@ -18,7 +19,7 @@ h1 {
 }
 
 .about-text{
-    padding: 20px;
+    padding: 0 20px;
     margin-top: 0;
 }
 

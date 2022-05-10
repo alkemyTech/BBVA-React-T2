@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const config = {
     headers: {
-        
+
     }
 }
 const BASE_URL = "https://ongapi.alkemy.org/api"; // Provisorio hasta tener el archivo .env
