@@ -24,14 +24,22 @@
     line-height: 19px;
 }
 
-.circles-container {
-    margin-top: 50px;
+.socialmedia-container {
+    margin-top: 20px;
     margin-bottom: 20px;
+}
+
+.socialmedia-container__a{
+    margin: 0 1rem;
+    text-decoration: none;
+}
+
+.socialmedia-container__a svg{
+    height: 30px;
 }
 
 .copyright-container p {
     font-family: 'Montserrat';
     letter-spacing: -0.01rem;
     font-size: 15px;
-    font-weight: regular;
 }
