@@ -14,7 +14,7 @@ function Card(props){
                 className="card-img"
                 onError={({currentTarget}) => {
                     currentTarget.onerror = false;
-                    currentTarget.src= "./public/images/placeholder/" + props.imgDimensions + ".png";
+                    currentTarget.src= "https://uxwing.com/wp-content/themes/uxwing/download/07-web-app-development/image-not-found.svg"; //imagen online porque local me daba error
                 }}
             />
             <h3 className="card-name">{props.name}</h3>
