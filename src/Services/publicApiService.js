@@ -5,11 +5,22 @@ const config = {
         Group: 2
     }
 }
+const BASE_URL = "https://ongapi.alkemy.org/api"; // Provisorio hasta tener el archivo .env
 
-const Get = () => {
-    axios.get('https://jsonplaceholder.typicode.com/users', config)
-    .then(res => console.log(res))
-    .catch(err => console.log(err))
+const Get = async (endpoint, id = '') => {
+
+    if(!endpoint) {
+        throw new Error("parameter 'endpoint' is not defined.");
+    }
+
+    try {
+        const url = `${BASE_URL}/${endpoint}/${id}`;
+        const response = await axios.get(url);
+        return response; 
+    } catch (error) {
+        return error;
+    }
+
 }
 
-export default Get
+export default Get;
