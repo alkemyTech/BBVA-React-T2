@@ -8,9 +8,7 @@ const config = {
 
 const Get = (endpoint, id = '') => {
 
-    const isUndefinedEndpoint = endpoint == null;
-
-    if(isUndefinedEndpoint) {
+    if(!endpoint) {
         throw new Error("parameter 'endpoint' is not defined.");
     }
 
