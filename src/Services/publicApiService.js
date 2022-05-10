@@ -15,7 +15,7 @@ const Get = async (endpoint, id = '') => {
 
     try {
         const url = `${BASE_URL}/${endpoint}/${id}`;
-        const response = await axios.get(url);
+        const response = await axios.get(url, config);
         return response; 
     } catch (error) {
         return error;
