@@ -1,6 +1,28 @@
 .footer-container {
     margin: 0;
     display: flex;
+    flex-direction: column;
+    align-items: center;    
     width: 100%;
-    background-color:red;
+    background-color: #C0C0C0;
+}
+
+.logo-container {
+    margin-top: 41.95px;
+}
+
+.list-container {
+    list-style: none;
+    display: flex;
+    justify-content: space-evenly;
+    width: 70%;
+    margin-top: 30px;
+}
+
+.circles-container {
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+
+.copyright-container {
 }
