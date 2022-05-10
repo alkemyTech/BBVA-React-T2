@@ -1,6 +1,6 @@
 import axios from 'axios';
-const BASE_URL = 'https://jsonplaceholder.typicode.com';
 
+const BASE_URL = 'https://jsonplaceholder.typicode.com';
 
 const config = {
     headers: {
@@ -27,5 +27,4 @@ const Delete = (endpoint, id) => {
     .catch(err => {return err })
 }
 
-export default Get
 export { Delete }
