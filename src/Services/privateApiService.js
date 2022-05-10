@@ -1,4 +1,6 @@
 import axios from 'axios';
+const BASE_URL = 'https://jsonplaceholder.typicode.com';
+
 
 const config = {
     headers: {
@@ -20,7 +22,7 @@ const Delete = (endpoint, id) => {
     if (id < 1) {
         throw new Error("parameter 'id' is invalid");
     }
-    axios.delete(`https://jsonplaceholder.typicode.com/${endpoint}/${id}`, { headers })
+    axios.delete(`${BASE_URL}/${endpoint}/${id}`, { headers })
     .then(res => console.log(res))
     .catch(err => console.log(err))
 }
