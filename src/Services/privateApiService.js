@@ -15,7 +15,7 @@ const Get = (endpoint, id) => {
   axios.defaults.headers.get['Authorization'] = getAuthorization();
 
   const url = `${BASE_URL}${endpoint}${ id? `/${id}`: ''}` 
-  return axios.get(url)
+  return axios.get(url, config)
         .then((res) => res)
         .catch((err) => err);
 };
