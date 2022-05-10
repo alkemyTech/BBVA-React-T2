@@ -5,8 +5,6 @@ import { Get } from "../Services/publicApiService";
 const About = () => {
 
   const [text, setText] = useState("");
-  const [logo, setLogo] = useState("")
-
 
   useEffect(() => {
     
