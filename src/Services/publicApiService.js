@@ -1,7 +1,5 @@
 import axios from 'axios';
 
-const url = 'https://ongapi.alkemy.org/api/'
-
 const config = {
     headers: {
         Group: 2
@@ -22,17 +20,12 @@ const Get = async (endpoint, id = '') => {
     } catch (error) {
         return error;
     }
-
-}
+}  
 
 const Post = (endpoint, body) => {
-    axios.post(url + endpoint, body)
-    .then((res) => {
-        return(res)
-    })
-    .catch((err) => {
-        return(err)
-    })
+    axios.post(BASE_URL + endpoint, body)
+    .then(res => res)
+    .catch(err => err)
 }
 
 export { Post, Get }
