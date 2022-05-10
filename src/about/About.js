@@ -1,5 +1,4 @@
 import "./About.css";
-import axios from "axios";
 import { useState, useEffect } from "react";
 import { Get } from "../Services/publicApiService";
 
@@ -8,27 +7,27 @@ const About = () => {
   const [text, setText] = useState("");
   const [logo, setLogo] = useState("")
 
-  const fetchData = async () => {
-    const res = await axios.get("https://ongapi.alkemy.org/api/organization");
-    console.log(res);
-    setText(res.data.data.long_description);
-    setLogo(res.data.data.logo)
-  };
-
-  
 
   useEffect(() => {
-    const res = Get('organization')
-    setText(res.data.data.long_description);
-    setLogo(res.data.data.logo)
-  }, [text]);
+    
+    const fetchData = async () => {
+        const res = await Get("organization");
+        console.log(res);
+        setText(res.data.data.long_description);
+        setLogo(res.data.data.logo)
+      };
+
+    fetchData();
+  }, []);
   
   return (
       <div className="container">
-        <h1>Nosotros</h1>
         <div className="logo">
-            <div className="main-text">{text}</div>
-            <img src='./images/blog-img-03.jpg' />
+            <div className="main-text">
+                <h1>Nosotros</h1>
+                <div className="about-text">{text}</div>
+            </div>
+            <img src='./images/hands.png' />
         </div>
       </div>
   );
