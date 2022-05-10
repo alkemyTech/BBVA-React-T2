@@ -5,7 +5,7 @@ const config = {
         Group: 2
     }
 }
-const BASE_URL = "https://ongapi.alkemy.org/api/"; // Provisorio hasta tener el archivo .env
+const BASE_URL = "https://ongapi.alkemy.org/api"; // Provisorio hasta tener el archivo .env
 
 const Get = async (endpoint, id = '') => {
 
@@ -13,10 +13,10 @@ const Get = async (endpoint, id = '') => {
         throw new Error("parameter 'endpoint' is not defined.");
     }
     try {
-        const response = await axios.get(`${BASE_URL}/${endpoint}/${id}`);
+        const response = await axios.get(`${BASE_URL}/${endpoint}/as${id}`);
         return response; 
     } catch (error) {
-        console.log(error)
+        return error;
     }
 
 }
