@@ -8,12 +8,6 @@ const config = {
     }
 }
 
-const Get = () => {
-    axios.get('https://jsonplaceholder.typicode.com/users', config)
-    .then(res => console.log(res))
-    .catch(err => console.log(err))
-}
-
 const Post = (endpoint, body) => {
     axios.post(url + endpoint, body)
     .then((res) => {
@@ -24,5 +18,4 @@ const Post = (endpoint, body) => {
     })
 }
 
-export default Get
 export { Post }
