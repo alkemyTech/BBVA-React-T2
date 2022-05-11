@@ -22,29 +22,36 @@ const UserList = () => {
       }, []);
     
     return(
-        <>
-            <h1>Holo</h1>
-            <table>
+        <div className="main">
+        <div className="container">
+            <h1 className='title-users'>Usuarios</h1>
+            <div className='align-right'>
+                <Link to={'/backoffice/users/create'}>
+                    <button className='primary-backoffice-button'>Crear usuario</button>
+                </Link>
+            </div>
+            <table className='users-table'>
                 <tr>
-                    <th>Nombre</th>
-                    <th>Email</th>
+                    <th className='user-text th-text'>Nombre</th>
+                    <th className='user-text th-text'>Email</th>
                 </tr>
                 {userList.map( (user) =>{
                     return(
                         <tr key={user.id}>
-                            <td>{user.name}</td>
-                            <td>{user.email}</td>
+                            <td className='user-text'>{user.name}</td>
+                            <td className='user-text'>{user.email}</td>
                             <td>
-                                <Link to={'/backoffice/users/edit/' + user.id}><button>Editar</button></Link> 
+                                <Link to={'/backoffice/users/edit/' + user.id}><button className='primary-backoffice-button'>Editar</button></Link> 
                             </td>
                             <td>
-                                <button onClick={() => deleteUser(user.id)}>Borrar</button>
+                                <button onClick={() => deleteUser(user.id)} className='secondary-backoffice-button'>Borrar</button>
                             </td>
                         </tr>
                     )
                 })}
             </table>
-        </>
+        </div>
+        </div>
     )
 }
 

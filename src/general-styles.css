@@ -9,8 +9,11 @@
 
   --primary-color-backoffice: #444;
   --secondary-color-backoffice: #2b3046;
+  --primary-backoffice-button: #8cb3df;
+  --secondary-backoffice-button: #8cdfbf;
 
   --title-font: 'Poppins', sans-serif;
+  --p-font: 'Mulish', sans-serif;
   --biggest-font-size: 2rem;
   --h1-font-size: 1.5rem;
   --h2-font-size: 1.25rem;
@@ -37,7 +40,7 @@
 
 }
 
-.primary-button, .secondary-button {
+.primary-button, .secondary-button, .primary-backoffice-button, .secondary-backoffice-button {
   display: inline-block;
   padding: 10px 40px;
   border-radius: 15px;
@@ -59,6 +62,14 @@
   background-color: var(--secondary-color);
 }
 
+.primary-backoffice-button {
+  background-color: var(--primary-backoffice-button);
+}
+
+.secondary-backoffice-button {
+  background-color: var(--secondary-backoffice-button)
+}
+
 .input-form {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
@@ -66,4 +77,8 @@
 .title {
   font-family: var(--title-font) ;
   font-size: 32px;
+}
+
+.primary-button, .secondary-button:hover {
+  background-color: #444;
 }
