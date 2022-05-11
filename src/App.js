@@ -33,7 +33,7 @@ function App() {
           <Route path="/school-campaign" component={SchoolCampaign} />
           <Route path="/toys-campaign" component={ToysCampaign} />
           <Route path="/about" component={About} />
-          <Route path="/backoffice/users" component={UserList} />
+          <Route exact path="/backoffice/users" component={UserList} />
         </Switch>
       </BrowserRouter>
     </>
