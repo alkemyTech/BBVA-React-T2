@@ -14,6 +14,7 @@ import ToysCampaign from './Campaigns/Toys/ToysCampaign';
 import MembersForm from './Components/Members/MembersForm';
 import ProjectsForm from './Components/Projects/ProjectsForm';
 import Contact from './Components/Contact/Contact';
+import About from './about/About';
 
 function App() {
   return (
@@ -31,7 +32,11 @@ function App() {
           <Route path="/create-project" component={ProjectsForm} />
           <Route path="/school-campaign" component={SchoolCampaign} />
           <Route path="/toys-campaign" component={ToysCampaign} />
+<<<<<<< HEAD
           <Route path="/contacto" component={Contact} />
+=======
+          <Route path="/about" component={About} />
+>>>>>>> 1bce0c40c52634e569a3421bd4ecfe90f291c87e
         </Switch>
       </BrowserRouter>
     <div className="App">
