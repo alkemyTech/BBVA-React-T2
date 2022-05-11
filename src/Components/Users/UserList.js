@@ -14,7 +14,6 @@ const UserList = () => {
     const fetchData = async () => {
         const res = await Get("/users");
         setUserList(res.data)
-        console.log(userList)
       };
 
       useEffect(() => {
