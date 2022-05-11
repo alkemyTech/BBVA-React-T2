@@ -1,4 +1,6 @@
-const Card({imageSrc, name, desc}) => {
+import './Card.css'
+
+const Card = ({imageSrc, name, desc}) => {
     /*
         imageSrc = src de la imagen.
         name = Nombre de la card.
