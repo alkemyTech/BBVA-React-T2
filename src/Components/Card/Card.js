@@ -15,6 +15,7 @@ const Card = ({imageSrc, name, desc}) => {
                 onError={({currentTarget}) => {
                     currentTarget.onerror = false;
                     currentTarget.src= "https://uxwing.com/wp-content/themes/uxwing/download/07-web-app-development/image-not-found.svg"; //imagen online porque local me daba error;
+                    currentTarget.className= "card-img noLoaded"
                 }}
             />
             <h3 className="card-name">{name}</h3>
