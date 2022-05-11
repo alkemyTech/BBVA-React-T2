@@ -44,4 +44,16 @@ const Delete = (endpoint, id) => {
 
 export { Delete }
 
+const Post = (endpoint, body) => {
+    if (!endpoint) throw new Error("parameter 'endpoint' is not defined.");
+    if (!body) throw new Error("parameter 'body' is not defined")
+
+    const url = `${BASE_URL}${endpoint}`;
+
+    if (getAuthorization) {
+        axios.post(url, body)
+            .then(res => res)
+            .catch(err => err)
+    }
+}
 
