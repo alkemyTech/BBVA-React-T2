@@ -17,6 +17,7 @@ const About = () => {
   }, []);
   
   return (
+    <>
       <div className="container">
         <div className="logo">
             <div className="main-text">
@@ -25,8 +26,9 @@ const About = () => {
             </div>
             <img src='./images/hands.png' className="about-img"/>
         </div>
-        <MembersAbout/>
       </div>
+      <MembersAbout/>
+    </>
   );
 };
 
