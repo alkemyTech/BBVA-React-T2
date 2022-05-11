@@ -45,7 +45,7 @@
     height: 30px;
 }
 
-.copyright-container p {
+.copyright-container__p {
     font-family: 'Montserrat';
     letter-spacing: -0.01rem;
     font-size: 15px;

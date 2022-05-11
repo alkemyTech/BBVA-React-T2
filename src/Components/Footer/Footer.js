@@ -12,19 +12,21 @@ const Footer = () => {
     const [facebook, setFacebook] = useState('');
     const [linkedin, setLinkedIn] = useState('');
     const [twitter, setTwtitter] = useState('');
+    
 
-    useEffect (() => {
-        const getData = async () => {
-            try {
-                let res = await axios.get('https://ongapi.alkemy.org/api/organization');
-                setInstagram(res.data.data.instagram_url)
-                setFacebook(res.data.data.facebook_url)
-                setLinkedIn(res.data.data.linkedin_url)
-                setTwtitter(res.data.data.twitter_url)
-            } catch (error) {
-                console.error(error);
-            }
+    const getData = async () => {
+        try {
+            let res = await axios.get('https://ongapi.alkemy.org/api/organization');
+            setInstagram(res.data.data.instagram_url)
+            setFacebook(res.data.data.facebook_url)
+            setLinkedIn(res.data.data.linkedin_url)
+            setTwtitter(res.data.data.twitter_url)
+        } catch (error) {
+            alert(error.message + '\n\n' + 'Hubo un error, vuelva a intentarlo más tarde');
         }
+    }
+
+    useEffect (() => {      
         getData();
     }, [])
 
@@ -50,17 +52,17 @@ const Footer = () => {
                     <LogoInstagram className='socialmedia-container__a-svg'/>
                 </a>
                 <a target="_blank" href={facebook} className='socialmedia-container__a'>
-                    <LogoFacebook />
+                    <LogoFacebook className='socialmedia-container__a-svg'/>
                 </a>         
                 <a target="_blank" href={twitter} className='socialmedia-container__a'>
-                    <LogoTwitter />
+                    <LogoTwitter className='socialmedia-container__a-svg'/>
                 </a>
                 <a target="_blank" href={linkedin} className='socialmedia-container__a'> 
-                    <LogoLinkedIn />
+                    <LogoLinkedIn className='socialmedia-container__a-svg'/>
                 </a>
             </div>
             <div className='copyright-container'>
-                <p>2022 by Alkemy. All rights reserved.</p>
+                <p className='copyright-container__p'>2022 by Alkemy. All rights reserved.</p>
             </div>
         </footer>
     )
