@@ -1,15 +1,23 @@
-import axios from 'axios';
+import axios from "axios";
+
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const config = {
-    headers: {
-        Group: 01                //Aqui va el ID del equipo!!
-    }
-}
+  headers: {
+    Group: 2 
+  },
+};
 
-const Get = () => {
-    axios.get('https://jsonplaceholder.typicode.com/users', config)
-    .then(res => console.log(res))
-    .catch(err => console.log(err))
-}
+const Get = (endpoint, id) => {
+  
+  if(!endpoint) throw new Error("parameter 'endpoint' is not defined.");
 
-export default Get
+  axios.defaults.headers.get['Authorization'] = getAuthorization();
+
+  const url = `${BASE_URL}${endpoint}${ id? `/${id}`: ''}` 
+  return axios.get(url, config)
+        .then((res) => res)
+        .catch((err) => err);
+};
+
+export { Get };
