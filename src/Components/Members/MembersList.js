@@ -6,15 +6,14 @@ function MembersList({ numberOfMembers = 5 }) {
 
     const [members, setMembers] = useState([]);
 
+    const getMembers = async () => {
+        const response = await Get('members', null, `skip=1&limit=${numberOfMembers}`);
+        const membersList = await response.data.data;
+        setMembers([...membersList]);
+    }
+    
     useEffect(() => {
-        const getMembers = async () => {
-            const response = await Get('members', null, `skip=1&limit=${numberOfMembers}`);
-            const membersList = await response.data.data;
-            setMembers([...membersList]);
-        }
-
         getMembers();
-
     }, [])
 
     return ( 
