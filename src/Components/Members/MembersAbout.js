@@ -7,15 +7,14 @@ function MembersAbout() {
 
     const [firstMember, setFirstMember] = useState({});
 
+    const getFirstMember = async () => {
+        const response = await Get('members', null, `limit=1`);
+        const member = await response.data.data[0];
+        setFirstMember({...member});
+    }
+    
     useEffect(() => {
-        const getFirstMember = async () => {
-            const response = await Get('members', null, `limit=1`);
-            const member = await response.data.data[0];
-            setFirstMember({...member});
-        }
-
         getFirstMember();
-
     }, [])
 
     return ( 
