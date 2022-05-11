@@ -1,6 +1,7 @@
 import { Get, Delete } from '../../Services/privateApiService'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import './UserList.css'
 
 const UserList = () => {
     
@@ -34,7 +35,7 @@ const UserList = () => {
                             <td>{user.name}</td>
                             <td>{user.email}</td>
                             <td>
-                                <Link to={'/backoffice/users/' + user.id}><button>Editar</button></Link> 
+                                <Link to={'/backoffice/users/edit/' + user.id}><button>Editar</button></Link> 
                             </td>
                             <td>
                                 <button onClick={() => deleteUser(user.id)}>Borrar</button>
