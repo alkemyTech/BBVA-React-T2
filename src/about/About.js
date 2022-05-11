@@ -1,6 +1,6 @@
 import "./About.css";
 import { useState, useEffect } from "react";
-import  Get  from "../Services/publicApiService";
+import { Get } from "../Services/publicApiService";
 
 const About = () => {
 

@@ -5,7 +5,7 @@ const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const config = {
     headers: {
-        Group: 2                //Aqui va el ID del equipo!!
+                       //Aqui va el ID del equipo!!
         
     }
 }
@@ -37,5 +37,5 @@ const Delete = (endpoint, id) => {
     .catch(err => err );
 }
 
-export { Delete }
+export { Delete, Get }
 
