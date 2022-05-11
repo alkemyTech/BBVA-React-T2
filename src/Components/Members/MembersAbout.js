@@ -11,7 +11,6 @@ function MembersAbout() {
         const getFirstMember = async () => {
             const response = await Get('members', null, `limit=1`);
             const member = await response.data.data[0];
-            console.log(member);
             setFirstMember({...member});
         }
 

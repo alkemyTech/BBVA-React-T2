@@ -10,7 +10,6 @@ function MembersList({ numberOfMembers = 5 }) {
         const getMembers = async () => {
             const response = await Get('members', null, `skip=1&limit=${numberOfMembers}`);
             const membersList = await response.data.data;
-            console.log(membersList);
             setMembers([...membersList]);
         }
 
