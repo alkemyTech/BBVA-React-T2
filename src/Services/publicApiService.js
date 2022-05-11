@@ -13,8 +13,10 @@ const Get = async (endpoint, id) => {
         throw new Error("parameter 'endpoint' is not defined.");
     }
 
+    id ? id = `/${id}` : id = '';
+
     try {
-        const url = `${BASE_URL}/${endpoint}${id ? `/${id}` : ''}`;
+        const url = `${BASE_URL}/${endpoint}${id}`;
         const response = await axios.get(url, config);
         return response; 
     } catch (error) {
