@@ -5,8 +5,7 @@ const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const config = {
     headers: {
-        Group: 2                //Aqui va el ID del equipo!!
-
+        Group: 2
     }
 }
 
