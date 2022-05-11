@@ -1,0 +1,31 @@
+.contact-form{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.contact__submit-btn {
+  padding: 10px 20px;
+  background-color: #2E86C1;
+  border-radius: 15px;
+  font-size: 1.8rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
+  transition: background-color 250ms ease-out;
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 4px 8px;
+  border: none;
+}
+
+.contact__input-field{
+  margin: 0.5em;
+  padding: 10px 20px;
+  border-radius: 15px;
+  font-size: 1.8rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 4px 8px;
+}
