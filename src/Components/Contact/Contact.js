@@ -1,11 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import './Contact.css'
 import ContactForm from './ContactForm'
 
-const Contact = () => {
+const Contact = (props) => {
   return (
     <>
-      <h3>¿Queres contribuir?</h3>
+      <h3>¿Queres contribuir con { props.name }?</h3>
       <button type='button'>
         <Link to='/'>
           Contribuir
@@ -17,10 +18,12 @@ const Contact = () => {
       <div>
         <h4>Nuestros datos de contacto:</h4>
         <ul>
-          <li>Email: somosfundacionmas@gmail.com</li>
-          <li>Instagram: SomosMás</li>
-          <li>Facebook: Somos_Más</li>
-          <li>Teléfono de contacto: 1160112988</li>
+          <li>Direccion: { props.address } </li>
+          <li>Instagram: { props.instagram_url } </li>
+          <li>Facebook: { props.facebook_url } </li>
+          <li>Linkedin: { props.linkedin_url } </li>
+          <li>Twitter: { props.twitter_url } </li>
+          <li>Teléfono de contacto: { props.phone} </li>
         </ul>
       </div>
 
