@@ -34,8 +34,7 @@ function App() {
           <Route path="/about" component={About} />
         </Switch>
       </BrowserRouter>
-      <div className="App">
-      </div>
+      <div className="App"></div>
     </>
   );
 }
