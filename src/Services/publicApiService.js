@@ -5,6 +5,7 @@ const config = {
         Group: 2
     }
 }
+
 const BASE_URL = "https://ongapi.alkemy.org/api"; // Provisorio hasta tener el archivo .env
 
 const Get = async (endpoint, id, query) => {
@@ -23,7 +24,13 @@ const Get = async (endpoint, id, query) => {
     } catch (error) {
         return error;
     }
+}  
 
+const Post = (endpoint, body) => {
+    axios.post(BASE_URL + endpoint, body)
+    .then(res => res)
+    .catch(err => err)
 }
 
-export default Get;
+export { Post, Get }
+
