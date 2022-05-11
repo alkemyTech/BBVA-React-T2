@@ -8,7 +8,7 @@ const UserList = () => {
     const [userList, setUserList] = useState([])
 
     const deleteUser = (id) => {
-        console.log('Usuario ' + id + ' borrado')
+        Delete('users', id)
     }
 
     const fetchData = async () => {
