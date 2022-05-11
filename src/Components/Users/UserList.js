@@ -18,13 +18,18 @@ const UserList = () => {
     return(
         <>
             <h1>Holo</h1>
-            <ul>
+            <table>
                 {userList.map( (user) =>{
                     return(
-                        <li key={user.id}>{user.name}</li>
+                        <tr key={user.id}>
+                            <td>{user.name}</td>
+                            <td>{user.email}</td>
+                            <td><button>Editar</button></td>
+                            <td><button>Borrar</button></td>
+                        </tr>
                     )
                 })}
-            </ul>
+            </table>
         </>
     )
 }
