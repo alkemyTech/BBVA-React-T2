@@ -6,13 +6,12 @@ const About = () => {
 
   const [text, setText] = useState("");
 
-  useEffect(() => {
-    
-    const fetchData = async () => {
-        const res = await Get("organization");
-        setText(res.data.data.long_description);
-      };
+  const fetchData = async () => {
+    const res = await Get("organization");
+    setText(res.data.data.long_description);
+  };
 
+  useEffect(() => {
     fetchData();
   }, []);
   
