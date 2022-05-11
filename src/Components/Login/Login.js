@@ -1,24 +1,15 @@
-import { useState } from 'react';
+import { useState } from "react";
+import { Formik } from "formik";
+import setLogin from "../services/Login.service";
 
-import '../Login/LoginStyle.css';
+import "../Login/LoginStyle.css";
 
 const Login = () => {
-
-const [formData, setFormData] = useState({email: '', password:''})
-
-  const submitHandler = (e) => {
-    e.preventDefault()
-
-    const email = e.target.email.value;
-    const password = e.target.password.value;
-    console.log('Envío de formulario: ' , email, password)
-    
-  }
+  const [submittedForm, setSubmittedForm] = useState(false);
+  const [token, setToken] = useState();
 
   return (
-    
     <div className="container-login">
-
       <div className="mobile-top-login">
         <div className="logo">
           <div className="container-figures">
@@ -30,31 +21,105 @@ const [formData, setFormData] = useState({email: '', password:''})
         </div>
       </div>
 
-      <div className="desktop-right-login"  >
-        
-      </div>
-      
+      <div className="desktop-right-login"></div>
+
       <div className="desktop-left-login mobile-bottom-login container-form">
         <div className="container-message-welcome-desktop">
-          <div className="message-welcome-desktop">Bienvenido</div><br/>
-          <div className="message-start-session-desktop">Inicia sesión en tu cuenta!</div>
+          <div className="message-welcome-desktop">Bienvenido</div>
+          <br />
+          <div className="message-start-session-desktop">
+            Inicia sesión en tu cuenta!
+          </div>
         </div>
         <div className="form">
-          <form className="form-login" onSubmit={submitHandler} >
-            <input className="input-login" name="email" type="email" placeholder="Email" required></input><br/><br/>
-            <input className="input-login" name="password" type="password" placeholder="Contraseña" required></input><br/><br/>
-            <button className="button-login" type="submit" >Login</button>
-          </form>
-          <br/>
+          <Formik
+            initialValues={{
+              email: "",
+              password: ""
+            }}
+            validate={(user) => {
+              let regexEmail = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+              let regexPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&#.$($)$-$_])[A-Za-z\d$@$!%*?&#.$($)$-$_]{6,100}$/;
+              let errors = {};
+              if (!user.email) {
+                errors.email = "*Campo obligatorio";
+              } else if (!regexEmail.test(user.email)) {
+                errors.email = "Email inválido";
+              }
+              if (!user.password) {
+                errors.password = "*Campo obligatorio";
+              } else if (!regexPassword.test(user.password)) {
+                errors.password = "Contraseña inválida";
+              }
+              return errors;
+            }}
+            onSubmit={(user, { resetForm }) => {
+              setLogin(user)
+                .then((res) => {
+                  setToken(res.data.token);
+                  localStorage.setItem("token", res.data.token);
+                })
+                .catch((err) => {})
+                .finally(() => {});
+              resetForm();
+              setSubmittedForm(true);
+              setTimeout(() => setSubmittedForm(false), 5000);
+            }}
+          >
+            {({
+              values,
+              errors,
+              touched,
+              handleSubmit,
+              handleChange,
+              handleBlur
+            }) => (
+              <form className="form-login" onSubmit={handleSubmit}>
+                <input
+                  className="input-login"
+                  name="email"
+                  type="email"
+                  placeholder="Email"
+                  value={values.email}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  required
+                ></input>
+                {touched.email && errors.email && (
+                  <div className="error">{errors.email}</div>
+                )}
+                <br />
+                <br />
+                <input
+                  className="input-login"
+                  name="password"
+                  type="password"
+                  placeholder="Contraseña"
+                  value={values.password}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  required
+                ></input>
+                {touched.password && errors.password && (
+                  <div className="error">{errors.password}</div>
+                )}
+                <br />
+                <br />
+                <button className="button-login" type="submit">
+                  Login
+                </button>
+                {submittedForm && <p className="success">Logueo correcto</p>}
+              </form>
+            )}
+          </Formik>
+          <br />
           <div className="register-link-container">
             <div className="register-question">No tienes cuenta? </div>
-            <div className="register-link" > Registrate! </div>
+            <div className="register-link"> Registrate! </div>
           </div>
         </div>
       </div>
-        
-      
     </div>
-  )
-}
-export default Login
+  );
+};
+export default Login;
