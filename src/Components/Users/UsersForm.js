@@ -7,6 +7,7 @@ const UserForm = () => {
 
     let { id } = useParams();
     const [user, setUser] = useState({})
+    const [error, setError] = useState('')
 
     const fetchUser = async () => {
         const res = await Get("users", id)
@@ -20,13 +21,15 @@ const UserForm = () => {
     }, []);
 
     useEffect(()=> {
-        setInitialValues({
-            name: user.name,
-            email: user.email,
-            roleId: user.role_id,
-            profile_image: user.profile_image, 
-            password:''  
-        })
+        if(id){
+            setInitialValues({
+                name: user.name,
+                email: user.email,
+                roleId: user.role_id,
+                profile_image: user.profile_image, 
+                password:''  
+            })
+        }
     }, [user])
 
     const [initialValues, setInitialValues] = useState({
@@ -38,31 +41,58 @@ const UserForm = () => {
     })
 
     const handleChange = (e) => {
-        if(e.target.name === 'name'){
-            setInitialValues({...initialValues, name: e.target.value})
-        } 
-        if(e.target.name === 'email'){
-            setInitialValues({...initialValues, email: e.target.value})
-        }
-        if(e.target.name === 'profile_image'){
-            setInitialValues({...initialValues, profile_image: e.target.value})
-        }
-        if(e.target.name === 'password'){
-            setInitialValues({...initialValues, password: e.target.value})
-        }
+        setInitialValues({
+            ...initialValues,
+            [e.target.name] : e.target.value
+        })
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if(id) {
-            console.log('iniciando metodo put ' + initialValues)
-        } else {
-            console.log('iniciando metodo post ' + initialValues)
+        if(validateAll()) {
+                if(id) {
+                    console.log('iniciando metodo put ' + initialValues)
+                } else {
+                    console.log('iniciando metodo post ' + initialValues)
+                }
+                setError('')
+            }
         }
+
+    const validateName = (name) => {
+        if(name.length < 4 || name===null) {
+            setError('El nombre es demasiado corto')
+            return false
+        } 
+        return true
+    }
+
+    const validateEmail = (email) => {
+        const re = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+        if(!email.match(re) || email===null){
+            setError('Email inválido')
+            return false
+        }
+        return true
+    }
+
+    const validatePassword = (password) => {
+        if(password.length < 8 || password===null) {
+            setError('La contraseña es demasiado corta')
+            return false
+        }
+        return true
+    }
+
+    const validateAll = () => {
+        return validateName(initialValues.name) && validatePassword(initialValues.password) && validateEmail(initialValues.email)      
     }
 
     return (
         <form className="form-container" onSubmit={handleSubmit}>
+            {<div>
+                <p>{error}</p>
+            </div>}
             <input className="input-field" type="text" name="name" value={initialValues.name || ''} onChange={handleChange} placeholder="Name"></input>
             <input className="input-field" type="text" name="email" value={initialValues.email || ''} onChange={handleChange} placeholder="Email"></input>
             <input className="input-field" type="password" name="password" value={initialValues.password || ''} onChange={handleChange} placeholder="Password"></input>
