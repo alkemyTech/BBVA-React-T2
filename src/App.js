@@ -15,8 +15,6 @@ import MembersForm from './Components/Members/MembersForm';
 import ProjectsForm from './Components/Projects/ProjectsForm';
 import About from './about/About';
 import Organization from './Components/Organization/Organization';
-import orga from './Components/Organization/formularioEdicion';
-
 
 function App() {
   return (
