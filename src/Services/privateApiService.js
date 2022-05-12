@@ -1,30 +1,25 @@
 import axios from "axios";
+import getPrivateHeaderAuth from './getPrivateHeaderAuth';
 
-//const BASE_URL = 'https://jsonplaceholder.typicode.com';
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const config = {
-    headers: {
-        headers: {
-            Group: 2
-        }              //Aqui va el ID del equipo!!  
-    }
+     headers: getPrivateHeaderAuth()        
 }
 
 const Get = (endpoint, id) => {
   
     if(!endpoint) throw new Error("parameter 'endpoint' is not defined.");
   
-    axios.defaults.headers.get['Authorization'] = getAuthorization();
-  
-    const url = `${BASE_URL}${endpoint}${ id? `/${id}`: ''}` 
+    const url = `${BASE_URL}/${endpoint}${ id? `/${id}`: ''}` 
+    console.log(config)
     return axios.get(url, config)
           .then((res) => res)
           .catch((err) => err);
   };
 
 const Delete = (endpoint, id) => {
-    const headers = getAuthorization();
+    //const headers = getAuthorization();
 
     if(!endpoint) {
         throw new Error("parameter 'endpoint' is not definded");
@@ -33,7 +28,7 @@ const Delete = (endpoint, id) => {
         throw new Error("parameter 'id' is invalid");
     }
 
-    axios.delete(`${BASE_URL}/${endpoint}/${id}`, headers )
+    axios.delete(`${BASE_URL}/${endpoint}/${id}`, config )
     .then(res => res )
     .catch(err => err );
 }
