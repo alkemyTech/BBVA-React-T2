@@ -6,14 +6,15 @@ import ContactForm from './ContactForm'
 const Contact = (props) => {
   return (
     <>
-      <h2>¿Queres contribuir con { props.name }?</h2>
-      <button type='button' className='contact__contribute-btn' >
+      <h2 className='title'>¿Queres contribuir con { props.name }?</h2>
+
+      <button type='button' className='primary-button'>
         <Link to='/' className='contact__link'>
           Contribuir
         </Link>
       </button>
 
-      <h2>¡Contactate con nosotros!</h2>
+      <h2 className='title'>¡Contactate con nosotros!</h2>
 
       <div>
         <h4>Nuestros datos de contacto son:</h4>
@@ -27,7 +28,7 @@ const Contact = (props) => {
         </ul>
       </div>
 
-      <h2>Puedes dejarnos tu consulta:</h2>
+      <h2 className='title' >Puedes dejarnos tu consulta:</h2>
 
       <ContactForm/>
 
