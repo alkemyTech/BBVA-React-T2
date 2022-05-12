@@ -9,9 +9,8 @@ const UserForm = () => {
     const [user, setUser] = useState({})
 
     const fetchUser = async () => {
-        const res = await Get("users", id);
-        setUser(res.data.data)
-        console.log(user)
+        const res = await Get("users", id)
+            setUser(res.data.data)
     };
 
     useEffect(() => {
@@ -19,6 +18,15 @@ const UserForm = () => {
             fetchUser();
         }
     }, []);
+
+    useEffect(()=> {
+        setInitialValues({
+            name: user.name,
+            email: user.email,
+            roleId: user.role_id
+            
+        })
+    }, [user])
 
     const [initialValues, setInitialValues] = useState({
         name: '',
@@ -36,14 +44,17 @@ const UserForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(initialValues);
+        if(id) {
+            console.log('iniciando metodo put ' + initialValues)
+        } else {
+            console.log('iniciando metodo post ' + initialValues)
+        }
     }
 
     return (
         <form className="form-container" onSubmit={handleSubmit}>
-            {console.log("params: " + id)}
             <input className="input-field" type="text" name="name" value={initialValues.name || ''} onChange={handleChange} placeholder="Name"></input>
-            <input className="input-field" type="text" name="email" value={initialValues.description || ''} onChange={handleChange} placeholder="Email"></input>
+            <input className="input-field" type="text" name="email" value={initialValues.email || ''} onChange={handleChange} placeholder="Email"></input>
             <select className="input-field" value={initialValues.roleId || ''} onChange={e => setInitialValues({...initialValues, roleId: e.target.value})}>
                 <option value="" disabled >Select the role</option>
                 <option value="1">Admin</option>
