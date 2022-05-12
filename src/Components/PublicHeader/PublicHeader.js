@@ -1,5 +1,6 @@
-import './PublicHeaderStyles.css';
 import { Link } from 'react-router-dom'
+
+import '../PublicHeader/PublicHeaderStyles.css'
 
 const PublicHeader = () => {
 
