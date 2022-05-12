@@ -13,7 +13,7 @@ const UserList = () => {
     }
 
     const fetchData = async () => {
-        const res = await Get("users", null, 'limit=20');
+        const res = await Get("users", null, 'limit=15');
         setUserList(res.data.data)
       };
 

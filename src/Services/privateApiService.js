@@ -10,8 +10,13 @@ const config = {
 const Get = (endpoint, id, query) => {
   
     if(!endpoint) throw new Error("parameter 'endpoint' is not defined.");
+
+    id = id? `/${id}`: '';
+    query = query? `?${query}`: '';
   
-    const url = `${BASE_URL}/${endpoint + (id? `/${id}`: '') + (query? `?${query}`: '')}` 
+    const url = `${BASE_URL + '/' + endpoint + id + query}` 
+    console.log(url);
+    
     return axios.get(url, config)
           .then((res) => res)
           .catch((err) => err);
