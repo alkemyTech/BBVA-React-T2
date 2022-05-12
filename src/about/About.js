@@ -1,6 +1,7 @@
 import "./About.css";
 import { useState, useEffect } from "react";
-import  Get  from "../Services/publicApiService";
+import  { Get }  from "../Services/publicApiService";
+import MembersAbout from "../Components/Members/MembersAbout";
 
 const About = () => {
 
@@ -16,6 +17,7 @@ const About = () => {
   }, []);
   
   return (
+    <>
       <div className="container">
         <div className="logo">
             <div className="main-text">
@@ -25,6 +27,8 @@ const About = () => {
             <img src='./images/hands.png' className="about-img"/>
         </div>
       </div>
+      <MembersAbout/>
+    </>
   );
 };
 
