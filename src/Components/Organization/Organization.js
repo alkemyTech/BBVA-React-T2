@@ -4,6 +4,7 @@ Al ingresar a la ruta /backoffice/organization se mostrarán los datos actuales 
 import { useEffect, useState } from 'react';
 import { Get } from '../../Services/privateApiService';
 import './Organization.css';
+import '../../general-styles.css';
 
 const Organization = () => { 
     const [information, setInformation] = useState({});
@@ -24,10 +25,13 @@ const Organization = () => {
 
 
     return (
-        <div className="organization-container">
-            <h1>{information.name}</h1>
-            <img src={information.logo} alt='imagen ong' />
-            <p>{information.short_description}</p>
+        <div className='organization-container' >
+            <div className='organization-container__div'>
+                <img className='organization-container__div-img' src={information.logo} alt='imagen ong' />
+                <h1 className='title'>{information.name}</h1>
+            </div>
+            <div className='organization-container__p' dangerouslySetInnerHTML={{__html: information.short_description}} />
+            <button className='primary-backoffice-button organization-container__button'>Editar</button>
         </div>
     )
 }
