@@ -23,7 +23,8 @@ const UserForm = () => {
         setInitialValues({
             name: user.name,
             email: user.email,
-            roleId: user.role_id
+            roleId: user.role_id,
+            profile_image: user.profile_image
             
         })
     }, [user])
@@ -31,14 +32,19 @@ const UserForm = () => {
     const [initialValues, setInitialValues] = useState({
         name: '',
         email: '',
-        roleId: ''
+        roleId: '',
+        profile_image: ''
     })
 
     const handleChange = (e) => {
         if(e.target.name === 'name'){
             setInitialValues({...initialValues, name: e.target.value})
-        } if(e.target.name === 'email'){
+        } 
+        if(e.target.name === 'email'){
             setInitialValues({...initialValues, email: e.target.value})
+        }
+        if(e.target.name === 'profile_image'){
+            setInitialValues({...initialValues, profile_image: e.target.value})
         }
     }
 
@@ -60,6 +66,7 @@ const UserForm = () => {
                 <option value="1">Admin</option>
                 <option value="2">User</option>
             </select>
+            <input type="file" name="profile_image" value={initialValues.profile_image || ''} onChange={handleChange}></input>
             <button className="submit-btn" type="submit">Send</button>
         </form>
     );
