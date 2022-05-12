@@ -14,6 +14,7 @@ import ToysCampaign from './Campaigns/Toys/ToysCampaign';
 import MembersForm from './Components/Members/MembersForm';
 import ProjectsForm from './Components/Projects/ProjectsForm';
 import About from './about/About';
+import Organization from './Components/Organization/Organization';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           <Route path="/school-campaign" component={SchoolCampaign} />
           <Route path="/toys-campaign" component={ToysCampaign} />
           <Route path="/about" component={About} />
+          <Route path="/backoffice/organization" component={Organization} />
         </Switch>
       </BrowserRouter>
     </>
