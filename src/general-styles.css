@@ -7,8 +7,9 @@
   --secondary-color: #0038FF ;
   --background-footer-color: #C0C0C0 ;
 
-  --primary-color-backoffice: #444;
   --secondary-color-backoffice: #2b3046;
+  --primary-backoffice-button: #8cb3df;
+  --secondary-backoffice-button: #8cdfbf;
 
   --title-font: 'Poppins', sans-serif;
   --biggest-font-size: 2rem;
