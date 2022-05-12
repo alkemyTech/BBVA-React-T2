@@ -1,6 +1,5 @@
 import axios from "axios";
 
-//const BASE_URL = 'https://jsonplaceholder.typicode.com';
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const config = {
@@ -16,7 +15,7 @@ const Get = (endpoint, id) => {
   
     //axios.defaults.headers.get['Authorization'] = getAuthorization();
   
-    const url = `${BASE_URL}${endpoint}${ id? `/${id}`: ''}` 
+    const url = `${BASE_URL}/${endpoint}${ id? `/${id}`: ''}` 
     return axios.get(url, config)
           .then((res) => res)
           .catch((err) => err);

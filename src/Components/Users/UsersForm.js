@@ -7,17 +7,19 @@ const UserForm = () => {
 
     let { id } = useParams();
     const [user, setUser] = useState({})
-    const [userList, setUserList] = useState([]);
 
-  const fetchData = async () => {
-    const res = await Get("/users");
-    setUserList(res.data);
-    console.log(res.data)
-  };
+    const fetchUser = async () => {
+        const res = await Get("users", id);
+        setUser(res.data.data);
+        console.log(user)
+        console.log(res.data)
+    };
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+    useEffect(() => {
+        if(id){
+            fetchUser();
+        }
+    }, []);
 
     const [initialValues, setInitialValues] = useState({
         name: '',
