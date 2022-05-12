@@ -1,0 +1,8 @@
+.sidebar-menu {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+.sidebar-menu__icon {
+    height: 30px;
+}
