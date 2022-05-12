@@ -8,6 +8,13 @@ const ActivitiesForm = () => {
         description: ''
     });
 
+    /* Estimado para obtener la data de edicion 
+    if(id){
+        const res = get(process.env.REACT_APP_ACTIVITIES, id)
+        setInitialValues({name: res.data.name, image: res.data.image, description: res.data.description})
+    }
+    */
+
     const handleChange = (e) => {
         if(e.target.name === 'name'){
             setInitialValues({...initialValues, name: e.target.value})
