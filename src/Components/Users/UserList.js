@@ -9,10 +9,13 @@ const UserList = () => {
 
     const deleteUser = (id) => {
         Delete('users', id)
+        //const newList = userList.filter(user => user.id !== id)
+        //setUserList(newList)
+        fetchData();
     }
 
     const fetchData = async () => {
-        const res = await Get("users", null, 'limit=15');
+        const res = await Get("users", null, 'limit=20');
         setUserList(res.data.data)
       };
 
