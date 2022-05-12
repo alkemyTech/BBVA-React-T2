@@ -24,8 +24,8 @@ const UserForm = () => {
             name: user.name,
             email: user.email,
             roleId: user.role_id,
-            profile_image: user.profile_image
-            
+            profile_image: user.profile_image, 
+            password:''  
         })
     }, [user])
 
@@ -33,7 +33,8 @@ const UserForm = () => {
         name: '',
         email: '',
         roleId: '',
-        profile_image: ''
+        profile_image: '',
+        password: ''
     })
 
     const handleChange = (e) => {
@@ -45,6 +46,9 @@ const UserForm = () => {
         }
         if(e.target.name === 'profile_image'){
             setInitialValues({...initialValues, profile_image: e.target.value})
+        }
+        if(e.target.name === 'password'){
+            setInitialValues({...initialValues, password: e.target.value})
         }
     }
 
@@ -61,6 +65,7 @@ const UserForm = () => {
         <form className="form-container" onSubmit={handleSubmit}>
             <input className="input-field" type="text" name="name" value={initialValues.name || ''} onChange={handleChange} placeholder="Name"></input>
             <input className="input-field" type="text" name="email" value={initialValues.email || ''} onChange={handleChange} placeholder="Email"></input>
+            <input className="input-field" type="password" name="password" value={initialValues.password || ''} onChange={handleChange} placeholder="Password"></input>
             <select className="input-field" value={initialValues.roleId || ''} onChange={e => setInitialValues({...initialValues, roleId: e.target.value})}>
                 <option value="" disabled >Select the role</option>
                 <option value="1">Admin</option>
