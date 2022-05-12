@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Get } from '../../Services/privateApiService'
-import '../FormStyles.css';
+import TextField from '@material-ui/core/TextField'
+import './UsersForm.css'
 
 const UserForm = () => {
 
@@ -100,19 +101,24 @@ const UserForm = () => {
     }
 
     return (
-        <form className="form-container" onSubmit={handleSubmit}>
-            {<p>{error}</p>}
-            <input className="input-field" type="text" name="name" value={initialValues.name || ''} onChange={handleChange} placeholder="Name"></input>
-            <input className="input-field" type="text" name="email" value={initialValues.email || ''} onChange={handleChange} placeholder="Email"></input>
-            <input className="input-field" type="password" name="password" value={initialValues.password || ''} onChange={handleChange} placeholder="Password"></input>
-            <select className="input-field" value={initialValues.roleId || ''} onChange={e => setInitialValues({...initialValues, roleId: e.target.value})}>
-                <option value="" disabled >Select the role</option>
-                <option value="1">Admin</option>
-                <option value="2">User</option>
-            </select>
-            <input type="file" name="profile_image" accept=".png,.jpeg" value={initialValues.profile_image || ''} onChange={handleChange}></input>
-            <button className="submit-btn" type="submit">Send</button>
-        </form>
+        <div className="main">
+            <div className="container">
+                {id ? <h1 className="title">Editar usuario</h1> : <h1 className="title">Crear usuario</h1>}
+                <form className="form-container" onSubmit={handleSubmit}>
+                    {<p className='error'>{error}</p>}
+                    <input className="input" type="text" name="name" value={initialValues.name || ''} onChange={handleChange} placeholder="Name"></input>
+                    <input id="outlined-basic" variant="outlined" className="input" type="text" name="email" value={initialValues.email || ''} onChange={handleChange} placeholder="Email"></input>
+                    <input id="outlined-basic" variant="outlined" className="input" type="password" name="password" value={initialValues.password || ''} onChange={handleChange} placeholder="Password"></input>
+                    <select className="select-field" value={initialValues.roleId || ''} onChange={e => setInitialValues({...initialValues, roleId: e.target.value})}>
+                        <option value="" disabled >Select the role</option>
+                        <option value="1">Admin</option>
+                        <option value="2">User</option>
+                    </select>
+                    <input type="file" name="profile_image" accept=".png,.jpeg" value={initialValues.profile_image || ''} onChange={handleChange}></input>
+                    <button className="primary-backoffice-button" type="submit">Send</button>
+                </form>
+            </div>
+        </div>
     );
 }
  
