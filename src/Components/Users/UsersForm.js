@@ -1,7 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { Get } from '../../Services/privateApiService'
 import '../FormStyles.css';
 
 const UserForm = () => {
+
+    let { id } = useParams();
+    const [user, setUser] = useState({})
+    const [userList, setUserList] = useState([]);
+
+  const fetchData = async () => {
+    const res = await Get("/users");
+    setUserList(res.data);
+    console.log(res.data)
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
     const [initialValues, setInitialValues] = useState({
         name: '',
         email: '',
@@ -23,6 +40,7 @@ const UserForm = () => {
 
     return (
         <form className="form-container" onSubmit={handleSubmit}>
+            {console.log("params: " + id)}
             <input className="input-field" type="text" name="name" value={initialValues.name || ''} onChange={handleChange} placeholder="Name"></input>
             <input className="input-field" type="text" name="email" value={initialValues.description || ''} onChange={handleChange} placeholder="Email"></input>
             <select className="input-field" value={initialValues.roleId || ''} onChange={e => setInitialValues({...initialValues, roleId: e.target.value})}>

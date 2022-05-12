@@ -33,6 +33,7 @@ function App() {
           <Route path="/toys-campaign" component={ToysCampaign} />
           <Route path="/about" component={About} />
           <Route path="/backoffice/users/create" component={UserForm} />
+          <Route path="/backoffice/users/edit/:id" component={UserForm} />
         </Switch>
       </BrowserRouter>
     </>
