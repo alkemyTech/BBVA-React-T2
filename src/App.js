@@ -15,6 +15,8 @@ import MembersForm from './Components/Members/MembersForm';
 import ProjectsForm from './Components/Projects/ProjectsForm';
 import About from './about/About';
 import Organization from './Components/Organization/Organization';
+import orga from './Components/Organization/formularioEdicion';
+
 
 function App() {
   return (
@@ -34,6 +36,7 @@ function App() {
           <Route path="/toys-campaign" component={ToysCampaign} />
           <Route path="/about" component={About} />
           <Route path="/backoffice/organization" component={Organization} />
+          <Route path="/backoffice/organization/edit" component={Organization} />
         </Switch>
       </BrowserRouter>
     </>
