@@ -9,8 +9,6 @@ const UserList = () => {
 
     const deleteUser = (id) => {
         Delete('users', id)
-        //const newList = userList.filter(user => user.id !== id)
-        //setUserList(newList)
         fetchData();
     }
 
