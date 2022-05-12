@@ -15,7 +15,7 @@ const Get = async (endpoint, id = '') => {
     }
 
     try {
-        const url = `${BASE_URL}/${endpoint}/${id}`;
+        const url = `${BASE_URL + endpoint + '/' + id}`;
         const response = await axios.get(url);
         return response; 
     } catch (error) {
