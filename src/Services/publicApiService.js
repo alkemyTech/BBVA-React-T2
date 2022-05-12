@@ -18,7 +18,7 @@ const Get = async (endpoint, id, query) => {
     query ? query = `?${query}` : query = '';
     
     try {
-        const url = `${BASE_URL}/${endpoint}${id}${query}`;
+        const url = `${BASE_URL + endpoint + id + query}`;
         const response = await axios.get(url, config);
         return response; 
     } catch (error) {
