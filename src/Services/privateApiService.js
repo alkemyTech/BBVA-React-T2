@@ -32,7 +32,7 @@ const Delete = (endpoint, id) => {
         throw new Error("parameter 'id' is invalid");
     }
 
-    axios.delete(`${BASE_URL + endpoint + id}`, config )
+    axios.delete(`${BASE_URL + endpoint + '/' + id}`, config )
     .then(res => res )
     .catch(err => err );
 }
