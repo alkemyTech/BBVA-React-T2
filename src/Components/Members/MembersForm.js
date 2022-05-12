@@ -72,10 +72,9 @@ const MembersForm = ({ member = {} }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if(validateForm()) {
-      console.log('Entró');
-      console.log(formValues);
-    }
+      Post('/members', formValues);
   }
+}
 
   return (
     <form className="form-container" onSubmit={handleSubmit}>
