@@ -84,15 +84,24 @@ const UserForm = () => {
         return true
     }
 
+    const validateRole = (role) => {
+        if(role > 2 || role < 1) {
+            setError('Id de rol inválido')
+            return false
+        }
+        return true
+    }
+
     const validateAll = () => {
-        return validateName(initialValues.name) && validatePassword(initialValues.password) && validateEmail(initialValues.email)      
+        return validateName(initialValues.name) && 
+                validatePassword(initialValues.password) && 
+                validateEmail(initialValues.email) && 
+                validateRole(initialValues.roleId)     
     }
 
     return (
         <form className="form-container" onSubmit={handleSubmit}>
-            {<div>
-                <p>{error}</p>
-            </div>}
+            {<p>{error}</p>}
             <input className="input-field" type="text" name="name" value={initialValues.name || ''} onChange={handleChange} placeholder="Name"></input>
             <input className="input-field" type="text" name="email" value={initialValues.email || ''} onChange={handleChange} placeholder="Email"></input>
             <input className="input-field" type="password" name="password" value={initialValues.password || ''} onChange={handleChange} placeholder="Password"></input>
@@ -101,7 +110,7 @@ const UserForm = () => {
                 <option value="1">Admin</option>
                 <option value="2">User</option>
             </select>
-            <input type="file" name="profile_image" value={initialValues.profile_image || ''} onChange={handleChange}></input>
+            <input type="file" name="profile_image" accept=".png,.jpeg" value={initialValues.profile_image || ''} onChange={handleChange}></input>
             <button className="submit-btn" type="submit">Send</button>
         </form>
     );
