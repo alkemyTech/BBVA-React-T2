@@ -31,5 +31,9 @@ export function validateHasContent(field = '') {
 }
 
 export function validateSocialNetworkUrl(socialNetwork = '', url = '') {
-    
+    if (url.includes(`https://${socialNetwork}.com/`)) {
+      return true;
+    } else {
+      return false;
+    }
 }
