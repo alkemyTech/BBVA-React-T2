@@ -6,7 +6,7 @@ const config = {
     }
 }
 
-const BASE_URL = "https://ongapi.alkemy.org/api"; // Provisorio hasta tener el archivo .env
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const Get = async (endpoint, id = '') => {
 
