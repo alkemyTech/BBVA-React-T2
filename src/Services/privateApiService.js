@@ -38,4 +38,3 @@ const Delete = (endpoint, id) => {
 }
 
 export { Delete }
-
