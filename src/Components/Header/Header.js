@@ -6,10 +6,10 @@ import './Header.css';
 
 export default function Header() {
 
-    const [isMenuIconClicked, setIsMenuIconClicked] = useState(false);
+    const [isClicked, setIsClicked] = useState(false);
 
     const handleClick = () => {
-        ((!isMenuIconClicked) ? setIsMenuIconClicked(true) : setIsMenuIconClicked(false))
+        ((!isClicked) ? setIsClicked(true) : setIsClicked(false))
     }
 
     return (
