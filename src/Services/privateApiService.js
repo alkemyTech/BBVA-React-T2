@@ -7,11 +7,11 @@ const config = {
      headers: getPrivateHeaderAuth()        
 }
 
-const Get = (endpoint, id) => {
+const Get = (endpoint, id, query) => {
   
     if(!endpoint) throw new Error("parameter 'endpoint' is not defined.");
   
-    const url = `${BASE_URL}/${endpoint}${ id? `/${id}`: ''}` 
+    const url = `${BASE_URL}/${endpoint + (id? `/${id}`: '') + (query? `?${query}`: '')}` 
     console.log(config)
     return axios.get(url, config)
           .then((res) => res)
