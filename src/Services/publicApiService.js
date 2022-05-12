@@ -24,7 +24,7 @@ const Get = async (endpoint, id = '') => {
 }  
 
 const Post = (endpoint, body) => {
-    axios.post(BASE_URL + endpoint, body)
+    axios.post(BASE_URL + '/' + endpoint, body)
     .then(res => res)
     .catch(err => err)
 }

@@ -10,9 +10,8 @@ const UserForm = () => {
 
     const fetchUser = async () => {
         const res = await Get("users", id);
-        setUser(res.data.data);
+        setUser(res.data.data)
         console.log(user)
-        console.log(res.data)
     };
 
     useEffect(() => {
