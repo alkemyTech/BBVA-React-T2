@@ -1,12 +1,27 @@
 import { useState } from "react";
-import { Formik } from "formik";
-import setLogin from "../services/Login.service";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import setLogin from "../../Services/Login.service";
 
 import "../Login/LoginStyle.css";
 
 const Login = () => {
   const [submittedForm, setSubmittedForm] = useState(false);
   const [token, setToken] = useState();
+
+  function handleSubmit(user, {resetForm}) {
+    console.log(user)
+    
+      setLogin(user)
+        .then((res) => {
+          setToken(res.data.token);
+          localStorage.setItem("token", res.data.token);
+        })
+        .catch((err) => {})
+        .finally(() => {});
+      resetForm();
+      setSubmittedForm(true);
+      setTimeout(() => setSubmittedForm(false), 5000);
+  }
 
   return (
     <div className="container-login">
@@ -53,63 +68,37 @@ const Login = () => {
               }
               return errors;
             }}
-            onSubmit={(user, { resetForm }) => {
-              setLogin(user)
-                .then((res) => {
-                  setToken(res.data.token);
-                  localStorage.setItem("token", res.data.token);
-                })
-                .catch((err) => {})
-                .finally(() => {});
-              resetForm();
-              setSubmittedForm(true);
-              setTimeout(() => setSubmittedForm(false), 5000);
-            }}
+            onSubmit={handleSubmit}
           >
-            {({
-              values,
-              errors,
-              touched,
-              handleSubmit,
-              handleChange,
-              handleBlur
-            }) => (
-              <form className="form-login" onSubmit={handleSubmit}>
-                <input
+            {({errors}) => (
+              <Form className="form-login" >
+                <Field
                   className="input-login"
                   name="email"
                   type="email"
                   placeholder="Email"
-                  value={values.email}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  required
-                ></input>
-                {touched.email && errors.email && (
+                ></Field>
+                <ErrorMessage name="email" component={() => (
                   <div className="error">{errors.email}</div>
-                )}
+                )} />
                 <br />
                 <br />
-                <input
+                <Field
                   className="input-login"
                   name="password"
                   type="password"
                   placeholder="Contraseña"
-                  value={values.password}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  required
-                ></input>
-                {touched.password && errors.password && (
+                ></Field>
+                <ErrorMessage name="password" component={() => (
                   <div className="error">{errors.password}</div>
-                )}
+                )} />
                 <br />
                 <br />
                 <button className="button-login" type="submit">
                   Login
                 </button>
                 {submittedForm && <p className="success">Logueo correcto</p>}
-              </form>
+              </Form>
             )}
           </Formik>
           <br />
