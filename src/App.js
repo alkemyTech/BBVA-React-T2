@@ -11,7 +11,8 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 // import ToysCampaign from './Campaigns/Toys/ToysCampaign';
 // import MembersForm from './Components/Members/MembersForm';
 // import ProjectsForm from './Components/Projects/ProjectsForm';
-import About from './Components/Frontoffice/About/About'
+import About from './Components/Frontoffice/About/About';
+import Contact from './Components/Frontoffice/Contact/Contact';
 
 function App() {
   return (
