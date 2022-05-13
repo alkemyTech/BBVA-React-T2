@@ -36,4 +36,9 @@ const Delete = (endpoint, id) => {
         .catch(err => err);
 }
 
+<<<<<<< HEAD
 export { Delete }
+=======
+export { Delete, Get }
+
+>>>>>>> da9deb03a7adcc96fcbcf519394e6bbb13148c9f
