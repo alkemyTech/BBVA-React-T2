@@ -35,7 +35,7 @@ function App() {
           <Route path="/backoffice/users/create" component={UserForm} />
           <Route path="/backoffice/users/edit/:id" component={UserForm} />
         </Switch>
-      </BrowserRouter
+      </BrowserRouter>
       <div className="App"></div>
     </>
   );

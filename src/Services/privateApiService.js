@@ -12,7 +12,7 @@ const Get = (endpoint, id) => {
 
     if (!endpoint) throw new Error("parameter 'endpoint' is not defined.");
 
-    axios.defaults.headers.get['Authorization'] = getAuthorization();
+    //axios.defaults.headers.get['Authorization'] = getAuthorization();
 
     const url = `${BASE_URL}${endpoint}${id ? `/${id}` : ''}`
     return axios.get(url, config)
@@ -30,9 +30,9 @@ const Delete = (endpoint, id) => {
         throw new Error("parameter 'id' is invalid");
     }
 
-    axios.delete(`${BASE_URL}/${endpoint}/${id}`, headers)
-        .then(res => res)
-        .catch(err => err);
+    //axios.delete(`${BASE_URL}/${endpoint}/${id}`, headers)
+        //.then(res => res)
+        //.catch(err => err);
 }
 
 export { Delete, Get }

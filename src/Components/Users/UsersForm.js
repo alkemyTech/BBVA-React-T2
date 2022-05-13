@@ -48,6 +48,18 @@ const UserForm = () => {
         })
     }
 
+    const imageABase64 = (element) => {
+        if(!element||!element.currentTarget.files)
+            return;
+        var file = element.currentTarget.files[0];
+        var reader = new FileReader();
+        reader.onloadend = function() {
+            setInitialValues({...initialValues, image64: reader.result})
+        }
+        reader.readAsDataURL(file);
+        
+      }
+
     async function createUser() {
         const response = await Post('users', {
             name: initialValues.name.toString(),
@@ -125,7 +137,7 @@ const UserForm = () => {
                         <option value="1">Admin</option>
                         <option value="2">User</option>
                     </select>
-                    <input type="file" name="profile_image" accept=".png,.jpeg" value={initialValues.profile_image || ''} onChange={handleChange}></input>
+                    <input type="file" name="profile_image" accept=".png,.jpeg" value={initialValues.profile_image || ''} onChange={imageABase64}></input>
                     <button className="primary-backoffice-button" type="submit">Send</button>
                 </form>
             </div>
