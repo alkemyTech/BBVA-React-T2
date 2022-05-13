@@ -53,7 +53,8 @@ const UserForm = () => {
             name: initialValues.name.toString(),
             email: initialValues.email.toString(),
             password: initialValues.password.toString(),
-            roleId: initialValues.roleId.toString()
+            roleId: initialValues.roleId.toString(),
+            profile_image: initialValues.profile_image.toString()
         });
         return response;
       }
