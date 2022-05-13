@@ -13,7 +13,7 @@ const UserList = () => {
     }
 
     const fetchData = async () => {
-        const res = await Get("users?limit=15");
+        const res = await Get(process.env.REACT_APP_BASE_URL + "users?limit=15");
         setUserList(res.data.data)
       };
 

@@ -1,25 +1,27 @@
 import axios from "axios";
 import getPrivateHeaderAuth from './getPrivateHeaderAuth';
 
-const BASE_URL = process.env.REACT_APP_BASE_URL;
-
 const config = {
      headers: getPrivateHeaderAuth()        
 }
 
 const Get = (endpoint) => {
     
-    const url = `${BASE_URL + endpoint}` 
+    if(!endpoint){
+        throw new Error("Parameter 'endpoint' is not defined.")
+    }
     
-    return axios.get(url, config)
-          .then((res) => res)
-          .catch((err) => err);
-  };
+    return axios.get(endpoint, config)
+        .then((res) => res)
+        .catch((err) => err);
+};
 
 const Delete = (endpoint) => {
-    //const headers = getAuthorization();
+    if(!endpoint){
+        throw new Error("Parameter 'endpoint' is not defined.")
+    }
 
-    axios.delete(`${BASE_URL + endpoint}`, config )
+    axios.delete(endpoint, config )
     .then(res => res )
     .catch(err => err );
 }
