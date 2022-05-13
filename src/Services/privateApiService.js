@@ -10,11 +10,6 @@ const config = {
     }
 }
 
-export const getAuthorization = () => {
-    const token = localStorage.getItem("token");
-    return token ? { Authorization: "Bearer" + token } : { error: "No token found" };
-}
-
 const Get = (endpoint, id) => {
 
     if (!endpoint) throw new Error("parameter 'endpoint' is not defined.");
