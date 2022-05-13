@@ -1,5 +1,9 @@
-.contact-form{
+.contact__form{
   display: flex;
   flex-direction: column;
-  text-align: center;
+  gap: 15px;
+  margin-bottom: 1rem;
+}
+.contact__send-button{
+  align-self: flex-start;
 }
