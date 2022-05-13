@@ -8,17 +8,14 @@ const config = {
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
-const Get = async (endpoint, id, query) => {
+const Get = async (endpoint) => {
 
     if(!endpoint) {
         throw new Error("parameter 'endpoint' is not defined.");
     }
-
-    id ? id = `/${id}` : id = '';
-    query ? query = `?${query}` : query = '';
-    
+  
     try {
-        const url = `${BASE_URL + endpoint + id + query}`;
+        const url = `${BASE_URL + endpoint}`;
         const response = await axios.get(url, config);
         return response; 
     } catch (error) {
