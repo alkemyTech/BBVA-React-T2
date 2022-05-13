@@ -23,10 +23,13 @@ const Get = async (endpoint, id = '') => {
     }
 }  
 
-const Post = (endpoint, body) => {
-    axios.post(BASE_URL + '/' + endpoint, body)
-    .then(res => res)
-    .catch(err => err)
+const Post = async (endpoint, body) => {
+    try {
+        const response = await axios.post(BASE_URL + endpoint, body, config)
+        return response;
+    } catch (error) {
+        return error;
+    }
 }
 
 export { Post, Get }
