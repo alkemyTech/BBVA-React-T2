@@ -54,7 +54,7 @@ const UserForm = () => {
         var file = element.currentTarget.files[0];
         var reader = new FileReader();
         reader.onloadend = function() {
-            setInitialValues({...initialValues, image64: reader.result})
+            setInitialValues({...initialValues, profile_image: reader.result})
         }
         reader.readAsDataURL(file);
         
@@ -66,8 +66,9 @@ const UserForm = () => {
             email: initialValues.email.toString(),
             password: initialValues.password.toString(),
             roleId: initialValues.roleId.toString(),
-            profile_image: initialValues.profile_image.toString()
+            profile_image: initialValues.profile_image.toString(),
         });
+        console.log(response)
         return response;
       }
     
@@ -137,7 +138,7 @@ const UserForm = () => {
                         <option value="1">Admin</option>
                         <option value="2">User</option>
                     </select>
-                    <input type="file" name="profile_image" accept=".png,.jpeg" value={initialValues.profile_image || ''} onChange={imageABase64}></input>
+                    <input type="file" name="profile_image" accept=".png,.jpeg" onChange={imageABase64}></input>
                     <button className="primary-backoffice-button" type="submit">Send</button>
                 </form>
             </div>
