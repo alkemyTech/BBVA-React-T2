@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './OrganizationForm.css';
 import '../../../general-styles.css';
+import { validateImageFormat } from '../../../Services/validatorsService'
 
 const OrganizationForm = () => {
     const [initialValues, setInitialValues] = useState({
@@ -71,27 +72,7 @@ const OrganizationForm = () => {
         }
         return true;
     }
-    //valido el tipo de archivo que se quiere subir
-    const validateFile = () => 
-        {
-            var allowedExtension = ['png', 'jpg'];
-            var fileExtension = document.getElementById('img1').value.split('.').pop().toLowerCase();
-            var isValidFile = false;
-
-                for(var index in allowedExtension) {
-
-                    if(fileExtension === allowedExtension[index]) {
-                        isValidFile = true; 
-                        break;
-                    }
-                }
-
-                if(!isValidFile) {
-                    alert('Allowed Extensions are : *.' + allowedExtension.join(', *.'));
-                }
-
-                return isValidFile;
-    }
+    
     //valido si la url es valida
     const checkUrlFields = () => {
        if (
@@ -114,7 +95,7 @@ const OrganizationForm = () => {
         if(!checkUrlFields()) {
             return;
         }
-        if(!validateFile(initialValues.logo)) {
+        if(!validateImageFormat(initialValues.logo)) {
            return;
         }
         alert('enviando formulario')
