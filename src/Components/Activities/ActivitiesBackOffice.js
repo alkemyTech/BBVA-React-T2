@@ -4,14 +4,15 @@ La tabla mostrará los campos name, image, y createdAt, y las acciones para elim
 En la sección superior, mostrará un componente <Link> que redirigirá a la ruta /backoffice/activities/create.*/
 import './ActivitiesBackOffice.css';
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Activity from './Acitivity';
 import '../../general-styles.css';
 import { Delete } from '../../Services/privateApiService';
 
 const ActivitiesBackOffice = () => {
-    const [activitiesMock, setActivitiesMock] = useState([])
+    const [activitiesMock, setActivitiesMock] = useState([]);
     
-    //cada vez que se elimina una tarea se actualiza el listado de actividades. Aca dentro iría la llamada al endpoint getActivities.
+    //Se listan las activities al cargar el componente
     useEffect(() => {
         setActivitiesMock([
             {id: 1, name: 'actividad 1', imagen:'imagen1', createdAt: '12/01/2022'},
@@ -20,10 +21,7 @@ const ActivitiesBackOffice = () => {
             {id: 4, name: 'actividad 4', imagen:'imagen4', createdAt: '12/01/2022'}
         ]);
     },[])
-
-    const handleEdit = (id) => {
-        console.log(id)
-    }
+ 
     const handleDelete = async (id) => {
         try {
             await Delete(process.env.REACT_APP_ACTIVITIES, id);
@@ -37,6 +35,12 @@ const ActivitiesBackOffice = () => {
     }
 
     return (
+        <>
+        <div className="container-create-activity">
+            <Link to={'/backoffice/activities/create'} >
+                <button type='button' className='primary-backoffice-button button-container__edit'>Crear nueva actividad</button>
+            </Link>
+        </div>
         <div class='list-container'>
             <h1 class='list-container__h1'>Lista de actividades</h1>
             <section className='list-container__section rows-container'> 
@@ -53,13 +57,13 @@ const ActivitiesBackOffice = () => {
                             createdAt={activity.createdAt} 
                             image={activity.image} 
                             key={activity.id} 
-                            handleDelete={handleDelete} 
-                            handleEdit={handleEdit}
+                            handleDelete={handleDelete}
                         />
                     )
                 })
             }
         </div>
+        </>
     )
 }
 
