@@ -11,7 +11,8 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 // import ToysCampaign from './Campaigns/Toys/ToysCampaign';
 // import MembersForm from './Components/Members/MembersForm';
 // import ProjectsForm from './Components/Projects/ProjectsForm';
-import About from './Components/Frontoffice/About/About'
+import About from './Components/Frontoffice/About/About';
+import OrganizationForm from './Components/Backoffice/Organization/OrganizationForm';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path="/school-campaign" component={SchoolCampaign} />
           <Route path="/toys-campaign" component={ToysCampaign} /> */}
           <Route path="/about" component={About} />
+          <Route path="/backoffice/organization/edit" component={OrganizationForm} />
         </Switch>
       </BrowserRouter>
     </>
