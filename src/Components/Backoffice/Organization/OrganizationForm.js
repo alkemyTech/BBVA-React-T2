@@ -6,7 +6,6 @@ En el caso de que todos estén completados, dejar el método vacío, ya que post
 import { useState } from 'react'
 import './OrganizationForm.css';
 import '../../../general-styles.css';
-import { is } from 'immer/dist/internal';
 
 const OrganizationForm = () => {
     const [initialValues, setInitialValues] = useState({
@@ -38,7 +37,7 @@ const OrganizationForm = () => {
         if (e.target.name === 'twitterUrl') {
             setInitialValues({...initialValues, twitterUrl: e.target.value})
         } 
-        if (e.target.name = 'instagramUrl') {
+        if (e.target.name === 'instagramUrl') {
             setInitialValues({...initialValues, instagramUrl: e.target.value})
         }
     }
@@ -47,10 +46,15 @@ const OrganizationForm = () => {
         return (!str || /^\s*$/.test(str));
     }
 
-    const isUrl = (s) => {
-        var regexp = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/
-        return regexp.test(s);
-    }
+    const isUrl = (str) => {
+        var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
+          '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
+          '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
+          '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
+          '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
+          '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
+        return !!pattern.test(str);
+      }
 
     const checkTextFields = () => {
         if (
@@ -62,19 +66,31 @@ const OrganizationForm = () => {
                 isBlank(initialValues.instagramUrl) ||
                 isBlank(initialValues.linkedinUrl)
             ) {
-            alert('debes completar todos los campos')
-            return false
+            alert('debes completar todos los campos');
+            return false;
         }
         return true;
     }
     
-   
+   const checkUrlFields = () => {
+       if (
+           !isUrl(initialValues.facebookUrl) ||
+           !isUrl(initialValues.twitterUrl) ||
+           !isUrl(initialValues.instagramUrl) ||
+           !isUrl(initialValues.linkedinUrl) 
+       ) {
+           alert('Las url no son validas')
+           return false;
+       }
+       return true;
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
         let areFieldsComplete = checkTextFields();
-        let areUrls = checkUrlFields();
-        console.log(areFieldsComplete)
+        if(areFieldsComplete) {
+            let areUrls = checkUrlFields();
+        }
     }
 
     return (
