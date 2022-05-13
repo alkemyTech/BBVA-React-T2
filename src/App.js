@@ -33,7 +33,8 @@ function App() {
           <Route path="/school-campaign" component={SchoolCampaign} />
           <Route path="/toys-campaign" component={ToysCampaign} />
           <Route path="/about" component={About} />
-          <Route path="/backoffice/activities" component={ActivitiesBackOffice} />
+          <Route exact path="/backoffice/activities" component={ActivitiesBackOffice} />
+          <Route path="/backoffice/activities/edit/:id" />
         </Switch>
       </BrowserRouter>
     </>
