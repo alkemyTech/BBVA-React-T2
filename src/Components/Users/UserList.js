@@ -8,12 +8,12 @@ const UserList = () => {
     const [userList, setUserList] = useState([])
 
     const deleteUser = (id) => {
-        Delete('users', id)
+        Delete('users/' + id)
         fetchData();
     }
 
     const fetchData = async () => {
-        const res = await Get("users", null, 'limit=15');
+        const res = await Get("users?limit=15");
         setUserList(res.data.data)
       };
 
