@@ -1,7 +1,7 @@
 import "./About.css";
 import { useState, useEffect } from "react";
-import  { Get }  from "../Services/publicApiService";
-import MembersAbout from "../Components/Members/MembersAbout";
+import  { Get }  from "../../../Services/publicApiService";
+import MembersAbout from "../Members/MembersAbout";
 
 const About = () => {
 
