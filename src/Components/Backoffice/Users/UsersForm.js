@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { Get } from '../../Services/privateApiService'
-import { Post } from '../../Services/publicApiService'
+import { Get } from '../../../Services/privateApiService';
+import { Post } from '../../../Services/publicApiService';
 import './UsersForm.css'
 
 const UserForm = () => {

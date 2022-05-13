@@ -4,6 +4,14 @@
     overflow: hidden;
 }
 
+.form-container{
+    width: 60%;
+    margin: 15px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
 .select-field {
     border-radius: 5px;
     background-color: var(--secondary-color-backoffice);
