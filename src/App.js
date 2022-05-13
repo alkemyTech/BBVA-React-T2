@@ -34,7 +34,6 @@ function App() {
           <Route path="/toys-campaign" component={ToysCampaign} />
           <Route path="/about" component={About} />
           <Route path="/backoffice/organization" component={Organization} />
-          <Route path="/backoffice/organization/edit" component={Organization} />
         </Switch>
       </BrowserRouter>
     </>

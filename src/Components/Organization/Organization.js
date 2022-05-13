@@ -15,7 +15,6 @@ const Organization = () => {
     function handleClick (e) {
         e.preventDefault();
         setShowEditForm(!showEditForm);
-        console.log(showEditForm);
         history.push('/backoffice/organization/edit/');
     }
 
@@ -34,17 +33,23 @@ const Organization = () => {
 
     return (
         <>
-        <div className='organization-container' >
-            <div className='organization-container__div'>
-                <img className='organization-container__div-img' src={information.logo} alt='imagen ong'/>
-                <h1 className='title'>{information.name}</h1>
-            </div>
-            <div className='organization-container__p' dangerouslySetInnerHTML={{__html: information.short_description}} />
-            <button className='primary-backoffice-button organization-container__button' onClick={handleClick}>
-                Editar
-            </button>
-        </div>  
-        {(showEditForm)? <p> Aca se debería mostrar el formulario de edicion</p> : <></>}
+        { (!showEditForm)? 
+            <div className='organization-container' >
+                <div className='organization-container__div'>
+                    <img className='organization-container__div-img' src={information.logo} alt='imagen ong'/>
+                    <h1 className='title'>{information.name}</h1>
+                </div>
+                <div className='organization-container__p' dangerouslySetInnerHTML={{__html: information.short_description}} />
+                <button className='primary-backoffice-button organization-container__button' onClick={handleClick}>
+                    Editar
+                </button>
+            </div>  
+            :
+            <>
+            <p> Aca se debería mostrar el formulario de edicion</p> 
+            <button type='submit' onClick={handleClick}>Submit</button>
+            </>
+            }
         </>    
     )
 }
