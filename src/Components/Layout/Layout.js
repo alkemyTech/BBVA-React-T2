@@ -1,6 +1,6 @@
-import React from 'react'
-import Footer from '../Footer/Footer';
-import Header from '../Header/Header';
+import React from 'react';
+import Header from '../Backoffice/Header/Header';
+import Footer from '../Frontoffice/Footer/Footer';
 
 const Layout = ({children}) => {
   return (

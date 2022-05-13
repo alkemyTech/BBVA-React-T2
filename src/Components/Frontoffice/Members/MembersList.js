@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import {Get} from '../../Services/publicApiService';
+import { Get } from '../../../Services/privateApiService';
 import './MembersList.css';
 
 function MembersList({ numberOfMembers = 5 }) {
