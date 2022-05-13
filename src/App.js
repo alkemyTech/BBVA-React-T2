@@ -2,7 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import { Counter } from './features/counter/Counter';
 import './App.css';
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import ActivitiesForm from './Components/Activities/ActivitiesForm';
 import CategoriesForm from './Components/Categories/CategoriesForm';
 import NewsForm from './Components/News/NewsForm';
@@ -33,7 +33,8 @@ function App() {
           <Route path="/toys-campaign" component={ToysCampaign} />
           <Route path="/about" component={About} />
         </Switch>
-      </BrowserRouter>
+      </BrowserRouter
+      <div className="App"></div>
     </>
   );
 }
