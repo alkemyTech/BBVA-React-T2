@@ -1,8 +1,3 @@
-/*Criterios de aceptación: Al ingresar a la ruta /backoffice/organization/edit se mostará el formulario para editar los campos name, logo, 
-shortDescription, longDescription y links de redes sociales. El campo shortDescription debe poder editarse con CKEditor. 
-Todos los campos son obligatorios, y deben validarse al hacer submit. 
-En el caso de que todos estén completados, dejar el método vacío, ya que posteriormente se realizará una petición a la API*/
-
 import { useState } from 'react'
 import './OrganizationForm.css';
 import '../../../general-styles.css';
@@ -15,8 +10,10 @@ const OrganizationForm = () => {
         facebookUrl: '',
         twitterUrl: '',
         instagramUrl: '',
-        linkedinUrl: ''
+        linkedinUrl: '',
+        logo: ''
     })
+    //esta funcion sirve para actualizar el valor de cada input y atributo
     const handleChange = (e) => {
         //comparo cada atributo con el input donde se está escribiendo para actualizarlo 
         if (e.target.name === 'name') {
@@ -40,12 +37,15 @@ const OrganizationForm = () => {
         if (e.target.name === 'instagramUrl') {
             setInitialValues({...initialValues, instagramUrl: e.target.value})
         }
+        if (e.target.name === 'logo') {
+            setInitialValues({...initialValues, logo: e.target.value})
+        }
     }
-
+    //chequeo si los campos estan completos o son vacios
     const isBlank = (str) => {
         return (!str || /^\s*$/.test(str));
     }
-
+    //chequeo que la url sea valida
     const isUrl = (str) => {
         var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
           '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
@@ -54,9 +54,9 @@ const OrganizationForm = () => {
           '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
           '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
         return !!pattern.test(str);
-      }
-
-    const checkTextFields = () => {
+    }
+    //chequeo que todos los campos esten completos
+    const areFieldsCompleted = () => {
         if (
                 isBlank(initialValues.name) || 
                 isBlank(initialValues.shortDescription) || 
@@ -71,8 +71,29 @@ const OrganizationForm = () => {
         }
         return true;
     }
-    
-   const checkUrlFields = () => {
+    //valido el tipo de archivo que se quiere subir
+    const validateFile = () => 
+        {
+            var allowedExtension = ['png', 'jpg'];
+            var fileExtension = document.getElementById('img1').value.split('.').pop().toLowerCase();
+            var isValidFile = false;
+
+                for(var index in allowedExtension) {
+
+                    if(fileExtension === allowedExtension[index]) {
+                        isValidFile = true; 
+                        break;
+                    }
+                }
+
+                if(!isValidFile) {
+                    alert('Allowed Extensions are : *.' + allowedExtension.join(', *.'));
+                }
+
+                return isValidFile;
+    }
+    //valido si la url es valida
+    const checkUrlFields = () => {
        if (
            !isUrl(initialValues.facebookUrl) ||
            !isUrl(initialValues.twitterUrl) ||
@@ -87,10 +108,17 @@ const OrganizationForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        let areFieldsComplete = checkTextFields();
-        if(areFieldsComplete) {
-            let areUrls = checkUrlFields();
+        if(!areFieldsCompleted()) {
+            return;
         }
+        if(!checkUrlFields()) {
+            return;
+        }
+        if(!validateFile(initialValues.logo)) {
+           return;
+        }
+        alert('enviando formulario')
+        //borrar la linea de arriba y hacer lo que correspond
     }
 
     return (
@@ -102,7 +130,7 @@ const OrganizationForm = () => {
             <input className="form-input" type="text" name='twitterUrl' onChange={handleChange} placeholder="Link a Twitter" ></input>
             <input className="form-input" type="text" name='instagramUrl' onChange={handleChange} placeholder="Link a Instagram" ></input>
             <input className="form-input" type="text" name='linkedinUrl' onChange={handleChange} placeholder="Link a LinkedIn" ></input>
-            <input className="form-input" type="text" name='logo' placeholder="Logo" ></input>
+            <input className="form-input" type="file" id='img1' accept="image/png, image/jpeg" alt='new logo' src="logo.jpg" name='logo' placeholder="Logo" onChange={handleChange}></input>
             <button type="submit" className="form-button primary-backoffice-button">Enviar</button>
         </form>
     )
