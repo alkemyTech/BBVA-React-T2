@@ -5,6 +5,23 @@ import { Post } from '../../Services/publicApiService';
 
 const MembersForm = ({ member = {} }) => {
 
+  const imageABase64 = (element) => {
+    if(!validateImageFormat(element.target.value)) {
+      alert("Formato de imagen inválido, debe ser .png o .jpg");
+      element.target.value = '';
+      return false;
+    }
+    if(!element||!element.currentTarget.files)
+        return;
+    var file = element.currentTarget.files[0];
+    var reader = new FileReader();
+    reader.onloadend = function() {
+      setFormValues({...formValues, image: reader.result})
+    }
+    reader.readAsDataURL(file);
+    
+  }
+
   const { name, description, image, linkedinUrl, facebookUrl} = member;
   
   const [formValues, setFormValues] = useState({
@@ -51,11 +68,6 @@ const MembersForm = ({ member = {} }) => {
       return false;
     }
 
-    if(!validateImageFormat(formValues.image)) {
-      alert("Formato de imagen inválido, debe ser .png o .jpg");
-      return false;
-    }
-
     if (!validateSocialNetworkUrl('facebook', formValues.facebookUrl)) {
       alert("Perfil de Facebook inválido, ingresa una URL correcta, ej: \n'https://www.facebook.com/maria-garcia'");
       return false;      
@@ -72,7 +84,11 @@ const MembersForm = ({ member = {} }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if(validateForm()) {
-      Post('/members', formValues);
+      async function createMember() {
+        const response = await Post('/members', formValues);
+        console.log(response);
+      }
+      createMember();
   }
 }
 
@@ -80,7 +96,7 @@ const MembersForm = ({ member = {} }) => {
     <form className="form-container" onSubmit={handleSubmit}>
       <input className="input-field" type="text" name="name" value={formValues.name} onChange={handleChange} placeholder="Nombre" required></input>
       <input className="input-field" type="text" name="description" value={formValues.description} onChange={handleChange} placeholder="Descripción" required></input>
-      <input className="input-field" type="file" accept=".jpg, .png" name="image" value={formValues.image} onChange={handleChange} required></input>
+      <input className="input-field" type="file" accept=".jpg, .png" name="image" onChange={imageABase64} required></input>
       <input className="input-field" type="url" name="linkedinUrl" value={formValues.linkedinUrl} onChange={handleChange} placeholder="Perfil de LinkedIn" required></input>
       <input className="input-field" type="url" name="facebookUrl" value={formValues.facebookUrl} onChange={handleChange} placeholder="Perfil de Facebook" required></input>
       <button className="primary-button" type="submit">Send</button>
