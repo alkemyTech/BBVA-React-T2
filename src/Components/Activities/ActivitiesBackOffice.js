@@ -37,8 +37,8 @@ const ActivitiesBackOffice = () => {
     return (
         <>
         <div className="container-create-activity">
-            <Link to={'/backoffice/activities/create'} >
-                <button type='button' className='primary-backoffice-button button-container__edit'>Crear nueva actividad</button>
+            <Link to={'/backoffice/activities/create'} className='container-create-activity__a'>
+                <button type='button' className= 'primary-backoffice-button button-create'>Crear nueva actividad</button>
             </Link>
         </div>
         <div class='list-container'>
