@@ -1,4 +1,3 @@
-@media (min-width: 768px){
   .header-container{
     width: 100vw;
     display: flex;
@@ -98,7 +97,6 @@
     background-color: #24252a;
     color: #fff;
   }
-}
 
 @media (max-width: 768px) {
   .container-logo-header,
