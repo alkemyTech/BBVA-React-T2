@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import '../FormStyles.css';
+import '../../FormStyles.css';
 
-const CategoriesForm = () => {
+const TestimonialForm = () => {
     const [initialValues, setInitialValues] = useState({
-        name: '',
-        description: ''
-    })
+       name: '',
+       description: '' 
+    });
 
     const handleChange = (e) => {
         if(e.target.name === 'name'){
@@ -22,11 +22,11 @@ const CategoriesForm = () => {
 
     return (
         <form className="form-container" onSubmit={handleSubmit}>
-            <input className="input-field" type="text" name="name" value={initialValues.name} onChange={handleChange} placeholder="Title"></input>
-            <input className="input-field" type="text" name="description" value={initialValues.description} onChange={handleChange} placeholder="Write some description"></input>
+            <input className="input-field" type="text" name="name" value={initialValues.name} onChange={handleChange} placeholder="Testimonial Title"></input>
+            <input className="input-field" type="text" name="description" value={initialValues.description} onChange={handleChange} placeholder="Testimonial description"></input>
             <button className="submit-btn" type="submit">Send</button>
         </form>
     );
 }
  
-export default CategoriesForm;
+export default TestimonialForm;

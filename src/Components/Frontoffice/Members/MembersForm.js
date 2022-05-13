@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import '../FormStyles.css';
 
 const MembersForm = () => {
   const [initialValues, setInitialValues] = useState({
