@@ -7,28 +7,31 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Activity from './Acitivity';
 import '../../general-styles.css';
-import { Delete } from '../../Services/privateApiService';
+import { Delete, Get } from '../../Services/privateApiService';
 
 const ActivitiesBackOffice = () => {
-    const [activitiesMock, setActivitiesMock] = useState([]);
+    const [activities, setActivities] = useState([]);
+
+    const getActivities = async () => {
+        return await Get(process.env.REACT_APP_ACTIVITIES);
+    }
     
     //Se listan las activities al cargar el componente
     useEffect(() => {
-        setActivitiesMock([
-            {id: 1, name: 'actividad 1', imagen:'imagen1', createdAt: '12/01/2022'},
-            {id: 2, name: 'actividad 2', imagen:'imagen2', createdAt: '12/01/2022'},
-            {id: 3, name: 'actividad 3', imagen:'imagen3', createdAt: '12/01/2022'},
-            {id: 4, name: 'actividad 4', imagen:'imagen4', createdAt: '12/01/2022'}
-        ]);
-    },[])
- 
+        getActivities()
+            .then( res => {
+                setActivities(res.data.data);
+            })
+            .catch(error => error)
+    },[setActivities])
+
     const handleDelete = async (id) => {
         try {
-            await Delete(process.env.REACT_APP_ACTIVITIES, id);
-            //aca se debe consultar el endpoint de actividades de nuevo para actualizarlo.
-            //se reemplazaría el activitiesMock.filter por GET(Activities)
-            let activitiesUpdated = await activitiesMock.filter(activity => activity.id !== id);
-            setActivitiesMock(activitiesUpdated);
+            await Delete(process.env.REACT_APP_ACTIVITIES, `/${id}`);
+            let res = await getActivities();
+            let activities = res.data.data;
+            //actualizo la lista paraque se recargue el componente sin la actividad eliminada.
+            setActivities(activities.filter(activity => activity.id !== id));
         } catch (err) {
             alert('error')
         }
@@ -49,7 +52,7 @@ const ActivitiesBackOffice = () => {
                 <p>Creado</p>
             </section>
             {
-                activitiesMock.map((activity) => {
+                activities.map((activity) => {
                     return (
                         <Activity 
                             id={activity.id} 
