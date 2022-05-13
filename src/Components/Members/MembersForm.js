@@ -86,7 +86,6 @@ const MembersForm = ({ member = {} }) => {
     if(validateForm()) {
       async function createMember() {
         const response = await Post('/members', formValues);
-        console.log(response);
       }
       createMember();
   }
