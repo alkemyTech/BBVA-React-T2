@@ -33,7 +33,7 @@ function App() {
           <Route path="/toys-campaign" component={ToysCampaign} />
           <Route path="/about" component={About} />
         </Switch>
-      </BrowserRouter
+      </BrowserRouter>
       <div className="App"></div>
     </>
   );
