@@ -44,12 +44,12 @@ const Post = (endpoint, body) => {
     if (!endpoint) throw new Error("parameter 'endpoint' is not defined.");
     if (!body) throw new Error("parameter 'body' is not defined")
 
-    const url = `${BASE_URL + endpoint}`;
-
     if (getPrivateHeaderAuth) {
-        axios.post(url, body)
+        axios.post(endpoint, body)
             .then(res => res)
             .catch(err => err)
     }
 }
+
+export { Post }
 
