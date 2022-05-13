@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import '../FormStyles.css';
+import '../../FormStyles.css';
 
-const ActivitiesForm = () => {
+const CategoriesForm = () => {
     const [initialValues, setInitialValues] = useState({
         name: '',
         description: ''
-    });
+    })
 
     const handleChange = (e) => {
         if(e.target.name === 'name'){
@@ -19,14 +19,14 @@ const ActivitiesForm = () => {
         e.preventDefault();
         console.log(initialValues);
     }
-    
+
     return (
         <form className="form-container" onSubmit={handleSubmit}>
-            <input className="input-field" type="text" name="name" value={initialValues.name} onChange={handleChange} placeholder="Activity Title"></input>
-            <input className="input-field" type="text" name="description" value={initialValues.description} onChange={handleChange} placeholder="Write some activity description"></input>
+            <input className="input-field" type="text" name="name" value={initialValues.name} onChange={handleChange} placeholder="Title"></input>
+            <input className="input-field" type="text" name="description" value={initialValues.description} onChange={handleChange} placeholder="Write some description"></input>
             <button className="submit-btn" type="submit">Send</button>
         </form>
     );
 }
  
-export default ActivitiesForm;
+export default CategoriesForm;

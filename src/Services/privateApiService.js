@@ -36,5 +36,5 @@ const Delete = (endpoint, id) => {
         .catch(err => err);
 }
 
-export { Delete }
+export { Delete, Get }
 
