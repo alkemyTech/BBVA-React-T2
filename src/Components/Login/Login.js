@@ -8,10 +8,11 @@ const Login = () => {
   const [submittedForm, setSubmittedForm] = useState(false);
   const [token, setToken] = useState();
 
+  const BASE_URL = process.env.REACT_APP_BASE_URL;
+
   function handleSubmit(user, {resetForm}) {
-    console.log(user)
     
-      setLogin(user)
+      setLogin(BASE_URL, user)
         .then((res) => {
           setToken(res.data.token);
           localStorage.setItem("token", res.data.token);

@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const setLogin = (body) => {
-  return axios.post("https://ongapi.alkemy.org/api/login", body);
+const setLogin = (BASE_URL, body) => {
+  return axios.post(BASE_URL,body);
 };
 
 export default setLogin;
