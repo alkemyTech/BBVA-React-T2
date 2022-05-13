@@ -38,12 +38,11 @@
     width: 100%;
 }
 
-.list-container__section{
-   
+.list-container__section{ 
     font-family: var(--title-font);
     font-size: 1.8rem;
     margin-bottom: 1rem;
-    width: 75%;
+    width: 68%;
     align-self: flex-start;
 }
 
@@ -62,4 +61,34 @@
 .button-container__edit {
     width: 40%;
     padding-left: -1rem;
+    margin-right: 1.3rem;
+}
+
+@media only screen and (max-width: 1024px){
+    .button-container{
+        width: 25%;
+    }
+
+    .button-container__edit, .button-container__delete  {
+        width: 100%;
+        margin-bottom: .7rem;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .list-container__section{
+        visibility: hidden;
+        height: 0px;
+    }
+    .rows-container {
+        flex-direction: column;
+    }
+    .button-container {
+        width: 70%;
+        align-self: center;
+    }
+
+    .activity-container-p__name, .activity-container__img, .activity-container-p__createAt {
+        max-width: 100%;
+        text-align: center;
+    }
 }
