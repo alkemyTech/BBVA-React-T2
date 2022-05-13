@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Get } from '../../Services/privateApiService'
+import { Post } from '../../Services/publicApiService'
 import './UsersForm.css'
 
 const UserForm = () => {
@@ -47,13 +48,23 @@ const UserForm = () => {
         })
     }
 
+    async function createUser() {
+        const response = await Post('users', {
+            name: initialValues.name.toString(),
+            email: initialValues.email.toString(),
+            password: initialValues.password.toString(),
+            roleId: initialValues.roleId.toString()
+        });
+        return response;
+      }
+    
     const handleSubmit = (e) => {
         e.preventDefault();
         if(validateAll()) {
                 if(id) {
-                    console.log('iniciando metodo put ' + initialValues)
+                    console.log('iniciando metodo put ' + JSON.stringify(initialValues))
                 } else {
-                    console.log('iniciando metodo post ' + initialValues)
+                    createUser()
                 }
                 setError('')
             }
