@@ -1,4 +1,5 @@
 import axios from "axios";
+import getPrivateHeaderAuth from './getPrivateHeaderAuth'
 
 //const BASE_URL = 'https://jsonplaceholder.typicode.com';
 const BASE_URL = process.env.REACT_APP_BASE_URL;
