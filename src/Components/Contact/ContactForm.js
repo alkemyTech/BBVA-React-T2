@@ -1,13 +1,16 @@
 import React, { useState } from 'react'
 import './ContactForm.css'
-import { TextField } from '@mui/material'
+import { Alert, AlertTitle, TextField } from '@mui/material'
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({name: '' , email: '' , phone: '',message: ''});
+  const [errors, setErrors] = useState({})
 
   const handleSubmit = (e) => {
     e.preventDefault()
-
+    console.log(Object.keys(formData))
+    Object.keys(formData).forEach( key => validateInputs(key))
+ 
     //reset form
     setFormData({name: '' , email: '' , phone: '',message: ''})
   }
@@ -19,11 +22,23 @@ const ContactForm = () => {
     }) );
   };
 
+  const validateInputs = (key) => {
+    if(!formData[key]){
+      setErrors((prevState)=>({...prevState, [key]: `Campo ${key} requerido incompleto.`}))
+    }
+  }
+
   const inputProps = { style: {fontSize: 20} }
   const inputHelperProps = { style: {fontSize: 15} }
 
   return (
     <form className='contact__form' onSubmit={handleSubmit}>
+      { errors.length ?
+        <Alert variant="standard" severity="error" sx={{ fontSize:15 }}>
+          This is an error alert — check it out!
+        </Alert> : null
+      }
+
       
       <TextField
         helperText="Introduce tu nombre completo"
