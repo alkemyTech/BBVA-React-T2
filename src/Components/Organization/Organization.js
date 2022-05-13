@@ -12,7 +12,7 @@ const Organization = () => {
     const [information, setInformation] = useState({});
     const [showEditForm, setShowEditForm] = useState(false);
 
-    function handleClick (e) {
+    const handleClick = (e) => {
         e.preventDefault();
         setShowEditForm(!showEditForm);
         history.push('/backoffice/organization/edit/');
