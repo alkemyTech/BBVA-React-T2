@@ -14,69 +14,63 @@ const OrganizationForm = () => {
         linkedinUrl: '',
         logo: ''
     })
+    const [errors, setErrors] = useState({})
+
     const handleChange = (e) => {
-    setInitialValues({...initialValues, [e.target.name]: e.target.value})
+        setInitialValues({...initialValues, [e.target.name]: e.target.value})
     }
+
     //chequeo si los campos estan completos o son vacios
-    const isBlank = (str) => {
-        return (!str || /^\s*$/.test(str));
+    const isBlank = () => {
+        let keys = Object.keys(initialValues);
+        //en el for hago keys.lenght-1 para evitar verificar el campo logo en este lugar
+        for (let i = 0; i < keys.length-1; i++) {
+            let str = initialValues[keys[i]];
+            if (!str || /^\s*$/.test(str)) {
+                setErrors({[keys[i]]: 'El campo ' + keys[i] + ' no puede estar vacio'})
+                alert('Error: el campo ' + keys[i] + ' no puede estar vacio')
+                return true;
+            } else {
+                break;
+            }
+        }     
     }
+    
     //chequeo que la url sea valida
-    const isUrl = (str) => {
-        var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
+    const isUrl = (str, campo) => {
+        let pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
           '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
           '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
           '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
           '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
           '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
-        return !!pattern.test(str);
-    }
-    //chequeo que todos los campos esten completos
-    const areFieldsCompleted = () => {
-        if (
-                isBlank(initialValues.name) || 
-                isBlank(initialValues.shortDescription) || 
-                isBlank(initialValues.longDescription) ||
-                isBlank(initialValues.facebookUrl) ||
-                isBlank(initialValues.twitterUrl) ||
-                isBlank(initialValues.instagramUrl) ||
-                isBlank(initialValues.linkedinUrl)
-            ) {
-            alert('debes completar todos los campos');
+        if(!pattern.test(str)) {
+            setErrors({[str]: 'El campo ' + str + ' no puede estar vacio'});
+            alert('Error: la url de ' + campo + ' no es valida')
             return false;
         }
         return true;
     }
-    
-    //valido si la url es valida
-    const checkUrlFields = () => {
-       if (
-           !isUrl(initialValues.facebookUrl) ||
-           !isUrl(initialValues.twitterUrl) ||
-           !isUrl(initialValues.instagramUrl) ||
-           !isUrl(initialValues.linkedinUrl) 
-       ) {
-           alert('Las url no son validas')
-           return false;
-       }
-       return true;
-    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if(!areFieldsCompleted()) {
+        if(isBlank()) {
             return;
         }
-        if(!checkUrlFields()) {
-            return;
+        if (!isUrl(initialValues.facebookUrl, 'facebook') ||
+            !isUrl(initialValues.twitterUrl, 'twitter') ||
+            !isUrl(initialValues.instagramUrl, 'instagram') ||
+            !isUrl(initialValues.linkedinUrl, 'linkedin')) {
+                return;
         }
         if(!validateImageFormat(initialValues.logo)) {
-           return;
+            setErrors({'logo': 'El fomato del logo no es valido. Solo se aceptan jpg y png'});
+            alert('El fomato del logo no es valido. Solo se aceptan jpg y png')
+            return;
         }
         alert('enviando formulario')
         //borrar la linea de arriba y hacer lo que correspond
     }
-
     return (
         <form className="organization-form-container" onSubmit={handleSubmit}>
             <input className="form-input" type="text" name='name' onChange={handleChange} placeholder="Nombre"></input>
