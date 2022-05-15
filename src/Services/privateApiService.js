@@ -6,8 +6,8 @@ const config = {
 }
 
 const Get = (endpoint) => {
-
-    if (!endpoint) {
+    
+    if(!endpoint){
         throw new Error("Parameter 'endpoint' is not defined.")
     }
 
@@ -17,6 +17,7 @@ const Get = (endpoint) => {
 };
 
 const Delete = (endpoint) => {
+
     if (!endpoint) {
         throw new Error("Parameter 'endpoint' is not defined.")
     }
@@ -38,4 +39,5 @@ const Post = (endpoint, body) => {
 }
 
 export { Delete, Get, Post }
+
 
