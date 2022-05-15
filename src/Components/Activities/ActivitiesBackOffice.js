@@ -11,9 +11,22 @@ import { Delete, Get } from '../../Services/privateApiService';
 
 const ActivitiesBackOffice = () => {
     const [activities, setActivities] = useState([]);
+    const endpoint = process.env.REACT_APP_BASE_URL + process.env.REACT_APP_ACTIVITIES;
 
     const getActivities = async () => {
-        return await Get(process.env.REACT_APP_ACTIVITIES);
+        return await Get(endpoint);
+    }
+
+    const handleDelete = async (id) => {
+        try {
+            await Delete(`${endpoint + '/' + id}`);
+            let res = await getActivities();
+            let activities = res.data.data;
+            //actualizo la lista paraque se recargue el componente sin la actividad eliminada.
+            setActivities(activities.filter(activity => activity.id !== id));
+        } catch (err) {
+            alert('error')
+        }
     }
     
     //Se listan las activities al cargar el componente
@@ -25,17 +38,7 @@ const ActivitiesBackOffice = () => {
             .catch(error => error)
     },[setActivities])
 
-    const handleDelete = async (id) => {
-        try {
-            await Delete(process.env.REACT_APP_ACTIVITIES, `/${id}`);
-            let res = await getActivities();
-            let activities = res.data.data;
-            //actualizo la lista paraque se recargue el componente sin la actividad eliminada.
-            setActivities(activities.filter(activity => activity.id !== id));
-        } catch (err) {
-            alert('error')
-        }
-    }
+    
 
     return (
         <>
