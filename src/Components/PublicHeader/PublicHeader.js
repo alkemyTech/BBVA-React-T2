@@ -19,25 +19,25 @@ const PublicHeader = () => {
            <div className="container-list-header">
              <ul className='list-container'>
                 <li className='list-container__li'><Link to='/'>Inicio</Link></li>
-                <li className='list-container__li'><Link to='/Nosotros'>Nosotros</Link></li>
-                <li className='list-container__li'><Link to='/Novedades'>Novedades</Link></li>
-                <li className='list-container__li'><Link to='/Testimonios'>Testimonios</Link></li>
-                <li className='list-container__li'><Link to='/Contacto'>Mi Contacto</Link></li>
-                <li className='list-container__li'><Link to='/Contribuye'>Contribuye</Link></li>
+                <li className='list-container__li'><Link to='/about-us'>Nosotros</Link></li>
+                <li className='list-container__li'><Link to='/news'>Novedades</Link></li>
+                <li className='list-container__li'><Link to='/testimonials'>Testimonios</Link></li>
+                <li className='list-container__li'><Link to='/contact'>Contacto</Link></li>
+                <li className='list-container__li'><Link to='/contributes'>Contribuye</Link></li>
              </ul>
            </div>
            <div className="container-buttons-header">
-            <button className="button-login-header" type="submit">Log in</button>
-            <button className="button-register-header" type="submit">Registrate</button>
+              <Link to='/login'><button className="button-login-header" type="submit">Log in</button></Link>
+              <Link to='/register'><button className="button-register-header" type="submit">Registrate</button></Link>
            </div> 
 
-           <nav class="navbar">
-            <div class="navbar-container container">
-              <input type="checkbox" name="" id="" />
-              <div class="hamburger-lines">
-                <span class="line line1"></span>
-                <span class="line line2"></span>
-                <span class="line line3"></span>
+           <nav className="navbar">
+            <div className="navbar-container container">
+              <input className='input-hamburguer-menu' type="checkbox" name="" id="" />
+              <div className="hamburger-lines">
+                <span className="line line1"></span>
+                <span className="line line2"></span>
+                <span className="line line3"></span>
               </div>
               <div className="logo-header">
                 <div className="container-figures-header">
@@ -46,15 +46,15 @@ const PublicHeader = () => {
                 <div className="circle-logo-header"></div>
               </div>
               </div>
-              <ul class="menu-items">
+              <ul className="menu-items">
                 <li className='list-container__li'><Link to='/'>Inicio</Link></li>
-                <li className='list-container__li'><Link to='/Nosotros'>Nosotros</Link></li>
-                <li className='list-container__li'><Link to='/Novedades'>Novedades</Link></li>
-                <li className='list-container__li'><Link to='/Testimonios'>Testimonios</Link></li>
-                <li className='list-container__li'><Link to='/Contacto'>Mi Contacto</Link></li>
-                <li className='list-container__li'><Link to='/Contribuye'>Contribuye</Link></li>
-                <li className='list-container__li'><button className="button-login-header" type="submit">Log in</button></li>
-                <li className='list-container__li'><button className="button-register-header" type="submit">Registrate</button></li>
+                <li className='list-container__li'><Link to='/about-us'>Nosotros</Link></li>
+                <li className='list-container__li'><Link to='/news'>Novedades</Link></li>
+                <li className='list-container__li'><Link to='/testimonials'>Testimonios</Link></li>
+                <li className='list-container__li'><Link to='/contact'>Contacto</Link></li>
+                <li className='list-container__li'><Link to='/contributes'>Contribuye</Link></li>
+                <li className='list-container__li'><Link to='/login'><button className="button-login-header" type="submit">Log in</button></Link></li>
+                <li className='list-container__li'><Link to='/register'><button className="button-register-header" type="submit">Registrate</button></Link></li>
               </ul>
             </div>
           </nav>
