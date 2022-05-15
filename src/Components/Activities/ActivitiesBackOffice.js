@@ -14,14 +14,14 @@ const ActivitiesBackOffice = () => {
     const endpoint = process.env.REACT_APP_BASE_URL + process.env.REACT_APP_ACTIVITIES;
 
     const getActivities = async () => {
-        return await Get(endpoint);
+        let res = await Get(endpoint);
+        setActivities(res.data.data)
     }
 
     const handleDelete = async (id) => {
         try {
             await Delete(`${endpoint + '/' + id}`);
-            let res = await getActivities();
-            let activities = res.data.data;
+            await getActivities();
             //actualizo la lista paraque se recargue el componente sin la actividad eliminada.
             setActivities(activities.filter(activity => activity.id !== id));
         } catch (err) {
@@ -32,13 +32,7 @@ const ActivitiesBackOffice = () => {
     //Se listan las activities al cargar el componente
     useEffect(() => {
         getActivities()
-            .then( res => {
-                setActivities(res.data.data);
-            })
-            .catch(error => error)
     },[setActivities])
-
-    
 
     return (
         <>
