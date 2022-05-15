@@ -14,33 +14,8 @@ const OrganizationForm = () => {
         linkedinUrl: '',
         logo: ''
     })
-    //esta funcion sirve para actualizar el valor de cada input y atributo
     const handleChange = (e) => {
-        //comparo cada atributo con el input donde se está escribiendo para actualizarlo 
-        if (e.target.name === 'name') {
-            setInitialValues({...initialValues, name: e.target.value})
-        }
-        if (e.target.name === 'shortDescription') {
-            setInitialValues({...initialValues, shortDescription: e.target.value})
-        }
-        if (e.target.name === 'longDescription') {
-            setInitialValues({...initialValues, longDescription: e.target.value})
-        }
-        if (e.target.name === 'facebookUrl') {
-            setInitialValues({...initialValues, facebookUrl: e.target.value})
-        }
-        if (e.target.name === 'linkedinUrl') {
-            setInitialValues({...initialValues, linkedinUrl: e.target.value})
-        }
-        if (e.target.name === 'twitterUrl') {
-            setInitialValues({...initialValues, twitterUrl: e.target.value})
-        } 
-        if (e.target.name === 'instagramUrl') {
-            setInitialValues({...initialValues, instagramUrl: e.target.value})
-        }
-        if (e.target.name === 'logo') {
-            setInitialValues({...initialValues, logo: e.target.value})
-        }
+    setInitialValues({...initialValues, [e.target.name]: e.target.value})
     }
     //chequeo si los campos estan completos o son vacios
     const isBlank = (str) => {
