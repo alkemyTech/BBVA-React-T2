@@ -1,12 +1,31 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import '../../CardListStyles.css';
+//import functions
+import handleAlert from '../../Alerts/Alerts.js';
+import { Get } from '../../../Services/privateApiService.js';
 
 const NewsList = () => {
+    const [news, setNews] = useState([]);
     const newsMock = [
         {id: 2, name: 'Titulo de prueba', description: 'Descripcion de prueba'},
         {id: 1, name: 'Titulo de prueba', description: 'Descripcion de prueba'},
         {id: 3, name: 'Titulo de prueba', description: 'Descripcion de prueba'}
     ];
+
+    //Lo que está dentro de esta función debería ser reemplazo por lo la peticion real a la api.
+    //Si la función falla saltará la alerta diciendo que hubo un error.
+    const getNews = async () => {
+        try {
+            const res = await Get('endpoint');
+            setNews(res.data.data)
+        } catch (err) {
+            handleAlert("Something went wrong. Please try again", "There was an error loading the userList", "error");
+        }
+    }
+
+    useEffect(() => {
+        getNews();
+    },[])
 
     return (
         <div>
