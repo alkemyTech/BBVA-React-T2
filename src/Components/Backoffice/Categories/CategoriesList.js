@@ -1,29 +1,27 @@
 import { useState, useEffect } from 'react';
 import { Get, Delete } from '../../../Services/privateApiService';
 import { Link } from 'react-router-dom';
+import './CategoriesList.css';
 
 function CategoriesList() {
     const baseURL = process.env.REACT_APP_BASE_URL;
     const endpoint = process.env.REACT_APP_CATEGORIES;
 
+    const [categories, setCategories] = useState([]);
+
     const getCategories = async () => {
         const response = await Get(baseURL + endpoint);
         const categoriesData = await response.data.data;
-        console.log(categoriesData);
         setCategories(categoriesData);
     }
 
     const deleteCategorie = async (id) => {
         const response = await Delete(baseURL + endpoint + `/${id}`);
-        console.log(response);
-        if(response.data.success) {
-            await getCategories();
+        const isDeleted = await response.data.success;
+        if(isDeleted) {
+            getCategories();
         }
-    }
-    
-
-    const [categories, setCategories] = useState([]);
-
+    }   
 
     useEffect(() => {
         getCategories();
@@ -40,22 +38,25 @@ function CategoriesList() {
     }
 
     const categoriesRows = categories.map(categorie => (
-        <tr key={categorie.id}>
-            <td>{categorie.name}</td>
-            <td>{formatDate(categorie.created_at)}</td>
-            <td><Link to={`/backoffice/categories/edit/${categorie.id}`}>EDITAR</Link></td>
-            <td><button onClick={() => deleteCategorie(categorie.id)}>BORRAR</button></td>
+        <tr key={categorie.id} className="table__row">
+            <td className="table__column table__column--data">{categorie.name}</td>
+            <td className="table__column table__column--data">{formatDate(categorie.created_at)}</td>
+            <td className="table__column table__column--data"><Link className="primary-backoffice-button" to={`/backoffice/categories/edit/${categorie.id}`}>Editar</Link></td>
+            <td className="table__column table__column--data"><button className="secondary-backoffice-button" onClick={() => deleteCategorie(categorie.id)}>Borrar</button></td>
         </tr>
     ))
 
     return ( 
-        <table className="table" style={{margin: "50px auto", fontSize: "18px", textAlign: "center"}}>
-                              {console.log(categories)}
+        <table className="table">
+            <caption className="table__title">Categorías</caption>
+            <tr className="table__row table__row--btn">
+                <td colSpan={4} className="table__column table__column--btn"><Link className="primary-backoffice-button btn--create" to={'/backoffice/categories/create'}>Crear Categoría</Link></td>
+            </tr>
             <thead>
-                <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Created At</th>
-                <th scope="col" colSpan={2}>Actions</th>
+                <tr className="table__row">
+                <th scope="col" className="table__column table__column--header">Name</th>
+                <th scope="col" className="table__column table__column--header">Created At</th>
+                <th scope="col" className="table__column table__column--header" colSpan={2}>Actions</th>
                 </tr>
             </thead>
             <tbody>
