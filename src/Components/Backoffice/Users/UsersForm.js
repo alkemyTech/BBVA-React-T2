@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios'
 import { useParams } from 'react-router-dom';
 import { Get } from '../../../Services/privateApiService';
 import { Post } from '../../../Services/publicApiService';
@@ -47,7 +48,7 @@ const UserForm = () => {
         })
     }
 
-    async function createUser() {
+    const createUser = async () => {
         const response = await Post(endpoint, {
             name: initialValues.name.toString(),
             email: initialValues.email.toString(),
@@ -56,12 +57,29 @@ const UserForm = () => {
         });
         return response;
       }
+
+      const config = {
+            headers: {
+                Group: 2
+            }
+        } 
+        
+      
+      const editUser = async () => {
+        const response = await axios.put(endpoint + '/' + id, {
+            name: initialValues.name.toString(),
+            email: initialValues.email.toString(),
+            password: initialValues.password.toString(),
+            roleId: initialValues.roleId.toString(),
+        }, config);
+        return response;
+      }
     
     const handleSubmit = (e) => {
         e.preventDefault();
         if(validateAll()) {
                 if(id) {
-                    console.log('iniciando metodo put ' + JSON.stringify(initialValues))
+                    editUser()
                 } else {
                     createUser()
                 }
