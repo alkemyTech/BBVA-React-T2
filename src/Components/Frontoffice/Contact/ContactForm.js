@@ -39,13 +39,14 @@ const ContactForm = () => {
     }) );
   };
 
+  //TODO faltan validaciones y que se reseteen cuando empieza a llenar campos
   const validateInputs = (key) => {
     if(!formData[key]){
       setErrors((prevState)=>({...prevState, [key]: `Campo ${key} requerido incompleto.`}))
     }
   }
 
-  //Material input props
+  //Material input props - estilan los textfield segun los requisitos de la libreria
   const inputProps = { style: {fontSize: 20} }
   const inputHelperProps = { style: {fontSize: 15} }
 
@@ -53,10 +54,9 @@ const ContactForm = () => {
     <form className='contact__form' onSubmit={handleSubmit}>
       { Object.keys(errors).length ?
         <Alert variant="standard" severity="error" sx={{ fontSize:15 }}>
-          This is an error alert — check it out!
+          ¡Cuidado! El formulario no esta completo o algunos datos no son válidos.
         </Alert> : null
       }
-
       
       <TextField
         helperText="Introduce tu nombre completo"
