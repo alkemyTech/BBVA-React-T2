@@ -2,8 +2,8 @@ import React from 'react';
 import './App.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import About from './Components/Frontoffice/About/About'
-import UserList from './Components/Users/UserList';
 import Contact from './Components/Frontoffice/Contact/Contact';
+import UserList from './Components/Backoffice/Users/UserList';
 
 function App() {
   return (

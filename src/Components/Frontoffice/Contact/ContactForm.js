@@ -12,7 +12,6 @@ const ContactForm = () => {
 
   const postContact = async () => {
     const url = BASE_URL + ENDPOINT;
-    console.log(url)
     // const body = formData;
     // const res = await Post(url, body);
     // return res;
@@ -24,7 +23,7 @@ const ContactForm = () => {
     
     if(Object.keys(errors).length === 0){
       //si no hay errores => validado
-      postContact();
+      // postContact();
 
       //reset del formulario
       setFormData({name: '' , email: '' , phone: '',message: ''})

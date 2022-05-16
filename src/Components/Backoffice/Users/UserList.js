@@ -1,4 +1,4 @@
-import { Get, Delete } from '../../Services/privateApiService'
+import { Get, Delete } from '../../../Services/privateApiService'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import './UserList.css'
