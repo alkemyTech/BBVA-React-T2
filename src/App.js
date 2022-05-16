@@ -1,24 +1,17 @@
 import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
 import './App.css';
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
-import ActivitiesForm from './Components/Activities/ActivitiesForm';
-import CategoriesForm from './Components/Categories/CategoriesForm';
-import NewsForm from './Components/News/NewsForm';
-import SlidesForm from './Components/Slides/SlidesForm';
-import TestimonialForm from './Components/Testimonials/TestimonialsForm';
-import UserForm from './Components/Users/UsersForm';
-import SchoolCampaign from './Campaigns/School/SchoolCampaign';
-import ToysCampaign from './Campaigns/Toys/ToysCampaign';
-import MembersForm from './Components/Members/MembersForm';
-import ProjectsForm from './Components/Projects/ProjectsForm';
-import About from './about/About';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import About from './Components/Frontoffice/About/About'
+import UserList from './Components/Users/UserList';
+import Layout from './Components/Layout/Layout';
+import ActivitiesForm from './Components/Frontoffice/Activities/ActivitiesForm'
+
 
 function App() {
   return (
     <>
       <BrowserRouter>
+      <Layout>
         <Switch>
           {/* <Route path="/" exact component={} />           Esta ruta debe ser para el Home */}
           <Route path="/create-activity" component={ActivitiesForm} />
@@ -33,7 +26,9 @@ function App() {
           <Route path="/school-campaign" component={SchoolCampaign} />
           <Route path="/toys-campaign" component={ToysCampaign} />
           <Route path="/about" component={About} />
+          <Route exact path="/backoffice/users" component={UserList} />
         </Switch>
+      </Layout>
       </BrowserRouter>
     </>
   );
