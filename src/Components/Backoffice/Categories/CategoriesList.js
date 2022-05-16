@@ -49,10 +49,10 @@ function CategoriesList() {
     return ( 
         <table className="table">
             <caption className="table__title">Categorías</caption>
-            <tr className="table__row table__row--btn">
-                <td colSpan={4} className="table__column table__column--btn"><Link className="primary-backoffice-button btn--create" to={'/backoffice/categories/create'}>Crear Categoría</Link></td>
-            </tr>
             <thead>
+                <tr className="table__row">
+                    <td colSpan={4} className="table__column table__column--btn"><Link className="primary-backoffice-button btn--create" to={'/backoffice/categories/create'}>Crear Categoría</Link></td>
+                </tr>
                 <tr className="table__row">
                 <th scope="col" className="table__column table__column--header">Name</th>
                 <th scope="col" className="table__column table__column--header">Created At</th>

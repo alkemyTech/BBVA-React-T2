@@ -20,9 +20,6 @@
 .table__row {
     margin-bottom: 25px;
 }
-.table__row--btn {
-    display: table-header-group;
-}
 .table__column, .table__title {
     color:aliceblue
 }
