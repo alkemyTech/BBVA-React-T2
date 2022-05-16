@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Get } from '../../../Services/privateApiService';
+import { Get, Delete } from '../../../Services/privateApiService';
 import { Link } from 'react-router-dom';
 
 function CategoriesList() {
@@ -13,6 +13,15 @@ function CategoriesList() {
         setCategories(categoriesData);
     }
 
+    const deleteCategorie = async (id) => {
+        const response = await Delete(baseURL + endpoint + `/${id}`);
+        console.log(response);
+        if(response.data.success) {
+            await getCategories();
+        }
+    }
+    
+
     const [categories, setCategories] = useState([]);
 
 
@@ -20,12 +29,22 @@ function CategoriesList() {
         getCategories();
     }, [])
 
+    function formatDate(dateString) {
+        const date = new Date(dateString);
+        const day = date.getDate();
+        const month = date.getMonth();
+        const year = date.getFullYear();
+        const hours = date.getHours();
+        const minutes = date.getMinutes();
+        return (`${day}-${month}-${year} ${hours}:${minutes}`)
+    }
+
     const categoriesRows = categories.map(categorie => (
         <tr key={categorie.id}>
             <td>{categorie.name}</td>
-            <td>{categorie.created_at}</td>
+            <td>{formatDate(categorie.created_at)}</td>
             <td><Link to={`/backoffice/categories/edit/${categorie.id}`}>EDITAR</Link></td>
-            <td>BORRAR</td>
+            <td><button onClick={() => deleteCategorie(categorie.id)}>BORRAR</button></td>
         </tr>
     ))
 
