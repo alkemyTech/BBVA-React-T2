@@ -1,11 +1,21 @@
 .members-table{
-
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 .member-th{
-
+  color: white;
+  font-family: var(--title-font) ;
+  font-size: 22px;
 }
 
 .member-text{
-  
+  padding:1rem;
+  color: white;
+  font-size: 18px;
+}
+
+.pagination-stack {
+  color: white;
 }

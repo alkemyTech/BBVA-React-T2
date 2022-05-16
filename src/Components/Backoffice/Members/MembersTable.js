@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Get, Delete } from '../../../Services/privateApiService';
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
+import './MembersTable.css'
+import TablePagination from '@mui/material/TablePagination';
 
 const MembersTable = () => {
   const [MembersData, setMembersData] = useState([])
@@ -29,40 +33,45 @@ const MembersTable = () => {
 
 
   return (
-    <table className='members-table'>
-      <thead>
-        <tr>
-            <th className='member-th'>Nombre</th>
-            <th className='member-th'>Email</th>
-            <th className='member-th'>Foto</th>
-        </tr>
-      </thead>
-      <tbody>
+    <div className='members-table'>
+      <table >
+        <thead>
+          <tr>
+              <th className='member-th'>Nombre</th>
+              <th className='member-th'>Email</th>
+              <th className='member-th'>Foto</th>
+          </tr>
+        </thead>
+        <tbody>
 
-        {Members.map( (member) =>{
-            return(
-                <tr key={member.id}>
-                    <td className='member-text'>{member.name}</td>
-                    <td className='member-text'>{member.email}</td>
-                    <td className='member-text'>{member.photo}</td>
-                    <td>
-                        <Link to={`/backoffice/members/edit/${member.id}`}>
-                          <button className='primary-backoffice-button'>
-                            Editar
+          {Members.map( (member) =>{
+              return(
+                  <tr key={member.id}>
+                      <td className='member-text'>{member.name}</td>
+                      <td className='member-text'>{member.email}</td>
+                      <td className='member-text'>{member.photo}</td>
+                      <td className='member-text'>
+                          <Link to={`/backoffice/members/edit/${member.id}`}>
+                            <button className='primary-backoffice-button'>
+                              Editar
+                            </button>
+                          </Link> 
+                      </td>
+                      <td className='member-text'>
+                          <button onClick={() => deleteMember(member.id)} 
+                                  className='secondary-backoffice-button'>
+                            Borrar
                           </button>
-                        </Link> 
-                    </td>
-                    <td>
-                        <button onClick={() => deleteMember(member.id)} 
-                                className='secondary-backoffice-button'>
-                          Borrar
-                        </button>
-                    </td>
-                </tr>
-            )
-        })}
-      </tbody>
-    </table>
+                      </td>
+                  </tr>
+              )
+          })}
+        </tbody>
+      </table>
+      <Stack spacing={2} className="pagination-stack">
+        <Pagination size="large" variant="outlined" count={10} color="primary" />
+      </Stack>
+    </div>
   )
 }
 

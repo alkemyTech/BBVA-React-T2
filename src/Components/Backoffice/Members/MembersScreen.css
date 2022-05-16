@@ -1,2 +1,11 @@
-.backoffice-members__upper-bar{
+.members-screen{
+  background-color: var(--secondary-color-backoffice);
+}
+.members-title {
+  color: white;
+}
+.members__upper-bar{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
 }

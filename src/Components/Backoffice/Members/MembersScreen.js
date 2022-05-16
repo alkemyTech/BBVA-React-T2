@@ -5,17 +5,20 @@ import MembersTable from './MembersTable'
 
 const MembersScreen = () => {
   return (
-    <div className='container'>  
-      <h1 className='title'>Miembros</h1>
+    <div className='main members-screen'>
+      <div className='container'>
 
-      <div className='backoffice-members__upper-bar'>
-        <Link to='/backoffice/members/create'>
-            <button className='primary-backoffice-button'>Crear nuevo miembro</button>
-        </Link>
+        <h1 className='title members-title'>Miembros</h1>
+
+        <div className='members__upper-bar'>
+          <Link to='/backoffice/members/create'>
+              <button className='primary-backoffice-button'>Crear nuevo miembro</button>
+          </Link>
+        </div>
+        
+        <MembersTable/>
+
       </div>
-      
-      <MembersTable/>
-
     </div>
   )
 }
