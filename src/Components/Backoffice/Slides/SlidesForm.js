@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { Get } from '../../../Services/privateApiService';
 import { Post } from '../../../Services/publicApiService';
 import axios from 'axios'
-import '../../FormStyles.css';
+import './SlidesForm.css'
 
 const SlidesForm = () => {
 
@@ -105,8 +105,10 @@ const SlidesForm = () => {
 
     function validateImageFormat() {
 
-            const isPng = initialValues.image.substring(11,14) === 'png' || initialValues.image.substring(initialValues.image.length -3, initialValues.image.length) === 'png';
-            const isJpg = initialValues.image.substring(11,15) === 'jpeg' || initialValues.image.substring(initialValues.image.length -4, initialValues.image.length) === 'jpeg';;
+            const isPng = initialValues.image.substring(11,14) === 'png' 
+                        || initialValues.image.substring(initialValues.image.length -3, initialValues.image.length) === 'png';
+            const isJpg = initialValues.image.substring(11,15) === 'jpeg' 
+                        || initialValues.image.substring(initialValues.image.length -4, initialValues.image.length) === 'jpeg';;
         
             if (isPng || isJpg) {
               return true;
@@ -114,7 +116,6 @@ const SlidesForm = () => {
               setError('Archivo inválido')
               return false;
             }
-    
       }
 
     const validateAll = () => {
@@ -124,13 +125,18 @@ const SlidesForm = () => {
     }
 
     return (
-        <form className="form-container" onSubmit={handleSubmit}>
-            <di>{error}</di>
-            <input className="input-field" type="text" name="name" value={initialValues.name || ''} onChange={handleChange} placeholder="Slide Title"></input>
-            <input className="input-field" type="text" name="description" value={initialValues.description || ''} onChange={handleChange} placeholder="Write the description"></input>
-            <input type="file" name="image" onChange={handleImage}></input>
-            <button className="submit-btn" type="submit">Send</button>
-        </form>
+        <div className='main'>
+            <div className='container'>
+                {id ? <h1 className="title">Editar Slide</h1> : <h1 className="title">Crear Slide</h1>}
+                <form className="form-container" onSubmit={handleSubmit}>
+                    {<p className='error'>{error}</p>}
+                    <input className="input" type="text" name="name" value={initialValues.name || ''} onChange={handleChange} placeholder="Slide Title"></input>
+                    <input className="input" type="text" name="description" value={initialValues.description || ''} onChange={handleChange} placeholder="Write the description"></input>
+                    <input type="file" name="image" onChange={handleImage}></input>
+                    <button className="primary-backoffice-button" type="submit">Send</button>
+                </form>
+            </div>
+        </div>
     );
 }
  
