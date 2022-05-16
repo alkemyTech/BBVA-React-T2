@@ -7,17 +7,14 @@ const config = {
     }
 }
 
-const Put = (endpoint, id) => {
+const Put = (endpoint) => {
     const headers = getPrivateHeaderAuth();
 
     if (!endpoint) {
         throw new Error("parameter 'endpoint' is not definded");
     }
-    if (id < 1) {
-        throw new Error("parameter 'id' is invalid");
-    }
 
-    axios.Put(`${endpoint+id}`, headers)
+    axios.Put(endpoint, headers)
         .then(res => res)
         .catch(err => err);
 }
