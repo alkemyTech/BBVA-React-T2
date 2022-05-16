@@ -31,7 +31,7 @@
     font-size: 22px;
 }
 .table__column--btn {
-    text-align: end;
+    text-align: center;
 }
 .primary-backoffice-button.btn--create {
     background-color: #8fe1bf;
