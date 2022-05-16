@@ -38,15 +38,4 @@ const Post = (endpoint, body) => {
     }
 }
 
-const Put = (endpoint) => {
-    const headers = getPrivateHeaderAuth();
-
-    if (!endpoint) {
-        throw new Error("parameter 'endpoint' is not definded");
-    }
-    axios.put(endpoint, headers)
-        .then(res => res)
-        .catch(err => err);
-}
-
-export { Delete, Get, Post, Put }
+export { Delete, Get, Post }
