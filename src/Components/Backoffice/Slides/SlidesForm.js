@@ -8,20 +8,7 @@ const SlidesForm = () => {
 
     const endpoint = process.env.REACT_APP_BASE_URL + process.env.REACT_APP_SLIDES
     let { id } = useParams();
-    const [slide, setSlide] = useState({})
     const [error, setError] = useState('')
-
-    const fetchSlides = async () => {
-        const res = await Get(`${endpoint + '/' + id}`)
-        setSlide(res.data.data)
-    }
-
-    useEffect(() => {
-        if(id){
-            fetchSlides();
-        }
-    }, []);
-
     const [initialValues, setInitialValues] = useState({
         name: '',
         description: '',
@@ -29,16 +16,21 @@ const SlidesForm = () => {
         image: '',
     });
 
-    useEffect(()=> {
-        if(id){
+    const fetchSlides = async () => {
+        if(id) {
+            const res = await Get(`${endpoint + '/' + id}`)
             setInitialValues({
-                name: slide.name,
-                description: slide.description,
-                order: slide.order,
-                image: slide.image,  
+                name: res.data.data.name,
+                description: res.data.data.description,
+                order: res.data.data.order,
+                image: res.data.data.image,
             })
         }
-    }, [slide])
+    }
+
+    useEffect(() => {
+        fetchSlides();
+    }, []);
 
     const handleChange = (e) => {
         if(e.target.name === 'name'){
