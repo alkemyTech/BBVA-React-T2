@@ -64,33 +64,34 @@ const UserForm = () => {
         e.preventDefault();
         if(validateAll()) {
                 if(id) {
-                    editUser()
+                    try{
+                        editUser()
+                        setError('')
+                    } 
+                    catch(err){}
                 } else {
-                    createUser()
-                }
-                setError('')
+                    try{
+                        createUser()
+                        setError('')
+                    } 
+                    catch(err){}
+                }     
             }
         }
 
-    const validateName = (name) => {
-        if(name.length < 4 || name===null) {
+    const validate = (input) => {
+        const re = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+        if(input == initialValues.name && input.length < 4 || input===null) {
             setError('El nombre es demasiado corto')
             return false
         } 
-        return true
-    }
 
-    const validateEmail = (email) => {
-        const re = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-        if(!email.match(re) || email===null){
+        if(input == initialValues.email && !input.match(re) || input===null){
             setError('Email inválido')
             return false
         }
-        return true
-    }
 
-    const validatePassword = (password) => {
-        if(password.length < 8 || password===null) {
+        if(input == initialValues.password && input.length < 8 || input===null){
             setError('La contraseña es demasiado corta')
             return false
         }
@@ -106,9 +107,9 @@ const UserForm = () => {
     }
 
     const validateAll = () => {
-        return validateName(initialValues.name) && 
-                validatePassword(initialValues.password) && 
-                validateEmail(initialValues.email) && 
+        return validate(initialValues.name) && 
+                validate(initialValues.password) && 
+                validate(initialValues.email) && 
                 validateRole(initialValues.roleId)     
     }
 
