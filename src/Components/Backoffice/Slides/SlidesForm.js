@@ -6,7 +6,7 @@ import '../../FormStyles.css';
 
 const SlidesForm = () => {
 
-    const endpoint = env.process.REACT_APP_BASE_URL + env.process.REACT_APP_SLIDES
+    const endpoint = process.env.REACT_APP_BASE_URL + process.env.REACT_APP_SLIDES
     let { id } = useParams();
     const [slide, setSlide] = useState({})
     const [error, setError] = useState('')
