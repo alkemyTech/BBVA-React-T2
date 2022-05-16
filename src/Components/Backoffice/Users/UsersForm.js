@@ -49,13 +49,6 @@ const UserForm = () => {
         });
         return response;
       }
-
-      const config = {
-            headers: {
-                Group: 2
-            }
-        } 
-        
       
       const editUser = async () => {
         const response = await axios.put(endpoint + '/' + id, {
@@ -63,7 +56,7 @@ const UserForm = () => {
             email: initialValues.email.toString(),
             password: initialValues.password.toString(),
             roleId: initialValues.roleId.toString(),
-        }, config);
+        }, {});
         return response;
       }
     
