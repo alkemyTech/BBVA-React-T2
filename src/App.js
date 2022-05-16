@@ -4,8 +4,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import About from './Components/Frontoffice/About/About'
 import UserForm from './Components/Backoffice/Users/UsersForm';
 import UserList from './Components/Backoffice/Users/UserList';
-import UserList from './Components/Users/UserList';
-import Layout from './Components/Layout/Layout';
+import Layout from './Components/Layout/Layout'
 
 
 function App() {
