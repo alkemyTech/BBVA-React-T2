@@ -1,5 +1,4 @@
 import "../ScreenDashboard/ScreenDashboard.css";
-import { useState } from "react";
 
 import CardMUI from '../ScreenDashboard/CardMUI'
 import Grid from "@mui/material/Grid";
@@ -8,7 +7,7 @@ import { experimentalStyled as styled } from '@mui/material/styles';
 
 const screenDashboard = () => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const [sectionData, setSectionData] = useState([
+  const sectionData = [
     {
       title: "Novedades",
       img:
@@ -55,7 +54,7 @@ const screenDashboard = () => {
         "https://3.bp.blogspot.com/-EsN2VxytQX0/UNS4iWHTl-I/AAAAAAAAMPw/PxpYiIYQ2-Y/s1600/iconos_usuario5.jpg",
       link: "members"
     }
-  ]);
+  ];
 
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
