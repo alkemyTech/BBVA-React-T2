@@ -1,0 +1,41 @@
+.table {
+    padding: 30px;
+    padding-top: 0;
+    margin: 50px auto;
+    font-size: 18px;
+    text-align: center;
+    border-spacing: 10px 20px;
+}
+.table, .table__title {
+    background-color: var(--secondary-color-backoffice);
+}
+.table__title {
+    padding-top: 30px;
+    font-size: 24px;
+    font-weight: 600;
+    font-family: var(--title-font);
+    text-align: start;
+    text-indent: 10%;
+}
+.table__row {
+    margin-bottom: 25px;
+}
+.table__row--btn {
+    display: table-header-group;
+}
+.table__column, .table__title {
+    color:aliceblue
+}
+.table__column {
+    font-family: var(--p-font);
+}
+.table__column--header {
+    width: 200px;
+    font-size: 22px;
+}
+.table__column--btn {
+    text-align: end;
+}
+.primary-backoffice-button.btn--create {
+    background-color: #8fe1bf;
+}
