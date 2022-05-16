@@ -20,15 +20,17 @@ const Contact = (props) => {
 
   return (
     <div className='container'>
-      <h2 className='title'>¿Queres contribuir?</h2>
+      <div className='contribuir-section'>
+        <h1 className='title'>¿Queres contribuir?</h1>
 
-      <button type='button' className='primary-button'>
         <Link to='/donar' className='contact__link'>
-          Contribuir
+          <button type='button' className='primary-button contact__button'>
+              Contribuir
+          </button>
         </Link>
-      </button>
+      </div>
 
-      <h2 className='title'>¡Contactate con nosotros!</h2>
+      <h1 className='title'>¡Contactate con nosotros!</h1>
 
       <div className='contact__data-section'>
           <p>Direccion: <b>{ address || 'direccion' }</b> </p>

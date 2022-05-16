@@ -1,11 +1,15 @@
-.contact__link {
-  text-decoration: none;
-  color: white;
+.contact__button {
+  margin-top: 20px;
+}
+
+.contribuir-section {
+  margin-bottom: 30px;
 }
 
 .contact__data-section{
   font-family: var(--p-font);
   font-size: 2rem;
+  margin-bottom: 30px;
 }
 
 .contact__media-list{
