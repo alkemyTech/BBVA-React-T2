@@ -1,11 +1,44 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { Get } from '../../../Services/privateApiService';
+import { Post } from '../../../Services/publicApiService';
 import '../../FormStyles.css';
 
 const SlidesForm = () => {
+
+    const endpoint = env.process.REACT_APP_BASE_URL + env.process.REACT_APP_SLIDES
+    let { id } = useParams();
+    const [slide, setSlide] = useState({})
+    const [error, setError] = useState('')
+
+    const fetchSlides = async () => {
+        const res = await Get(`${endpoint + '/' + id}`)
+        setSlide(res.data.data)
+    }
+
+    useEffect(() => {
+        if(id){
+            fetchSlides();
+        }
+    }, []);
+
     const [initialValues, setInitialValues] = useState({
         name: '',
-        description: ''
+        description: '',
+        order: '',
+        image: '',
     });
+
+    useEffect(()=> {
+        if(id){
+            setInitialValues({
+                name: slide.name,
+                description: slide.description,
+                order: slide.order,
+                image: slide.image,  
+            })
+        }
+    }, [slide])
 
     const handleChange = (e) => {
         if(e.target.name === 'name'){

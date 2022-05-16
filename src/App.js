@@ -32,10 +32,6 @@ function App() {
           <Route path="/about" component={About} />
         </Switch>
       </BrowserRouter>
-<<<<<<< HEAD
-      <div className="App"></div>
-=======
->>>>>>> da9deb03a7adcc96fcbcf519394e6bbb13148c9f
     </>
   );
 }
