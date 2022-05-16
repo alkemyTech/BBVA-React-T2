@@ -1,0 +1,30 @@
+.main {
+    background-color: var(--secondary-color-backoffice);
+    height: 100vh;
+    overflow: hidden;
+}
+
+.title-users {
+    font-family: var(--title-font);
+    color:aliceblue;
+}
+
+.user-text {
+    font-family: var(--p-font);
+    color:aliceblue;
+}
+
+.th-text {
+    font-size: 20px;
+}
+
+.align-right {
+    display: flex;
+    justify-content: end;
+    width: 70%;
+}
+
+.users-table {
+    margin-top: 20px;
+}
+
