@@ -2,7 +2,7 @@ import axios from "axios";
 import getPrivateHeaderAuth from './getPrivateHeaderAuth';
 
 const config = {
-     headers: getPrivateHeaderAuth()        
+    headers: getPrivateHeaderAuth()
 }
 
 const Get = (endpoint) => {
@@ -10,25 +10,43 @@ const Get = (endpoint) => {
     if(!endpoint){
         throw new Error("Parameter 'endpoint' is not defined.")
     }
-    
+
     return axios.get(endpoint, config)
         .then((res) => res)
         .catch((err) => err);
 };
 
 const Delete = (endpoint) => {
-    if(!endpoint){
+
+    if (!endpoint) {
         throw new Error("Parameter 'endpoint' is not defined.")
     }
 
-    axios.delete(endpoint, config )
-    .then(res => res )
-    .catch(err => err );
+    axios.delete(endpoint, config)
+        .then(res => res)
+        .catch(err => err);
 }
 
-<<<<<<< HEAD
-export { Delete }
-=======
-export { Delete, Get }
+const Post = (endpoint, body) => {
+    if (!endpoint) throw new Error("parameter 'endpoint' is not defined.");
+    if (!body) throw new Error("parameter 'body' is not defined")
 
->>>>>>> da9deb03a7adcc96fcbcf519394e6bbb13148c9f
+    if (getPrivateHeaderAuth) {
+        axios.post(endpoint, body)
+            .then(res => res)
+            .catch(err => err)
+    }
+}
+
+const Put = (endpoint) => {
+    const headers = getPrivateHeaderAuth();
+
+    if (!endpoint) {
+        throw new Error("parameter 'endpoint' is not definded");
+    }
+    axios.put(endpoint, headers)
+        .then(res => res)
+        .catch(err => err);
+}
+
+export { Delete, Get, Post, Put }
