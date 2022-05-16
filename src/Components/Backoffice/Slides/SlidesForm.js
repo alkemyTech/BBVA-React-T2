@@ -33,12 +33,23 @@ const SlidesForm = () => {
     }, []);
 
     const handleChange = (e) => {
-        if(e.target.name === 'name'){
-            setInitialValues({...initialValues, name: e.target.value})
-        } if(e.target.name === 'description'){
-            setInitialValues({...initialValues, description: e.target.value})
-        }
+        setInitialValues({
+            ...initialValues,
+            [e.target.name] : e.target.value
+        })
     }
+
+    const handleImage = (element) => {
+        if(!element||!element.currentTarget.files)
+            return;
+        var file = element.currentTarget.files[0];
+        var reader = new FileReader();
+        reader.onloadend = function() {
+            setInitialValues({...initialValues, image: reader.result})
+        }
+        reader.readAsDataURL(file);
+        
+      }
 
     const handleSubmit = (e) =>{
         e.preventDefault();
@@ -49,6 +60,7 @@ const SlidesForm = () => {
         <form className="form-container" onSubmit={handleSubmit}>
             <input className="input-field" type="text" name="name" value={initialValues.name} onChange={handleChange} placeholder="Slide Title"></input>
             <input className="input-field" type="text" name="description" value={initialValues.description} onChange={handleChange} placeholder="Write the description"></input>
+            <input type="file" name="image" value={initialValues.image} onChange={handleImage}></input>
             <button className="submit-btn" type="submit">Send</button>
         </form>
     );
