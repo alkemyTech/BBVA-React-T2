@@ -4,10 +4,7 @@ import axios from "axios";
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const config = {
-    headers: {
-        Group: 2                //Aqui va el ID del equipo!!
-        
-    }
+    headers: getPrivateHeaderAuth()
 }
 
 const Get = (endpoint, id) => {
@@ -22,20 +19,29 @@ const Get = (endpoint, id) => {
           .catch((err) => err);
   };
 
-const Delete = (endpoint, id) => {
-    const headers = getAuthorization();
 
-    if(!endpoint) {
-        throw new Error("parameter 'endpoint' is not definded");
-    }
-    if (id < 1) {
-        throw new Error("parameter 'id' is invalid");
+const Delete = (endpoint) => {
+
+    if (!endpoint) {
+        throw new Error("Parameter 'endpoint' is not defined.")
     }
 
-    axios.delete(`${BASE_URL}/${endpoint}/${id}`, headers )
-    .then(res => res )
-    .catch(err => err );
+    axios.delete(endpoint, config)
+        .then(res => res)
+        .catch(err => err);
 }
 
-export { Delete }
+const Post = (endpoint, body) => {
+    if (!endpoint) throw new Error("parameter 'endpoint' is not defined.");
+    if (!body) throw new Error("parameter 'body' is not defined")
+
+    if (getPrivateHeaderAuth) {
+        axios.post(endpoint, body)
+            .then(res => res)
+            .catch(err => err)
+    }
+}
+
+export { Delete, Get, Post }
+
 
