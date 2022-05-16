@@ -2,7 +2,7 @@
 Al ingresar a la ruta /backoffice/organization se mostrarán los datos actuales de la Organización 
 (name, image, shortDescription), y la acción para acceder al formulario de edición (/backoffice/organization/edit)*/
 import { useEffect, useState } from 'react';
-import { useHistory, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Get } from '../../../Services/privateApiService';
 import './Organization.css';
 import '../../../general-styles.css';
