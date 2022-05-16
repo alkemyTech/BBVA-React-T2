@@ -15,11 +15,11 @@ function App() {
       <Layout>
         <Switch>
           <Route path="/about" component={About} />
-          <Route path="/backoffice/users/create" component={UserForm} />
-          <Route path="/backoffice/users/edit/:id" component={UserForm} />
-          <Route exact path="/backoffice/users" component={UserList} />
         </Switch>
       </Layout>
+        <Route path="/backoffice/users/create" component={UserForm} />
+        <Route path="/backoffice/users/edit/:id" component={UserForm} />
+        <Route exact path="/backoffice/users" component={UserList} />
       </BrowserRouter>
     </>
   );
