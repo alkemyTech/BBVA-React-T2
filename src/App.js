@@ -1,8 +1,13 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+//Public components
 import About from './Components/Frontoffice/About/About'
-import UserList from './Components/Users/UserList';
+
+//Backoffice components
+import UserList from './Components/Backoffice/Users/UserList';
+import MembersScreen from './Components/Backoffice/Members/MembersScreen';
+import MembersForm from './Components/Backoffice/Members/MembersForm';
 
 function App() {
   return (
@@ -10,8 +15,8 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route path="/about" component={About} />
-          <Route path="/backoffice/members" component={BackofficeMembers} />
-          <Route path="/backoffice/members/create" component={<div>Create a new member</div>} />
+          <Route path="/backoffice/members" component={MembersScreen} />
+          <Route path="/backoffice/members/create" component={MembersForm} />
           <Route exact path="/backoffice/users" component={UserList} />
         </Switch>
       </BrowserRouter>

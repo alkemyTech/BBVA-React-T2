@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
-import { Get, Delete } from '../../Services/privateApiService'
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { Get, Delete } from '../../../Services/privateApiService';
 
 const MembersTable = () => {
   const [MembersData, setMembersData] = useState([])
