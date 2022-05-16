@@ -55,9 +55,9 @@ const SlidesForm = () => {
     const createSlide = async () => {
         const response = await Post(endpoint, {
             name: initialValues.name.toString(),
-            email: initialValues.description.toString(),
-            password: initialValues.order.toString(),
-            roleId: initialValues.image.toString(),
+            description: initialValues.description.toString(),
+            order: initialValues.order.toString(),
+            image: initialValues.image.toString(),
         });
         return response;
     }
@@ -65,27 +65,70 @@ const SlidesForm = () => {
     const editSlide = async () => {
         const response = await axios.put(endpoint + '/' + id, {
             name: initialValues.name.toString(),
-            email: initialValues.description.toString(),
-            password: initialValues.order.toString(),
-            roleId: initialValues.image.toString(),
+            description: initialValues.description.toString(),
+            order: id.toString(),
         }, {});
         return response;
       }
 
     const handleSubmit = (e) =>{
         e.preventDefault();
-        if(id) {
-            editSlide();
-        } else {
-            createSlide();
+        if(validateAll()) {
+            if(id) {
+                try{
+                    editSlide()
+                    setError('')
+                } 
+                catch(err){}
+            } else {
+                try{
+                    createSlide()
+                    setError('')
+                } 
+                catch(err){}
+            }     
         }
+    }
+
+    const validate = (input) => {
+        if(input == initialValues.name && input.length < 4) {
+            setError('El nombre es demasiado corto')
+            return false
+        }
+        
+        if(input == initialValues.description && input==='') {
+            setError('La descripción no puede quedar vacía')
+            return false
+        }
+        return true 
+    }
+
+    function validateImageFormat() {
+
+            const isPng = initialValues.image.substring(11,14) === 'png' || initialValues.image.substring(initialValues.image.length -3, initialValues.image.length) === 'png';
+            const isJpg = initialValues.image.substring(11,15) === 'jpeg' || initialValues.image.substring(initialValues.image.length -4, initialValues.image.length) === 'jpeg';;
+        
+            if (isPng || isJpg) {
+              return true;
+            } else {
+              setError('Archivo inválido')
+              return false;
+            }
+    
+      }
+
+    const validateAll = () => {
+        return validate(initialValues.description) &&
+                validate(initialValues.name) &&
+                validateImageFormat()
     }
 
     return (
         <form className="form-container" onSubmit={handleSubmit}>
-            <input className="input-field" type="text" name="name" value={initialValues.name} onChange={handleChange} placeholder="Slide Title"></input>
-            <input className="input-field" type="text" name="description" value={initialValues.description} onChange={handleChange} placeholder="Write the description"></input>
-            <input type="file" name="image" value={initialValues.image} onChange={handleImage}></input>
+            <di>{error}</di>
+            <input className="input-field" type="text" name="name" value={initialValues.name || ''} onChange={handleChange} placeholder="Slide Title"></input>
+            <input className="input-field" type="text" name="description" value={initialValues.description || ''} onChange={handleChange} placeholder="Write the description"></input>
+            <input type="file" name="image" onChange={handleImage}></input>
             <button className="submit-btn" type="submit">Send</button>
         </form>
     );
