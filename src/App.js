@@ -11,14 +11,17 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <Switch>
-          <Layout>
-            <Route path="/about" component={About} />
-          </Layout>
-          <BackofficeLayout> 
+        <BackofficeLayout> 
+          <Switch>
             <Route exact path="/backoffice/users" component={UserList} />
-          </BackofficeLayout>   
-        </Switch>
+            </Switch>
+          </BackofficeLayout>
+          
+          <Layout>
+            <Switch>
+            <Route path="/about" component={About} />
+            </Switch>
+          </Layout>   
       
       </BrowserRouter>
     </>
