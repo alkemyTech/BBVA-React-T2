@@ -1,98 +1,92 @@
-import { Link } from 'react-router-dom'
-import "../ScreenDashboard/ScreenDashboardStyles.css";
+import "../ScreenDashboard/ScreenDashboard.css";
+import { useState } from "react";
+
+import CardMUI from '../ScreenDashboard/CardMUI'
+import Grid from "@mui/material/Grid";
+import Paper from '@mui/material/Paper';
+import { experimentalStyled as styled } from '@mui/material/styles';
 
 const screenDashboard = () => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const [sectionData, setSectionData] = useState([
+    {
+      title: "Novedades",
+      img:
+        "https://images.vexels.com/media/users/3/147149/isolated/preview/b80672b8545a4c8d9a04e7df58d4dc1b-icono-de-periodico-de-noticias.png",
+      link: "news"
+    },
+    {
+      title: "Actividades",
+      img:
+        "https://i.pinimg.com/originals/01/04/8c/01048c13b26dae56c0f27227b1da2f98.png",
+      link: "activities"
+    },
+    {
+      title: "Categorias",
+      img:
+        "https://digital.practia.global/wp-content/uploads/2020/09/iconos-rrhh-63.png",
+      link: "categories"
+    },
+    {
+      title: "Testimonios",
+      img: "https://cdn-icons-png.flaticon.com/512/2620/2620561.png",
+      link: "testimonials"
+    },
+    {
+      title: "Organizacion",
+      img: "https://cdn-icons-png.flaticon.com/512/115/115905.png",
+      link: "organization"
+    },
+    {
+      title: "Slides",
+      img:
+        "https://e6.pngbyte.com/pngpicture/44820/png-computer-icons-slide-show-presentation_thumbnail.png",
+      link: "slides"
+    },
+    {
+      title: "Usuarios",
+      img:
+        "https://e6.pngbyte.com/pngpicture/44893/png-computer-icons-user-clip-art-user_thumbnail.png",
+      link: "users"
+    },
+    {
+      title: "Miembros",
+      img:
+        "https://3.bp.blogspot.com/-EsN2VxytQX0/UNS4iWHTl-I/AAAAAAAAMPw/PxpYiIYQ2-Y/s1600/iconos_usuario5.jpg",
+      link: "members"
+    }
+  ]);
+
+  const Item = styled(Paper)(({ theme }) => ({
+    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+    ...theme.typography.body2,
+    padding: theme.spacing(2),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  }));
+
   return (
     <div className="container-dashboard">
       <div className="container-cards">
-        <div className="card">
-          <div className="name-card">
-            <p>Novedades</p>
-          </div>
-          <div className="image-card">
-            <img className="img-card-dashboard img-card-dashboard-news" src="" alt="" />
-          </div>
-          <div className="btn-card">
-            <Link to='/news'><button className="btn-screendashboard">Ir</button></Link>           
-          </div>
-        </div>
-        <div className="card">
-          <div className="name-card">
-            <p>Actividades</p>
-          </div>
-          <div className="image-card">
-            <img className="img-card-dashboard img-card-dashboard-activities" src="" alt="" />
-          </div>
-          <div className="btn-card">
-            <Link to='/activities'><button className="btn-screendashboard">Ir</button></Link> 
-          </div>
-        </div>
-        <div className="card">
-          <div className="name-card">
-            <p>Categorías</p>
-          </div>
-          <div className="image-card"> 
-            <img className="img-card-dashboard img-card-dashboard-categories" src="" alt="" />
-          </div>
-          <div className="btn-card">
-            <Link to='/categories'><button className="btn-screendashboard">Ir</button></Link>
-          </div>
-        </div>
-        <div className="card">
-          <div className="name-card">
-            <p>Testimonios</p>
-          </div>
-          <div className="image-card">
-            <img className="img-card-dashboard img-card-dashboard-testimonials" src="" alt="" />
-          </div>
-          <div className="btn-card">
-            <Link to='/testimonials'><button className="btn-screendashboard">Ir</button></Link> 
-          </div>
-        </div>
-        <div className="card">
-          <div className="name-card">
-            <p>Organización</p>
-          </div>
-          <div className="image-card"> 
-            <img className="img-card-dashboard img-card-dashboard-organization" src="" alt="" />
-          </div>
-          <div className="btn-card">
-            <Link to='/organization'><button className="btn-screendashboard">Ir</button></Link>
-          </div>
-        </div>
-        <div className="card">
-          <div className="name-card">
-            <p>Slides</p>
-          </div>
-          <div className="image-card"> 
-            <img className="img-card-dashboard img-card-dashboard-slides" src="" alt="" />
-          </div>
-          <div className="btn-card">
-            <Link to='/slides'><button className="btn-screendashboard">Ir</button></Link>
-          </div>
-        </div>
-        <div className="card">
-          <div className="name-card">
-            <p>Usuarios</p>
-          </div>
-          <div className="image-card">
-            <img className="img-card-dashboard img-card-dashboard-users" src="" alt="" />
-          </div>
-          <div className="btn-card">
-            <Link to='/users'><button className="btn-screendashboard">Ir</button></Link>
-          </div>
-        </div>
-        <div className="card">
-          <div className="name-card">
-            <p>Miembros</p>
-          </div>
-          <div className="image-card">
-            <img className="img-card-dashboard img-card-dashboard-members" src="" alt="" />
-          </div>
-          <div className="btn-card">
-            <Link to='/members'><button className="btn-screendashboard">Ir</button></Link>
-          </div>
-        </div>
+        <Grid
+          container
+          spacing={{ xs: 2, md: 0 }}
+          columns={{ xs: 2, sm: 8, md: 16 }}
+          justify="center"
+        >
+          {sectionData.map((data, index) => (
+            <Grid item xs={2} sm={4} md={4} key={index}>
+              <Item>
+                <CardMUI
+                  key={index}
+                  title={data.title}
+                  img={data.img}
+                  link={data.link}
+                />
+              </Item>
+            </Grid>
+          ))}
+        </Grid>
       </div>
     </div>
   );
