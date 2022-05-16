@@ -6,12 +6,13 @@ import './UsersForm.css'
 
 const UserForm = () => {
 
+    const endpoint = process.env.REACT_APP_BASE_URL + process.env.REACT_APP_USERS
     let { id } = useParams();
     const [user, setUser] = useState({})
     const [error, setError] = useState('')
 
     const fetchUser = async () => {
-        const res = await Get("users", id)
+        const res = await Get(`${endpoint + '/' +id}`)
             setUser(res.data.data)
     };
 
@@ -47,14 +48,12 @@ const UserForm = () => {
     }
 
     async function createUser() {
-        const response = await Post('users', {
+        const response = await Post(endpoint, {
             name: initialValues.name.toString(),
             email: initialValues.email.toString(),
             password: initialValues.password.toString(),
             roleId: initialValues.roleId.toString(),
-            profile_image: initialValues.profile_image.toString(),
         });
-        console.log(response)
         return response;
       }
     
