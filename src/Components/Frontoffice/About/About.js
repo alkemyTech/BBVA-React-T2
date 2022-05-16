@@ -8,7 +8,7 @@ const About = () => {
   const [text, setText] = useState("");
 
   const fetchData = async () => {
-    const res = await Get("organization");
+    const res = await Get(process.env.REACT_APP_BASE_URL + process.env.REACT_APP_ORGANIZATION);
     setText(res.data.data.long_description);
   };
 
