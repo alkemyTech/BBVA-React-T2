@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Get, Delete } from '../../../Services/privateApiService';
 import { Link } from 'react-router-dom';
+import { formatDate } from '../../../Services/validatorsService';
 import './CategoriesList.css';
 
 function CategoriesList() {
@@ -26,16 +27,6 @@ function CategoriesList() {
     useEffect(() => {
         getCategories();
     }, [])
-
-    function formatDate(dateString) {
-        const date = new Date(dateString);
-        const day = date.getDate();
-        const month = date.getMonth();
-        const year = date.getFullYear();
-        const hours = date.getHours();
-        const minutes = date.getMinutes();
-        return (`${day}-${month}-${year} ${hours}:${minutes}`)
-    }
 
     const categoriesRows = categories.map(categorie => (
         <tr key={categorie.id} className="table__row">
