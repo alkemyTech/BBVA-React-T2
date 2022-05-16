@@ -7,7 +7,7 @@ function MembersList({ numberOfMembers = 5 }) {
     const [members, setMembers] = useState([]);
 
     const getMembers = async () => {
-        const response = await Get('members', null, `skip=1&limit=${numberOfMembers}`);
+        const response = await Get(process.env.REACT_APP_BASE_URL + process.env.REACT_APP_MEMBERS + `skip=1&limit=${numberOfMembers}`);
         const membersList = await response.data.data;
         setMembers([...membersList]);
     }
