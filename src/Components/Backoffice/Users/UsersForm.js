@@ -9,37 +9,29 @@ const UserForm = () => {
 
     const endpoint = process.env.REACT_APP_BASE_URL + process.env.REACT_APP_USERS
     let { id } = useParams();
-    const [user, setUser] = useState({})
     const [error, setError] = useState('')
-
-    const fetchUser = async () => {
-        const res = await Get(`${endpoint + '/' +id}`)
-            setUser(res.data.data)
-    };
-
-    useEffect(() => {
-        if(id){
-            fetchUser();
-        }
-    }, []);
-
-    useEffect(()=> {
-        if(id){
-            setInitialValues({
-                name: user.name,
-                email: user.email,
-                roleId: user.role_id, 
-                password:''  
-            })
-        }
-    }, [user])
-
     const [initialValues, setInitialValues] = useState({
         name: '',
         email: '',
         roleId: '',
         password: ''
     })
+
+    const fetchUser = async () => {
+        if(id) {
+            const res = await Get(`${endpoint + '/' +id}`)
+            setInitialValues({
+                name:res.data.data.name,
+                email: res.data.data.email,
+                roleId: res.data.data.role_id, 
+                password:''
+            })
+        }
+    };
+
+    useEffect(() => {
+        fetchUser();
+    }, []);
 
     const handleChange = (e) => {
         setInitialValues({
