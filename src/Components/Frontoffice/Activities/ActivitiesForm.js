@@ -4,21 +4,24 @@ import '../../FormStyles.css';
 //import {validateImageFormat} from 'src/Services/validatorsService.js';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import {Get} from '../../../Services/privateApiService'
 
 const ActivitiesForm = () => {
     const [initialValues, setInitialValues] = useState({
         name: '',
         image: '',
-        description: ''
+        description: '<p> </p>'
     });
 
-    /* Estimado para obtener la data de edicion 
-    const { id } = useParams()
-    if(id){
-        const res = get(process.env.REACT_APP_ACTIVITIES, id)
-        setInitialValues({name: res.data.name, image: res.data.image, description: res.data.description})
+    // Estimado para obtener la data de edicion 
+    let { id } = useParams();
+    console.log(id);
+    if({id}){
+        Get("https://ongapi.alkemy.org/api/activities/" + id).then((res)=>{ //Modificar url y llamar al .env
+                let act = res.data.data;
+                setInitialValues({name: act.name, image: act.image, description: act.description});
+            });
     }
-    */
 
     const handleChange = (e) => {
         if(e.target.name === 'name'){
@@ -39,19 +42,14 @@ const ActivitiesForm = () => {
         <form className="form-container" onSubmit={handleSubmit}>
             <input className="input-field" type="text" name="name" value={initialValues.name} onChange={handleChange} placeholder="Activity Title"></input>
             <input className="input-field" type="text" name="image" value={initialValues.image} onChange={handleChange} placeholder="Activity Image"></input>
-            <input className="input-field" type="text" name="description" value={initialValues.description} onChange={handleChange} placeholder="Write some activity description"></input>
             <CKEditor
                     editor={ ClassicEditor }
-                    data="<p>Write some activity description</p>"
-                    onChange={ ( event, editor ) => {
+                    data={ initialValues.description }
+                    name="description"
+                    onChange={( event, editor ) => {
                         const data = editor.getData();
-                        console.log( { event, editor, data } );
-                    } }
-                    onBlur={ ( event, editor ) => {
-                        console.log( 'Blur.', editor );
-                    } }
-                    onFocus={ ( event, editor ) => {
-                        console.log( 'Focus.', editor );
+                        setInitialValues({...initialValues, description: data});
+                        console.log(id);
                     } }
                 />
             <button className="submit-btn" type="submit">Send</button>
