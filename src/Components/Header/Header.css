@@ -1,0 +1,26 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.header-container {
+    padding: 10px;
+}
+
+.header-container>svg[data-testid="MenuIcon"] {
+    visibility: hidden;
+}
+
+@media only screen and (max-width: 600px) {
+    .header-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 0 10px 10px;
+    }
+
+    .header-container>svg[data-testid="MenuIcon"] {
+        visibility: visible;
+    }
+}

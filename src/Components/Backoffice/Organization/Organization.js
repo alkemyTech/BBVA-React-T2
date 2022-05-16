@@ -8,11 +8,13 @@ import './Organization.css';
 import '../../../general-styles.css';
 
 const Organization = () => { 
+    const endpoint = process.env.REACT_APP_BASE_URL + process.env.REACT_APP_ORGANIZATION
     const [information, setInformation] = useState({});
+
 
     const getData = async () => {
         try {
-            let res = await Get('/organization');
+            let res = await Get(endpoint);
             setInformation(res.data.data)
         } catch (err) {
             return err;

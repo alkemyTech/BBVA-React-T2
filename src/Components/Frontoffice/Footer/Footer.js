@@ -4,7 +4,7 @@ import axios from 'axios';
 import {ReactComponent as LogoFacebook} from '../../../assets/facebook.svg';
 import {ReactComponent as LogoInstagram} from '../../../assets/instagram.svg';
 import {ReactComponent as LogoTwitter} from '../../../assets/twitter.svg';
-import {ReactComponent as LogoLinkedIn} from '../../assets/linkedin.svg';
+import {ReactComponent as LogoLinkedIn} from '../../../assets/linkedin.svg';
 import {ReactComponent as LogoOng} from '../../../assets/ong.svg';
 
 const Footer = () => {
