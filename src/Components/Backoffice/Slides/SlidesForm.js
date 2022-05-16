@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Get } from '../../../Services/privateApiService';
 import { Post } from '../../../Services/publicApiService';
+import axios from 'axios'
 import '../../FormStyles.css';
 
 const SlidesForm = () => {
@@ -51,9 +52,33 @@ const SlidesForm = () => {
         
       }
 
+    const createSlide = async () => {
+        const response = await Post(endpoint, {
+            name: initialValues.name.toString(),
+            email: initialValues.description.toString(),
+            password: initialValues.order.toString(),
+            roleId: initialValues.image.toString(),
+        });
+        return response;
+    }
+    
+    const editSlide = async () => {
+        const response = await axios.put(endpoint + '/' + id, {
+            name: initialValues.name.toString(),
+            email: initialValues.description.toString(),
+            password: initialValues.order.toString(),
+            roleId: initialValues.image.toString(),
+        }, {});
+        return response;
+      }
+
     const handleSubmit = (e) =>{
         e.preventDefault();
-        console.log(initialValues);
+        if(id) {
+            editSlide();
+        } else {
+            createSlide();
+        }
     }
 
     return (
