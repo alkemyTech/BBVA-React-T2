@@ -28,11 +28,15 @@ function App() {
                 <Route exact path="/backoffice/users" component={UserList} />
                 <Route path="/backoffice/users/create" component={UserForm} />
                 <Route path="/backoffice/users/edit/:id" component={UserForm} />
+                
                 <Route path="/backoffice/organization/edit" component={OrganizationForm} />
+
                 <Route exact path="/backoffice/activities" component={ActivitiesBackOffice} />
                 <Route path="/backoffice/activities/edit/:id" />
+                
                 <Route exact path="/backoffice/members" component={MembersScreen} />
                 <Route path="/backoffice/members/create" component={MembersForm} />
+                <Route path="/backoffice/members/edit/:id" component={MembersForm} />
               </Switch>
             </BackofficeLayout>
           </Route>

@@ -5,8 +5,8 @@ import MembersTable from './MembersTable'
 
 const MembersScreen = () => {
   return (
-    <div className='main members-screen'>
-      <div className='container'>
+    <div className='members-screen'>
+      <div className='members-container'>
 
         <h1 className='title members-title'>Miembros</h1>
 
