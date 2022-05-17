@@ -1,11 +1,11 @@
 import React from 'react';
-import Header from '../Header/Header';
+import PublicHeader from '../Frontoffice/PublicHeader/PublicHeader'
 import Footer from '../Frontoffice/Footer/Footer';
 
 const Layout = ({children}) => {
   return (
     <>
-      <Header/>
+      <PublicHeader/>
       <main>
         { children }
       </main>

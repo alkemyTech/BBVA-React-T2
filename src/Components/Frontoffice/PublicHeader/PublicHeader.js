@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom'
 
 import '../PublicHeader/PublicHeaderStyles.css'
+import getToken from '../../../Services/getToken'
 
-const PublicHeader = () => {
+let PublicHeader = () => {
 
     return (
         <header className="header-container">
@@ -26,11 +27,12 @@ const PublicHeader = () => {
                 <li className='list-container__li'><Link to='/contributes' className='link-public-header'>Contribuye</Link></li>
              </ul>
            </div>
-           <div className="container-buttons-header">
-              <Link to='/login'><button className="button-login-header" type="submit">Log in</button></Link>
-              <Link to='/register'><button className="button-register-header" type="submit">Registrate</button></Link>
-           </div> 
-
+           {getToken() ? (<></>) : (
+             <div className="container-buttons-header">
+             <Link to='/login'><button className="button-login-header" type="submit">Log in</button></Link>
+             <Link to='/register'><button className="button-register-header" type="submit">Registrate</button></Link>
+          </div> 
+           )}
            <nav className="navbar">
             <div className="navbar-container container">
               <input className='input-hamburguer-menu' type="checkbox" name="" id="" />
