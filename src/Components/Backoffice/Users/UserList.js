@@ -6,14 +6,15 @@ import './UserList.css'
 const UserList = () => {
     
     const [userList, setUserList] = useState([])
+    const endpoint = process.env.REACT_APP_BASE_URL + process.env.REACT_APP_USERS
 
     const deleteUser = (id) => {
-        Delete('users/' + id)
+        Delete(endpoint + '/' + id)
         fetchData();
     }
 
     const fetchData = async () => {
-        const res = await Get(process.env.REACT_APP_BASE_URL + "/users?limit=15");
+        const res = await Get(endpoint + "?limit=15");
         setUserList(res.data.data)
       };
 
