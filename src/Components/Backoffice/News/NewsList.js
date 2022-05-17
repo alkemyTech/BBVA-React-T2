@@ -3,9 +3,16 @@ import '../../CardListStyles.css';
 //import functions
 import handleAlert from '../../Alerts/Alerts.js';
 import { Get } from '../../../Services/privateApiService.js';
+import Spinner from '../../Spinner/Spinner.js';
 
 const NewsList = () => {
     const [news, setNews] = useState([]);
+    const [loader, setLoader] = useState(true);
+
+    const handleSpinner = () => {
+        setTimeout(() => setLoader(false), 2000);
+    }
+
     const newsMock = [
         {id: 2, name: 'Titulo de prueba', description: 'Descripcion de prueba'},
         {id: 1, name: 'Titulo de prueba', description: 'Descripcion de prueba'},
@@ -24,27 +31,32 @@ const NewsList = () => {
     }
 
     useEffect(() => {
+        handleSpinner();
         getNews();
     },[])
 
     return (
-        <div>
-            <h1>Listado de Novedades</h1>
-            <ul className="list-container">
-                {newsMock.length > 0 ? 
-                    newsMock.map((element) => {
-                        return(
-                            <li className="card-info" key={element.id}>
-                                <h3>{element.name}</h3>
-                                <p>{element.description}</p>
-                            </li>
-                        )
-                    })
-                :
-                    <p>No hay novedades</p>
-                }
-            </ul>
-        </div>
+        <>
+            { (loader)? <Spinner /> :
+                <div>
+                    <h1>Listado de Novedades</h1>
+                    <ul className="list-container">
+                        {newsMock.length > 0 ? 
+                            newsMock.map((element) => {
+                                return(
+                                    <li className="card-info" key={element.id}>
+                                        <h3>{element.name}</h3>
+                                        <p>{element.description}</p>
+                                    </li>
+                                )
+                            })
+                    :
+                        <p>No hay novedades</p>
+                    }
+                </ul>
+            </div>
+            }
+        </>
     );
 }
  
