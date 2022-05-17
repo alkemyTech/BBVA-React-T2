@@ -1,4 +1,4 @@
-import { Get, Delete } from '../../Services/privateApiService'
+import { Get, Delete } from '../../../Services/privateApiService'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import './UserList.css'
@@ -13,7 +13,7 @@ const UserList = () => {
     }
 
     const fetchData = async () => {
-        const res = await Get(process.env.REACT_APP_BASE_URL + "users?limit=15");
+        const res = await Get(process.env.REACT_APP_BASE_URL + "/users?limit=15");
         setUserList(res.data.data)
       };
 
