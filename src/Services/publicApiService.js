@@ -6,27 +6,31 @@ const config = {
     }
 }
 
-const BASE_URL = "https://ongapi.alkemy.org/api"; // Provisorio hasta tener el archivo .env
 
-const Get = async (endpoint, id = '') => {
-
-    if(!endpoint) {
-        throw new Error("parameter 'endpoint' is not defined.");
+const Get = async (endpoint) => {
+    if(!endpoint){
+        throw new Error("Parameter 'endpoint' is not defined.")
     }
 
     try {
-        const url = `${BASE_URL}/${endpoint}/${id}`;
-        const response = await axios.get(url);
+        const response = await axios.get(endpoint);
         return response; 
     } catch (error) {
         return error;
     }
 }  
 
-const Post = (endpoint, body) => {
-    axios.post(BASE_URL + endpoint, body)
-    .then(res => res)
-    .catch(err => err)
+const Post = async (endpoint, body) => {
+    if(!endpoint){
+        throw new Error("Parameter 'endpoint' is not defined.")
+    }
+
+    try {
+        const response = await axios.post(endpoint, body, config)
+        return response;
+    } catch (error) {
+        return error;
+    }
 }
 
 export { Post, Get }

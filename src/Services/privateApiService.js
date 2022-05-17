@@ -1,40 +1,52 @@
 import axios from "axios";
-
-//const BASE_URL = 'https://jsonplaceholder.typicode.com';
-const BASE_URL = process.env.REACT_APP_BASE_URL;
+import getPrivateHeaderAuth from './getPrivateHeaderAuth';
 
 const config = {
-    headers: {
-        Group: 2                //Aqui va el ID del equipo!!
-        
+    headers: getPrivateHeaderAuth()
+}
+
+const Get = (endpoint) => {
+    
+    if(!endpoint){
+        throw new Error("Parameter 'endpoint' is not defined.")
+    }
+
+    return axios.get(endpoint, config)
+        .then((res) => res)
+        .catch((err) => err);
+};
+
+const Delete = (endpoint) => {
+
+    if (!endpoint) {
+        throw new Error("Parameter 'endpoint' is not defined.")
+    }
+
+    axios.delete(endpoint, config)
+        .then(res => res)
+        .catch(err => err);
+}
+
+const Post = (endpoint, body) => {
+    if (!endpoint) throw new Error("parameter 'endpoint' is not defined.");
+    if (!body) throw new Error("parameter 'body' is not defined")
+
+    if (getPrivateHeaderAuth) {
+        axios.post(endpoint, body)
+            .then(res => res)
+            .catch(err => err)
     }
 }
 
-const Get = (endpoint, id) => {
-  
-    if(!endpoint) throw new Error("parameter 'endpoint' is not defined.");
-  
-    axios.defaults.headers.get['Authorization'] = getAuthorization();
-  
-    const url = `${BASE_URL}${endpoint}${ id? `/${id}`: ''}` 
-    return axios.get(url, config)
-          .then((res) => res)
-          .catch((err) => err);
-  };
+const Put = (endpoint) => {
+    const headers = getPrivateHeaderAuth();
 
-const Delete = (endpoint, id) => {
-    const headers = getAuthorization();
-
-    if(!endpoint) {
+    if (!endpoint) {
         throw new Error("parameter 'endpoint' is not definded");
     }
-    if (id < 1) {
-        throw new Error("parameter 'id' is invalid");
-    }
-
-    axios.delete(`${BASE_URL}/${endpoint}/${id}`, headers )
-    .then(res => res )
-    .catch(err => err );
+    axios.put(endpoint, headers)
+        .then(res => res)
+        .catch(err => err);
 }
 
-export { Delete }
+export { Delete, Get, Post, Put }
