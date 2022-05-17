@@ -63,15 +63,14 @@ const OrganizationForm = () => {
             !isUrl(initialValues.linkedinUrl, 'linkedin')) {
                 return;
         }
-        
         /*
-        if(!validateImageFormat(initialValues.logo)) {
+          if(!validateImageFormat(initialValues.logo)) {
             setErrors({'logo': 'El fomato del logo no es valido. Solo se aceptan jpg y png'});
             alert('El fomato del logo no es valido. Solo se aceptan jpg y png')
             return;
         }
-        */    
-
+        */
+      
         alert('enviando formulario')
         //borrar la linea de arriba y hacer lo que correspond
     }
