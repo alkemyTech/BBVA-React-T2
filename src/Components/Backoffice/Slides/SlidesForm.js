@@ -20,11 +20,9 @@ const SlidesForm = () => {
     const fetchSlides = async () => {
         if(id) {
             const res = await Get(`${endpoint + '/' + id}`)
+            const {name, description, order, image} = res.data.data
             setInitialValues({
-                name: res.data.data.name,
-                description: res.data.data.description,
-                order: res.data.data.order,
-                image: res.data.data.image,
+                name, description, order, image,
             })
         }
     }
@@ -73,30 +71,34 @@ const SlidesForm = () => {
 
     const handleSubmit = (e) =>{
         e.preventDefault();
-        if(validateAll()) {
+        if(validate() && validateImageFormat()) {
             if(id) {
                 try{
                     editSlide()
                     setError('')
                 } 
-                catch(err){}
+                catch(err){
+                    setError(err)
+                }
             } else {
                 try{
                     createSlide()
                     setError('')
                 } 
-                catch(err){}
+                catch(err){
+                    setError(err)
+                }
             }     
         }
     }
 
-    const validate = (input) => {
-        if(input == initialValues.name && input.length < 4) {
+    const validate = () => {
+        if(initialValues.name.length < 4) {
             setError('El nombre es demasiado corto')
             return false
         }
         
-        if(input == initialValues.description && input==='') {
+        if(!initialValues.description) {
             setError('La descripción no puede quedar vacía')
             return false
         }
@@ -117,12 +119,6 @@ const SlidesForm = () => {
               return false;
             }
       }
-
-    const validateAll = () => {
-        return validate(initialValues.description) &&
-                validate(initialValues.name) &&
-                validateImageFormat()
-    }
 
     return (
         <div className='main'>
