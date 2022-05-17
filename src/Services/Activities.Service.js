@@ -1,4 +1,5 @@
 import { Get } from "./publicApiService";
+import getCurrentDate from "../Utils/getCurrentDate";
 
 const url = "https://ongapi.alkemy.org/api/activities/"; //Modificar con .env
 
@@ -6,7 +7,6 @@ export function createActivity(activityBasics){
     //La funcion devuelve un objeto con los campos de "Actividad"
     //Params:
     //activityBasics: espera un objeto con los campos basicos de la actividad.
-
 
 
 };
@@ -25,5 +25,6 @@ export async function updateActivity(id, updatedActivityFields){
     for(let i=0; i<updateKeys.length; i++){
         activity[updateKeys[i]]= updatedActivityFields[updateKeys[i]];
     }
+    activity['updated_at'] = getCurrentDate();
     return activity;
 }
