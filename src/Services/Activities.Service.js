@@ -11,20 +11,19 @@ export function createActivity(activityBasics){
 
 };
 
-export function updateActivity(id, updatedActivityFields){
+export async function updateActivity(id, updatedActivityFields){
     //La funcion devuelve objeto "Actividad" con la actividad del
     //  id actualizada con los campos recibidos
     //Params:
     //updatedActivityFields: espera un objeto con los campos que fueron actualizados
     let activity;
     const updateKeys = Object.keys(updatedActivityFields);
-    Get(url + id).then((res)=>{
+    await Get(url + id).then((res)=>{
         activity = res.data.data
     })
 
     for(let i=0; i<updateKeys.length; i++){
         activity[updateKeys[i]]= updatedActivityFields[updateKeys[i]];
     }
-
     return activity;
 }
