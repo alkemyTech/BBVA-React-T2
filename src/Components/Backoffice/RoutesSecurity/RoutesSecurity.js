@@ -14,11 +14,14 @@ const getRole = async () => {
         if(res.data.success === true) {
             //isAdmin recibe el numero de rol del en base al token del usuario. Si el nro no es 1, devuelve.
             if (isAdmin(res.data.data.user.role_id)){
+                localStorage.setItem('isAdmin', true);
                 return true;
             } else {
+                localStorage.setItem('isAdmin', false);
                 return false;
             }
         } else {
+            localStorage.setItem('isAdmin', false);
             return false;
         }
     } catch (err) {
@@ -26,4 +29,12 @@ const getRole = async () => {
     }
 }
 
-export { getRole };
+const addOrGetToken = () => {
+    const token = localStorage.getItem('isAdmin');
+    
+    if (token === true) {
+        return true
+    }
+}
+
+export { getRole, addOrGetToken };

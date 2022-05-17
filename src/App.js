@@ -5,15 +5,15 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 //Public
 import Layout from "./Components/Layout/Layout";
 import About from "./Components/Frontoffice/About/About";
-import Contact from "./Components/Frontoffice/Contact/Contact";
+//import Contact from "./Components/Frontoffice/Contact/Contact";
 
 //Backoffice
 import BackofficeLayout from "./Components/Layout/BackofficeLayout";
-import UserList from "./Components/Backoffice/Users/UserList";
-import Organization from './Components/Backoffice/Organization/Organization';
+//import UserList from "./Components/Backoffice/Users/UserList";
+//import Organization from './Components/Backoffice/Organization/Organization';
 
 import OrganizationForm from "./Components/Backoffice/Organization/OrganizationForm";
-import ActivitiesBackOffice from './Components/Activities/ActivitiesBackOffice';
+//import ActivitiesBackOffice from './Components/Activities/ActivitiesBackOffice';
 import UserForm from "./Components/Backoffice/Users/UsersForm";
 
 function App() {
@@ -25,13 +25,16 @@ function App() {
           <Route exact path="/backoffice/*">
             <BackofficeLayout>
               <Switch>
-                <Route exact path="/backoffice/users" component={UserList} />
+              {//  <Route exact path="/backoffice/users" component={UserList} />
+}
                 <Route path="/backoffice/users/create" component={UserForm} />
                 <Route path="/backoffice/users/edit/:id" component={UserForm} />
                 <Route path="/backoffice/organization/edit" component={OrganizationForm} />
-                <Route exact path="/backoffice/activities" component={ActivitiesBackOffice} />
+                {//<Route exact path="/backoffice/activities" component={ActivitiesBackOffice} />
+}
                 <Route path="/backoffice/activities/edit/:id" />
-                <Route exact path="/backoffice/organization" component={Organization} />
+               {// <Route exact path="/backoffice/organization" component={Organization} />
+} 
               </Switch>
             </BackofficeLayout>
           </Route>
@@ -40,7 +43,8 @@ function App() {
             <Layout>
               <Switch>
                 <Route path="/about" component={About} />
-                <Route path="/contact" component={Contact} />
+               {// <Route path="/contact" component={Contact} />
+}
               </Switch>
             </Layout>
           </Route>

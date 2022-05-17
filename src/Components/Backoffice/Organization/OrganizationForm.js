@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom'
 import './OrganizationForm.css';
 import '../../../general-styles.css';
 // import { validateImageFormat } from '../../../Services/validatorsService'
-import { getRole } from '../../Backoffice/RoutesSecurity/RoutesSecurity';
+import { getRole, addOrGetToken } from '../../Backoffice/RoutesSecurity/RoutesSecurity';
 
 const OrganizationForm = () => {
     const [initialValues, setInitialValues] = useState({
@@ -86,9 +86,13 @@ const OrganizationForm = () => {
     }
 
     const checkAdmin = () => {
-        updateIsAdmin()
-        .then((res) => setIsAdmin(res))
-        .catch((err) => err)
+        if (addOrGetToken) {
+            updateIsAdmin()
+            .then((res) => setIsAdmin(res))
+            .catch((err) => err)
+        } else {
+            setIsAdmin(true)
+        }
     }
     useEffect(() => {
         checkAdmin();
