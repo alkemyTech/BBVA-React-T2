@@ -15,6 +15,7 @@ import ActivitiesBackOffice from './Components/Activities/ActivitiesBackOffice';
 import UserForm from "./Components/Backoffice/Users/UsersForm";
 import MembersScreen from './Components/Backoffice/Members/MembersScreen';
 import MembersForm from './Components/Backoffice/Members/MembersForm';
+import TestimonialForm from "./Components/Backoffice/Testimonials/TestimonialsForm";
 
 function App() {
   return (
@@ -33,6 +34,8 @@ function App() {
                 <Route path="/backoffice/activities/edit/:id" />
                 <Route exact path="/backoffice/members" component={MembersScreen} />
                 <Route path="/backoffice/members/create" component={MembersForm} />
+                <Route path="/backoffice/testimonials/create" component={TestimonialForm} />
+                <Route path="/backoffice/testimonials/edit/:id" component={TestimonialForm} />
               </Switch>
             </BackofficeLayout>
           </Route>
