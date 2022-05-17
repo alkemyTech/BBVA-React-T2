@@ -16,7 +16,6 @@
 .main-text {
   font-family: "Mulish", sans-serif;
   text-align: justify;
-  font-size: 1.8rem;
 }
 
 .about-text{
@@ -26,20 +25,12 @@
 
 .logo{
   display: flex;
-  justify-content: space-around;
-  background-color: rgb(190, 190, 190);
-  border-radius: 10px;
+  justify-content: space-evenly;
+  margin: auto;
 }
 
 .about-img {
     width: 45%;
-}
-
-.title-box {
-  font-family: "poppins", sans-serif;
-  margin-left: 65px;
-  font-size: 1.8rem;
-  margin-top: 100px;
 }
 
 @media (max-width: 43rem){

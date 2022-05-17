@@ -27,7 +27,6 @@ const About = () => {
             <img src='./images/hands.png' className="about-img"/>
         </div>
       </div>
-      <div className="title-box"><h1 className="about-title">Nuestros miembros</h1></div>
       <MembersAbout/>
     </>
   );
