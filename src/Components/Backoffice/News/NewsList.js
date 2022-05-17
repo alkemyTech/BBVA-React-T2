@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../../CardListStyles.css';
 //import functions
-import handleAlert from '../../Alerts/Alerts.js';
+import alert from '../../Alerts/Alerts.js';
 import { Get } from '../../../Services/privateApiService.js';
 import Spinner from '../../Spinner/Spinner.js';
 
@@ -26,7 +26,7 @@ const NewsList = () => {
             const res = await Get('endpoint');
             setNews(res.data.data)
         } catch (err) {
-            handleAlert("Something went wrong. Please try again", "There was an error loading the userList", "error");
+            alert("Something went wrong. Please try again", "There was an error loading the userList", "error");
         }
     }
 
