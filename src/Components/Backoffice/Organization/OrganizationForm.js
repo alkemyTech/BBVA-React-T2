@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react'
 import { Redirect } from 'react-router-dom'
 import './OrganizationForm.css';
 import '../../../general-styles.css';
-import { validateImageFormat } from '../../../Services/validatorsService'
-import { checkRole } from '../../Backoffice/RoutesSecurity/RoutesSecurity';
+// import { validateImageFormat } from '../../../Services/validatorsService'
+import { getRole } from '../../Backoffice/RoutesSecurity/RoutesSecurity';
 
 const OrganizationForm = () => {
     const [initialValues, setInitialValues] = useState({
@@ -17,38 +17,22 @@ const OrganizationForm = () => {
         logo: ''
     })
     const [errors, setErrors] = useState({})
-   /* const [isAdmin, setIsAdmin] = useState(async () => {
-        try {
-            let res = await checkRole();
-            console.log(res)
-            setIsAdmin(res);
-            return res
-        } catch(err) {
-            setIsAdmin(false);
-            return false;
-            //return err;
-        }
-    })*/
+    const [isAdmin, setIsAdmin] = useState([])
     
-    const isAdmin = async ()  => {
+    /* Hago una llamada a la función checkRole que retornará un boolean dependiendo de si es true o false
+    */
+    const updateIsAdmin = async ()  => {
         try {
-        let result =  await checkRole()
-        console.log('resulto', result)
-        return result
+            let result =  await getRole()
+            return result
         } catch(err) {
             return err
         }
     }
 
-
-    isAdmin()
-        .then(res =>{ return res});
-
-    
     const handleChange = (e) => {
         setInitialValues({...initialValues, [e.target.name]: e.target.value})
     }
-
     //chequeo si los campos estan completos o son vacios
     const isBlank = () => {
         let keys = Object.keys(initialValues);
@@ -81,7 +65,6 @@ const OrganizationForm = () => {
         return true;
     }
 
-
     const handleSubmit = (e) => {
         e.preventDefault();
         if(isBlank()) {
@@ -93,21 +76,28 @@ const OrganizationForm = () => {
             !isUrl(initialValues.linkedinUrl, 'linkedin')) {
                 return;
         }
-        if(!validateImageFormat(initialValues.logo)) {
-            setErrors({'logo': 'El fomato del logo no es valido. Solo se aceptan jpg y png'});
-            alert('El fomato del logo no es valido. Solo se aceptan jpg y png')
-            return;
-        }
+        // if(!validateImageFormat(initialValues.logo)) {
+        //     setErrors({'logo': 'El fomato del logo no es valido. Solo se aceptan jpg y png'});
+        //     alert('El fomato del logo no es valido. Solo se aceptan jpg y png')
+        //     return;
+        // }
         alert('enviando formulario')
         //borrar la linea de arriba y hacer lo que correspond
     }
 
+    const checkAdmin = () => {
+        updateIsAdmin()
+        .then((res) => setIsAdmin(res))
+        .catch((err) => err)
+    }
     useEffect(() => {
+        checkAdmin();
     },[])
 
     return (
         <>
-        {!isAdmin() && <Redirect to="/" />
+        {//Si no es admin, redirige al home.
+        !isAdmin && <Redirect to="/" />
         }
         <form className="organization-form-container" onSubmit={handleSubmit}>
             <input className="form-input" type="text" name='name' onChange={handleChange} placeholder="Nombre"></input>

@@ -1,4 +1,3 @@
-import getPrivateHeaderAuth from '../../../Services/getPrivateHeaderAuth.js';
 import { Get } from '../../../Services/privateApiService';
 
 const endpoint = process.env.REACT_APP_BASE_URL + process.env.REACT_APP_AUTH
@@ -7,25 +6,19 @@ const isAdmin = (role_id) => {
     if(role_id === 1) {return true;} else {return false;}
 }
 
-const checkRole = async () => {
+const getRole = async () => {
     try {
-        const token = await getPrivateHeaderAuth();
-        if(token.hasOwnProperty('error')) { 
-            return false;
-        }
+        //utilizo la funcion de privateService que va a hacer la llamada al endpoint auth/me 
+        //La funcion get se encarga de obtener el token y enviarlo por el header, por eso no se especifica acá
         const res = await Get(endpoint);
-        console.log(res)
         if(res.data.success === true) {
-            let user = isAdmin(res.data.data.user.role_id)
-            if (user){
-                return true 
+            //isAdmin recibe el numero de rol del en base al token del usuario. Si el nro no es 1, devuelve.
+            if (isAdmin(res.data.data.user.role_id)){
+                return true;
             } else {
-                console.log('user false', user)
                 return false;
             }
         } else {
-            console.log('data.suc false', res.data.success)
-
             return false;
         }
     } catch (err) {
@@ -33,6 +26,4 @@ const checkRole = async () => {
     }
 }
 
-checkRole()
-
-export { checkRole };
+export { getRole };
