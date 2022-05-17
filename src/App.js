@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import About from './Components/Frontoffice/About/About'
-import UserList from './Components/Users/UserList';
+import UserList from './Components/Backoffice/Users/UserList'
 import Layout from './Components/Layout/Layout';
 import BackofficeLayout from './Components/Layout/BackofficeLayout';
 
