@@ -3,9 +3,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto:wght@400&display=swap%27');
 
 :root {
-  --primary-color: #FF0000 ;
-  --secondary-color: #0038FF ;
-  --background-footer-color: #C0C0C0 ;
+  --primary-color: #FF0000;
+  --secondary-color: #0038FF;
+  --background-footer-color: #C0C0C0;
 
   --primary-color-backoffice: #444;
   --secondary-color-backoffice: #2b3046;
@@ -40,7 +40,10 @@
 
 }
 
-.primary-button, .secondary-button, .primary-backoffice-button, .secondary-backoffice-button {
+.primary-button,
+.secondary-button,
+.primary-backoffice-button,
+.secondary-backoffice-button {
   display: inline-block;
   padding: 10px 40px;
   border-radius: 15px;
@@ -75,10 +78,11 @@
 }
 
 .title {
-  font-family: var(--title-font) ;
+  font-family: var(--title-font);
   font-size: 32px;
 }
 
-.primary-button, .secondary-button:hover {
+.primary-button:hover,
+.secondary-button:hover {
   background-color: #444;
 }
