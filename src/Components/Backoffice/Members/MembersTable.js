@@ -12,12 +12,12 @@ const ENDPOINT = process.env.REACT_APP_BASE_URL + process.env.REACT_APP_MEMBERS
 const MembersTable = () => {
   const [membersData, setMembersData] = useState([]);
   const [open, setOpen] = useState(false);
-  const [selectedUser, setSelectedUser] = useState('');
+  const [selectedMember, setSelectedMember] = useState('');
   
   
   const deleteMember = () => {
-    Delete(ENDPOINT +'/' + selectedUser.id)
-    handleClose();
+    Delete(ENDPOINT +'/' + selectedMember.id)
+    setOpen(false);
     fetchMembersData();
   }
 
@@ -33,12 +33,12 @@ const MembersTable = () => {
 
 
   const handleClickOpen = (user) => {
-    setSelectedUser(user);
+    setSelectedMember(user);
     setOpen(true);
   };
 
   const handleClose = () => {
-    setSelectedUser('');
+    setSelectedMember('');
     setOpen(false);
   };
   
@@ -95,7 +95,7 @@ const MembersTable = () => {
         aria-describedby="alert-dialog-description"
       >
         <DialogContent id="alert-dialog-title">
-          <h1>¿Estas seguro de querer borrar al usuario {selectedUser.name} ?</h1>
+          <h2>¿Estas seguro de querer borrar al usuario {selectedMember.name} ?</h2>
         </DialogContent>
         <DialogActions>
           <Button variant="contained" onClick={handleClose}>Cancelar</Button>
