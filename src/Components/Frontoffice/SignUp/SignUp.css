@@ -23,21 +23,20 @@
     text-align: center;
     display: flex;
     justify-content: center;
-}
-
-button {
     width: 280px;
     margin: 10px 0px;
 }
 
-span {
+
+
+.have-account-text {
     font-family: var(--title-font);
     font-size: --normal-font-size;
     display: flex;
     justify-content: center;
 }
 
-span>a {
+.have-account-text>.link-to-login {
     color: #ff0000;
     text-decoration: none;
 }
