@@ -9,7 +9,7 @@ import './SignUp.css';
 // Resources
 import signUpImg from '../Login/imagenONG.jpeg';
 
-export const SignUp = () => {
+const SignUp = () => {
 
     const [values, setValues] = useState({
         username: "",
@@ -84,3 +84,5 @@ export const SignUp = () => {
         </>
     );
 };
+
+export default SignUp;
