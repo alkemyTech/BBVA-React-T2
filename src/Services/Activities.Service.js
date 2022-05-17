@@ -1,3 +1,7 @@
+import { Get } from "./publicApiService";
+
+const url = "https://ongapi.alkemy.org/api/activities/"; //Modificar con .env
+
 export function createActivity(activityBasics){
     //La funcion devuelve un objeto con los campos de "Actividad"
     //Params:
@@ -7,12 +11,20 @@ export function createActivity(activityBasics){
 
 };
 
-export function updateActivity(id, activityBasics){
+export function updateActivity(id, updatedActivityFields){
     //La funcion devuelve objeto "Actividad" con la actividad del
     //  id actualizada con los campos recibidos
     //Params:
-    //activityBasics: espera un objeto con los campos basicos modificados
+    //updatedActivityFields: espera un objeto con los campos que fueron actualizados
+    let activity;
+    const updateKeys = Object.keys(updatedActivityFields);
+    Get(url + id).then((res)=>{
+        activity = res.data.data
+    })
 
+    for(let i=0; i<updateKeys.length; i++){
+        activity[updateKeys[i]]= updatedActivityFields[updateKeys[i]];
+    }
 
-    
+    return activity;
 }
