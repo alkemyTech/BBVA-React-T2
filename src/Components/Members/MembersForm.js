@@ -1,9 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../FormStyles.css';
 import { validateImageFormat, validateHasContent, validateSocialNetworkUrl, validateLength } from '../../Services/validatorsService';
-import { Post } from '../../Services/publicApiService';
+import { Post, Put, Get } from '../../Services/privateApiService';
+import { useParams } from 'react-router-dom';
 
-const MembersForm = ({ member = {} }) => {
+const MembersForm = () => {
+
+  const baseURL = process.env.REACT_APP_BASE_URL;
+  const endpoint = process.env.REACT_APP_MEMBERS;
+
+  const path = baseURL + endpoint;
+
+  const { id } = useParams();
+
+  const [formValues, setFormValues] = useState({
+    name: '',
+    description: '',
+    image: '',
+    linkedinUrl: '',
+    facebookUrl: ''
+  })
+
+  useEffect(() => {
+    if(id) {
+      const getMember = async () => {
+        const response = await Get(path + `/${id}`);
+        const memberData = await response.data.data;
+        setFormValues({...memberData});
+      }
+      getMember();
+    }
+  }, [])
 
   const imageABase64 = (element) => {
     if(!validateImageFormat(element.target.value)) {
@@ -18,19 +45,8 @@ const MembersForm = ({ member = {} }) => {
     reader.onloadend = function() {
       setFormValues({...formValues, image: reader.result})
     }
-    reader.readAsDataURL(file);
-    
+    reader.readAsDataURL(file);    
   }
-
-  const { name, description, image, linkedinUrl, facebookUrl} = member;
-  
-  const [formValues, setFormValues] = useState({
-    name: name || '',
-    description: description || '',
-    image: image || '',
-    linkedinUrl: linkedinUrl || '',
-    facebookUrl: facebookUrl || ''
-  })
 
   const handleChange = (e) => {
     switch (e.target.name) {
@@ -41,7 +57,7 @@ const MembersForm = ({ member = {} }) => {
         setFormValues({...formValues, description: e.target.value})
         break;
       case 'image':
-        setFormValues({...formValues, image: e.target.value})
+        imageABase64(e)
         break;
       case 'linkedinUrl':
         setFormValues({...formValues, linkedinUrl: e.target.value})
@@ -85,10 +101,16 @@ const MembersForm = ({ member = {} }) => {
     e.preventDefault();
     if(validateForm()) {
       async function createMember() {
-        const response = await Post('/members', formValues);
+        const response = await Post(path, formValues)
         return response;
       }
-      createMember();
+      async function editMember() {
+        const response = await Post(path + `/${id}`, formValues)
+        return response;
+      }
+
+      id ? editMember() : createMember()
+      
   }
 }
 
@@ -96,7 +118,7 @@ const MembersForm = ({ member = {} }) => {
     <form className="form-container" onSubmit={handleSubmit}>
       <input className="input-field" type="text" name="name" value={formValues.name} onChange={handleChange} placeholder="Nombre" required></input>
       <input className="input-field" type="text" name="description" value={formValues.description} onChange={handleChange} placeholder="Descripción" required></input>
-      <input className="input-field" type="file" accept=".jpg, .png" name="image" onChange={imageABase64} required></input>
+      <input className="input-field" type="file" accept=".jpg, .png" name="image" onChange={handleChange} required></input>
       <input className="input-field" type="url" name="linkedinUrl" value={formValues.linkedinUrl} onChange={handleChange} placeholder="Perfil de LinkedIn" required></input>
       <input className="input-field" type="url" name="facebookUrl" value={formValues.facebookUrl} onChange={handleChange} placeholder="Perfil de Facebook" required></input>
       <button className="primary-button" type="submit">Send</button>
