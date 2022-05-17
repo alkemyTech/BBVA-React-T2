@@ -38,5 +38,3 @@ const Post = (endpoint, body) => {
 }
 
 export { Delete, Get, Post }
-
-

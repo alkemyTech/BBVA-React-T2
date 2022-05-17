@@ -11,7 +11,7 @@ const Get = async (endpoint) => {
     if(!endpoint){
         throw new Error("Parameter 'endpoint' is not defined.")
     }
-
+  
     try {
         const response = await axios.get(endpoint);
         return response; 
