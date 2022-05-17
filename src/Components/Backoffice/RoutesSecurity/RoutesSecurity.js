@@ -10,12 +10,24 @@ const isAdmin = (role_id) => {
 const checkRole = async () => {
     try {
         const token = await getPrivateHeaderAuth();
+        if(token.hasOwnProperty('error')) { 
+            return false;
+        }
         const res = await Get(endpoint);
-        if (isAdmin(res.data.data.user.role_id)){
-            return true 
+        console.log(res)
+        if(res.data.success === true) {
+            let user = isAdmin(res.data.data.user.role_id)
+            if (user){
+                return true 
+            } else {
+                console.log('user false', user)
+                return false;
+            }
         } else {
-            return false
-        };
+            console.log('data.suc false', res.data.success)
+
+            return false;
+        }
     } catch (err) {
         return err;
     }
