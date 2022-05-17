@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import '../../FormStyles.css';
-//import {validateImageFormat} from 'src/Services/validatorsService.js';
+import {validateImageFormat} from '../../../Services/validatorsService.js';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import {Get} from '../../../Services/privateApiService'
@@ -12,16 +12,28 @@ const ActivitiesForm = () => {
         image: '',
         description: '<p> </p>'
     });
+    const [errors, setErrors] = useState({});
+    const [loading, setLoading] = useState(true);
+
+    const { id } = useParams();
 
     // Estimado para obtener la data de edicion 
-    let { id } = useParams();
-    console.log(id);
-    if({id}){
-        Get("https://ongapi.alkemy.org/api/activities/" + id).then((res)=>{ //Modificar url y llamar al .env
-                let act = res.data.data;
-                setInitialValues({name: act.name, image: act.image, description: act.description});
-            });
-    }
+    useEffect(() => {
+        setLoading(true);
+        console.log(id);
+        if({id}){
+            Get("https://ongapi.alkemy.org/api/activities/" + id).then((res)=>{ //Modificar url y llamar al .env
+                    let act = res.data.data;
+                    console.log(initialValues);
+                    console.log({name: act.name, image: act.image, description: act.description})
+                    setInitialValues({name: act.name, image: act.image, description: act.description});
+                    console.log(initialValues);
+                    setLoading(false);
+                });
+                console.log(initialValues);
+        }
+    }, []);//pendiente ver porq no renderiza del todo bien
+
 
     const handleChange = (e) => {
         if(e.target.name === 'name'){
@@ -33,9 +45,38 @@ const ActivitiesForm = () => {
         }
     }
 
+    const isBlank = () => {
+        let keys = Object.keys(initialValues);
+        for (let i = 0; i < keys.length-1; i++) {
+            let str = initialValues[keys[i]];
+            console.log([keys[i]])
+            if (!str || /^\s*$/.test(str)) {
+                setErrors({[keys[i]]: 'El campo ' + keys[i] + ' no puede estar vacio'})
+                alert('Error: el campo ' + keys[i] + ' no puede estar vacio')
+                return true;
+            } else {
+                break;
+            }
+        } 
+        if (initialValues.description === "<p> </p>"){
+            setErrors({'descripcion': 'El campo descripcion no puede estar vacio'})
+            alert('Error: el campo descripcion no puede estar vacio')
+            return true;
+        }     
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(initialValues);
+        if(isBlank()){
+            return;
+        }
+        if(!validateImageFormat(initialValues.image)){
+            setErrors({'image': 'El fomato de la imagen no es valido. Solo se aceptan jpg y png'});
+            alert('El fomato de la image no es valido. Solo se aceptan jpg y png')
+            return;
+        }
+        
     }
     
     return (
@@ -49,12 +90,12 @@ const ActivitiesForm = () => {
                     onChange={( event, editor ) => {
                         const data = editor.getData();
                         setInitialValues({...initialValues, description: data});
-                        console.log(id);
                     } }
                 />
             <button className="submit-btn" type="submit">Send</button>
         </form>
     );
 }
+
  
 export default ActivitiesForm;
