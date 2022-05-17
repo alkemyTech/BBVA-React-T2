@@ -4,7 +4,8 @@ import '../FormStyles.css';
 import {validateImageFormat} from '../../Services/validatorsService.js';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import {Get} from '../../Services/privateApiService';
+import {Get, Post} from '../../Services/privateApiService';
+import {createActivity, updateActivity} from '../../Services/Activities.Service'
 
 const ActivitiesForm = () => {
     const [initialValues, setInitialValues] = useState({
