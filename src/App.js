@@ -6,7 +6,7 @@ import UserList from './Components/Users/UserList';
 import Layout from './Components/Layout/Layout';
 import BackofficeLayout from './Components/Layout/BackofficeLayout';
 
-
+import OrganizationForm from './Components/Backoffice/Organization/OrganizationForm';
 function App() {
   return (
     <>
@@ -14,6 +14,7 @@ function App() {
         <BackofficeLayout> 
           <Switch>
             <Route exact path="/backoffice/users" component={UserList} />
+            <Route path="/backoffice/organization/edit" component={OrganizationForm} />
             </Switch>
           </BackofficeLayout>
           
