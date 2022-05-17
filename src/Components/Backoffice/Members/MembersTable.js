@@ -4,30 +4,28 @@ import { Get, Delete } from '../../../Services/privateApiService';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import './MembersTable.css'
-import TablePagination from '@mui/material/TablePagination';
+
+const BASE_URL = process.env.REACT_APP_BASE_URL
+const ENDPOINT = process.env.REACT_APP_MEMBERS
 
 const MembersTable = () => {
-  const [MembersData, setMembersData] = useState([])
-
-  const Members = [{ id: 1, name: 'miembro1', email: 'miembro1@email.com', photo:'photo1'},
-  { id: 2, name: 'miembro2', email: 'miembro2@email.com', photo:'photo2'},
-  { id: 3, name: 'miembro3', email: 'miembro3@email.com', photo:'photo3'},
-  { id: 4, name: 'miembro4', email: 'miembro4@email.com', photo:'photo4'},
-  { id: 5, name: 'miembro5', email: 'miembro5@email.com', photo:'photo5'},
-  { id: 6, name: 'miembro6', email: 'miembro6@email.com', photo:'photo6'}]
+  const [membersData, setMembersData] = useState([])
 
   const deleteMember = (id) => {
-    Delete('users/' + id)
+    const url = BASE_URL + ENDPOINT;
+    Delete(url +'/' + id)
     fetchMembersData();
   }
   
   const fetchMembersData = async () => {
-    const res = await Get("members?limit=10");
-    setMembersData(res.data.data)
+    const url = BASE_URL + ENDPOINT
+    const res = await Get (url + "?limit=5");
+    const { data } = res.data;
+    setMembersData(data)
   };
   
   useEffect(() => {
-    // fetchMembersData();
+    fetchMembersData();
   }, []);
   
 
@@ -38,18 +36,16 @@ const MembersTable = () => {
         <thead>
           <tr>
               <th className='member-th'>Nombre</th>
-              <th className='member-th'>Email</th>
               <th className='member-th'>Foto</th>
+              <th className='member-th'>Opciones</th>
           </tr>
         </thead>
         <tbody>
-
-          {Members.map( (member) =>{
+          {membersData.map( (member) =>{
               return(
                   <tr key={member.id}>
                       <td className='member-text'>{member.name}</td>
-                      <td className='member-text'>{member.email}</td>
-                      <td className='member-text'>{member.photo}</td>
+                      <td className='member-text'><img src={member.image} width="50" height="50"/></td>
                       <td className='member-text'>
                           <Link to={`/backoffice/members/edit/${member.id}`}>
                             <button className='primary-backoffice-button'>
@@ -68,9 +64,9 @@ const MembersTable = () => {
           })}
         </tbody>
       </table>
-      <Stack spacing={2} className="pagination-stack">
+      {/* <Stack spacing={2} className="pagination-stack">
         <Pagination size="large" variant="outlined" count={10} color="primary" />
-      </Stack>
+      </Stack> */}
     </div>
   )
 }
