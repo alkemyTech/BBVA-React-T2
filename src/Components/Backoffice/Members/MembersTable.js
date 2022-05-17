@@ -19,7 +19,7 @@ const MembersTable = () => {
   
   const fetchMembersData = async () => {
     const url = BASE_URL + ENDPOINT
-    const res = await Get (url + "?limit=5");
+    const res = await Get (url + "?limit=20");
     const { data } = res.data;
     setMembersData(data)
   };
@@ -44,8 +44,16 @@ const MembersTable = () => {
           {membersData.map( (member) =>{
               return(
                   <tr key={member.id}>
-                      <td className='member-text'>{member.name}</td>
-                      <td className='member-text'><img src={member.image} width="50" height="50"/></td>
+                      <td className='member-text'>
+                        {member.name}
+                      </td>
+
+                      <td className='member-text'>
+                        <div className='member-container-img'>
+                          <img className='member-img' src={member.image}/>
+                        </div>
+                      </td>
+
                       <td className='member-text'>
                           <Link to={`/backoffice/members/edit/${member.id}`}>
                             <button className='primary-backoffice-button'>
@@ -53,6 +61,7 @@ const MembersTable = () => {
                             </button>
                           </Link> 
                       </td>
+
                       <td className='member-text'>
                           <button onClick={() => deleteMember(member.id)} 
                                   className='secondary-backoffice-button'>

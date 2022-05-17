@@ -1,5 +1,6 @@
 .members-screen{
   background-color: var(--secondary-color-backoffice);
+  overflow: hidden
 }
 .members-title {
   color: white;

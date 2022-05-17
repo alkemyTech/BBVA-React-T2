@@ -12,6 +12,9 @@
   --primary-backoffice-button: #8cb3df;
   --secondary-backoffice-button: #fdb77d;
 
+  --primary-backoffice-hover: #468ad8;
+  --secondary-backoffice-hover: #fc933d;
+
   --title-font: 'Poppins', sans-serif;
   --p-font: 'Mulish', sans-serif;
   --biggest-font-size: 2rem;
@@ -82,4 +85,12 @@
 
 .primary-button:hover, .secondary-button:hover {
   background-color: #444;
+}
+
+.primary-backoffice-button:hover{
+  background-color: var(--primary-backoffice-hover);
+}
+
+.secondary-backoffice-button:hover {
+  background-color: var(--secondary-backoffice-hover);
 }
