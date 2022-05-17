@@ -8,7 +8,7 @@ function MembersAbout() {
     const [firstMember, setFirstMember] = useState({});
 
     const getFirstMember = async () => {
-        const response = await Get(process.env.REACT_APP_BASE_URL + process.env.REACT_APP_MEMBERS + 'limit=1');
+        const response = await Get(process.env.REACT_APP_BASE_URL + process.env.REACT_APP_MEMBERS + '?limit=1');
         const member = await response.data.data[0];
         setFirstMember({...member});
     }
