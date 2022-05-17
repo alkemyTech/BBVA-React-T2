@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 // Components
 import FormInput from './FormInput';
 // CSS
-import '../../general-styles.css'
+import '../../../general-styles.css'
 import './SignUp.css';
 // Resources
-import signUpImg from '../Login/imagenONG.jpeg';
+import signUpImg from '../Login/imagenONG.jpeg'
 
 const SignUp = () => {
 
@@ -75,12 +75,12 @@ const SignUp = () => {
 
                     <button className="primary-button" type="submit">Registrate</button>
 
-                    <span>Ya tienes cuenta?
-                        <Link to="/login">Ingresa!</Link>
+                    <span className="have-account-text">Ya tienes cuenta?
+                        <Link to="/login" className="link-to-login">Ingresa!</Link>
                     </span>
                 </form>
             </div >
-            <img className="container-hands-img" src={signUpImg} alt="signup-img" />
+            <img className="container-hands-img" /*src={signUpImg}*/ alt="signup-img" />
         </>
     );
 };
