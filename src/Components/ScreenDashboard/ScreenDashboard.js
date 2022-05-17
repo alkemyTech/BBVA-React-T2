@@ -4,7 +4,7 @@ import Grid from "@mui/material/Grid";
 import Paper from '@mui/material/Paper';
 import { experimentalStyled as styled } from '@mui/material/styles';
 
-const screenDashboard = () => {
+const ScreenDashboard = () => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const sectionData = [
     {
@@ -90,4 +90,4 @@ const screenDashboard = () => {
   );
 };
 
-export default screenDashboard;
+export default ScreenDashboard;
