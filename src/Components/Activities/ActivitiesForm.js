@@ -17,12 +17,14 @@ const ActivitiesForm = () => {
 
     const { id } = useParams();
 
+    const url= "https://ongapi.alkemy.org/api/activities/"; //Modificar url y llamar al .env
+
     // Estimado para obtener la data de edicion 
     useEffect(() => {
         setLoading(true);
         console.log(id);
         if({id}){
-            Get("https://ongapi.alkemy.org/api/activities/" + id).then((res)=>{ //Modificar url y llamar al .env
+            Get(url + id).then((res)=>{ 
                     let act = res.data.data;
                     console.log(initialValues);
                     console.log({name: act.name, image: act.image, description: act.description})
@@ -76,7 +78,19 @@ const ActivitiesForm = () => {
             alert('El fomato de la image no es valido. Solo se aceptan jpg y png')
             return;
         }
-        
+
+        //caso create
+        if(!id){
+            //Post(url, createActivity(initialValues));
+            console.log("Actividad creada satisfactoriamente");
+            return;
+        }
+        //caso edit
+        if(id){
+            //Put(url + id, updateActivity(id, initialValues));
+            console.log("Actividad " + id + "actualizada exitosamente");
+            return;
+        }
     }
     
     return (
