@@ -24,7 +24,7 @@ const NewsList = () => {
     const getNews = async () => {
         try {
             const res = await Get('endpoint');
-            setNews(res.data.data)
+            setNews(res.data.data);
         } catch (err) {
             alert("Something went wrong. Please try again", "There was an error loading the userList", "error");
         }
