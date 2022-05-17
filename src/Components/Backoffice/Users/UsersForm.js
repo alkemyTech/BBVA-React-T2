@@ -20,11 +20,9 @@ const UserForm = () => {
     const fetchUser = async () => {
         if(id) {
             const res = await Get(`${endpoint + '/' +id}`)
+            const {name, email, role_id} = res.data.data
             setInitialValues({
-                name:res.data.data.name,
-                email: res.data.data.email,
-                roleId: res.data.data.role_id, 
-                password:''
+                name, email, roleId: role_id, password:''
             })
         }
     };
@@ -62,55 +60,50 @@ const UserForm = () => {
     
     const handleSubmit = (e) => {
         e.preventDefault();
-        if(validateAll()) {
+        if(validate()) {
                 if(id) {
                     try{
                         editUser()
                         setError('')
                     } 
-                    catch(err){}
+                    catch(err){
+                        setError(err)
+                    }
                 } else {
                     try{
                         createUser()
                         setError('')
                     } 
-                    catch(err){}
+                    catch(err){
+                        setError(err)
+                    }
                 }     
             }
         }
 
-    const validate = (input) => {
+    const validate = () => {
         const re = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-        if(input == initialValues.name && input.length < 4 || input===null) {
+        if(initialValues.name.length < 4 || !initialValues.name) {
             setError('El nombre es demasiado corto')
             return false
         } 
 
-        if(input == initialValues.email && !input.match(re) || input===null){
+        if(!initialValues.email.match(re) || !initialValues.email){
             setError('Email inválido')
             return false
         }
 
-        if(input == initialValues.password && input.length < 8 || input===null){
+        if(initialValues.password.length < 8 || !initialValues.password){
             setError('La contraseña es demasiado corta')
             return false
         }
-        return true
-    }
 
-    const validateRole = (role) => {
-        if(role > 2 || role < 1) {
+        if(initialValues.roleId > 2 || initialValues.roleId < 1) {
             setError('Id de rol inválido')
             return false
         }
-        return true
-    }
 
-    const validateAll = () => {
-        return validate(initialValues.name) && 
-                validate(initialValues.password) && 
-                validate(initialValues.email) && 
-                validateRole(initialValues.roleId)     
+        return true
     }
 
     return (
