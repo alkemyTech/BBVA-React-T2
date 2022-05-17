@@ -7,7 +7,7 @@ import Layout from "./Components/Layout/Layout";
 import About from "./Components/Frontoffice/About/About";
 import Contact from "./Components/Frontoffice/Contact/Contact";
 import SignUp from "./Components/Frontoffice/SignUp/SignUp";
-import Login from './Components/Login/Login'
+import Login from './Components/Frontoffice/Login/Login'
 //Backoffice
 import BackofficeLayout from "./Components/Layout/BackofficeLayout";
 import UserList from "./Components/Backoffice/Users/UserList";
