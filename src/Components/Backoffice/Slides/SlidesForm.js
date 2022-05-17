@@ -50,31 +50,20 @@ const SlidesForm = () => {
         
       }
 
-    const createSlide = async () => {
-        const response = await Post(endpoint, {
-            name: initialValues.name.toString(),
-            description: initialValues.description.toString(),
-            order: initialValues.order.toString(),
-            image: initialValues.image.toString(),
-        });
-        return response;
-    }
-    
-    const editSlide = async () => {
-        const response = await axios.put(endpoint + '/' + id, {
-            name: initialValues.name.toString(),
-            description: initialValues.description.toString(),
-            order: id.toString(),
-        }, {});
-        return response;
-      }
-
     const handleSubmit = (e) =>{
         e.preventDefault();
+
+        const body = {
+            name: initialValues.name.toString(),
+            description: initialValues.description.toString(),
+            order: id ? id.toString() : initialValues.order.toString(),
+            image: initialValues.image.toString(),
+        }
+
         if(validate() && validateImageFormat()) {
             if(id) {
                 try{
-                    editSlide()
+                    axios.put(endpoint + '/' + id, body, {});
                     setError('')
                 } 
                 catch(err){
@@ -82,7 +71,7 @@ const SlidesForm = () => {
                 }
             } else {
                 try{
-                    createSlide()
+                    Post(endpoint, body)
                     setError('')
                 } 
                 catch(err){
