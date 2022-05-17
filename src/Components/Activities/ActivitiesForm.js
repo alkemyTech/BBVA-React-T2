@@ -6,6 +6,7 @@ import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import {Get, Post} from '../../Services/privateApiService';
 import {createActivity, updateActivity} from '../../Services/Activities.Service'
+import getCurrentDate from '../../Utils/getCurrentDate';
 
 const ActivitiesForm = () => {
     const [initialValues, setInitialValues] = useState({
@@ -20,21 +21,20 @@ const ActivitiesForm = () => {
 
     const url= "https://ongapi.alkemy.org/api/activities/"; //Modificar url y llamar al .env
 
-    // Estimado para obtener la data de edicion 
-    useEffect(() => {
-        setLoading(true);
-        console.log(id);
-        if({id}){
-            Get(url + id).then((res)=>{ 
-                    let act = res.data.data;
-                    console.log(initialValues);
-                    console.log({name: act.name, image: act.image, description: act.description})
-                    setInitialValues({name: act.name, image: act.image, description: act.description});
-                    console.log(initialValues);
-                    setLoading(false);
-                });
-                console.log(initialValues);
+    const fetch = async() =>{
+        if(id){
+            const res = await Get(url+id)
+            const {name, image, description} = await res.data.data
+            console.log(res.data.data);
+            setInitialValues({
+                description, image, name
+            })
         }
+    };
+     
+    // Estimado para obtener la data de edicion 
+    useEffect ( () => {
+        fetch()
     }, []);//pendiente ver porq no renderiza del todo bien
 
 
@@ -43,16 +43,13 @@ const ActivitiesForm = () => {
             setInitialValues({...initialValues, name: e.target.value})
         }if(e.target.name === 'image'){
             setInitialValues({...initialValues, image: e.target.value})
-        } if(e.target.name === 'description'){
-            setInitialValues({...initialValues, description: e.target.value})
-        }
+        } 
     }
 
     const isBlank = () => {
         let keys = Object.keys(initialValues);
         for (let i = 0; i < keys.length-1; i++) {
             let str = initialValues[keys[i]];
-            console.log([keys[i]])
             if (!str || /^\s*$/.test(str)) {
                 setErrors({[keys[i]]: 'El campo ' + keys[i] + ' no puede estar vacio'})
                 alert('Error: el campo ' + keys[i] + ' no puede estar vacio')
@@ -102,7 +99,7 @@ const ActivitiesForm = () => {
                     name="description"
                     onChange={( event, editor ) => {
                         const data = editor.getData();
-                        setInitialValues({...initialValues, description: data});
+                        setInitialValues((prevState)=>({...prevState, description: data}));
                     } }
                 />
             <button className="submit-btn" type="submit">Send</button>
