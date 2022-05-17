@@ -16,16 +16,16 @@ function App() {
           <Switch>
             <Route exact path="/backoffice/users" component={UserList} />
             <Route path="/backoffice/organization/edit" component={OrganizationForm} />
-            <Route path="/backoffice/edit-activity/:id" component={ActivitiesForm}/>
-            </Switch>
-          </BackofficeLayout>
+            <Route path="/backoffice/activity/edit/:id" component={ActivitiesForm}/>
+          </Switch>
+        </BackofficeLayout>
           
-          <Layout>
-            <Switch>
-            <Route path="/create-activity" component={ActivitiesForm} />
+        <Layout>
+          <Switch>
+            <Route path="/activity/create" component={ActivitiesForm} />
             <Route path="/about" component={About} />
-            </Switch>
-          </Layout>   
+          </Switch>
+        </Layout>   
       
       </BrowserRouter>
     </>
