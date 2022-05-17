@@ -4,7 +4,7 @@ import '../FormStyles.css';
 import {validateImageFormat} from '../../Services/validatorsService.js';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import {Get} from '../../Services/privateApiService'
+import {Get} from '../../Services/privateApiService';
 
 const ActivitiesForm = () => {
     const [initialValues, setInitialValues] = useState({
@@ -56,8 +56,6 @@ const ActivitiesForm = () => {
                 setErrors({[keys[i]]: 'El campo ' + keys[i] + ' no puede estar vacio'})
                 alert('Error: el campo ' + keys[i] + ' no puede estar vacio')
                 return true;
-            } else {
-                break;
             }
         } 
         if (initialValues.description === "<p> </p>"){
