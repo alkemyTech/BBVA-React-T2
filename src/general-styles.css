@@ -9,8 +9,16 @@
 
   --primary-color-backoffice: #444;
   --secondary-color-backoffice: #2b3046;
+<<<<<<< HEAD
 
   --title-font: 'Poppins', sans-serif;
+=======
+  --primary-backoffice-button: #8cb3df;
+  --secondary-backoffice-button: #fdb77d;
+
+  --title-font: 'Poppins', sans-serif;
+  --p-font: 'Mulish', sans-serif;
+>>>>>>> 80d37d7c5ea65fdde5a8ce8fa869b58fe655811f
   --biggest-font-size: 2rem;
   --h1-font-size: 1.5rem;
   --h2-font-size: 1.25rem;
@@ -37,7 +45,7 @@
 
 }
 
-.primary-button, .secondary-button {
+.primary-button, .secondary-button, .primary-backoffice-button, .secondary-backoffice-button {
   display: inline-block;
   padding: 10px 40px;
   border-radius: 15px;
@@ -49,17 +57,23 @@
   transition: background-color 250ms ease-out;
   border: none;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  font-family: var(--title-font);
 }
-.primary-button:hover, .secondary-button:hover {
-    background-color: var(--primary-color-backoffice);
-  }
-  
+
 .primary-button {
   background-color: var(--primary-color);
 }
 
 .secondary-button {
   background-color: var(--secondary-color);
+}
+
+.primary-backoffice-button {
+  background-color: var(--primary-backoffice-button);
+}
+
+.secondary-backoffice-button {
+  background-color: var(--secondary-backoffice-button)
 }
 
 .input-form {
@@ -69,4 +83,8 @@
 .title {
   font-family: var(--title-font) ;
   font-size: 32px;
+}
+
+.primary-button:hover, .secondary-button:hover {
+  background-color: #444;
 }

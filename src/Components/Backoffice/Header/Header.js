@@ -1,7 +1,6 @@
 import { useState } from 'react';
 // Material UI components
 import MenuIcon from '@mui/icons-material/Menu';
-
 import './Header.css';
 
 export default function Header() {
