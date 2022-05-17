@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import setLogin from "../../Services/Login.service";
+import setLogin from "../../../Services/Login.service";
 
-import "../Login/LoginStyle.css";
+import "./LoginStyle.css";
 
 const Login = () => {
   const [submittedForm, setSubmittedForm] = useState(false);
