@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './OrganizationForm.css';
 import '../../../general-styles.css';
-import { validateImageFormat } from '../../../Services/validatorsService'
+//import { validateImageFormat } from '../../../Services/validatorsService'
 
 const OrganizationForm = () => {
     const [initialValues, setInitialValues] = useState({
@@ -63,11 +63,14 @@ const OrganizationForm = () => {
             !isUrl(initialValues.linkedinUrl, 'linkedin')) {
                 return;
         }
+        /*
         if(!validateImageFormat(initialValues.logo)) {
             setErrors({'logo': 'El fomato del logo no es valido. Solo se aceptan jpg y png'});
             alert('El fomato del logo no es valido. Solo se aceptan jpg y png')
             return;
         }
+        */
+        
         alert('enviando formulario')
         //borrar la linea de arriba y hacer lo que correspond
     }
