@@ -37,49 +37,37 @@ const UserForm = () => {
             [e.target.name] : e.target.value
         })
     }
-
-    const createUser = async () => {
-        const response = await Post(endpoint, {
-            name: initialValues.name.toString(),
-            email: initialValues.email.toString(),
-            password: initialValues.password.toString(),
-            roleId: initialValues.roleId.toString(),
-        });
-        return response;
-      }
-      
-      const editUser = async () => {
-        const response = await axios.put(endpoint + '/' + id, {
-            name: initialValues.name.toString(),
-            email: initialValues.email.toString(),
-            password: initialValues.password.toString(),
-            roleId: initialValues.roleId.toString(),
-        }, {});
-        return response;
-      }
     
-    const handleSubmit = (e) => {
+      const handleSubmit = (e) => {
         e.preventDefault();
-        if(validate()) {
-                if(id) {
-                    try{
-                        editUser()
-                        setError('')
-                    } 
-                    catch(err){
-                        setError(err)
-                    }
-                } else {
-                    try{
-                        createUser()
-                        setError('')
-                    } 
-                    catch(err){
-                        setError(err)
-                    }
-                }     
-            }
-        }
+        const body = {
+               name: initialValues.name.toString(),
+               email: initialValues.email.toString(),
+               password: initialValues.password.toString(),
+               roleId: initialValues.roleId.toString(),
+           }
+           
+            if(validate()) {
+                   if(id) {
+                       try{
+                           axios.put(endpoint + '/' + id, body)
+                           setError('')
+                       } 
+                       catch(err){
+                           setError(err)
+                       }
+                       }
+                   else {
+                         try{
+                           Post(endpoint, body)
+                           setError('')
+                       } 
+                       catch(err){
+                           setError(err)
+                       }
+                   }
+   } 
+}
 
     const validate = () => {
         const re = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
