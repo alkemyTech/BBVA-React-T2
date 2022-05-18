@@ -29,7 +29,7 @@ function App() {
               <Switch>
                 <Route exact path="/backoffice" component={ScreenDashboard} />
                 <Route exact path="/backoffice/users" component={UserList} />
-                <Route exact path="/backoffice/categories" component={UserList} />
+                <Route exact path="/backoffice/categories" component={CategoriesList} />
                 <Route path="/backoffice/users/create" component={UserForm} />
                 <Route path="/backoffice/users/edit/:id" component={UserForm} />
                 <Route path="/backoffice/organization/edit" component={OrganizationForm} />
