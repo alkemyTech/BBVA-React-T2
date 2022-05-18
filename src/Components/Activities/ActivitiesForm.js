@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import '../FormStyles.css';
+import './ActivitiesForm.css'
+import '../Backoffice/Activities/ActivitiesBackOffice.css'
 import {validateImageFormat} from '../../Services/validatorsService.js';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import {Get, Post} from '../../Services/privateApiService';
+import {Get, Post, Put} from '../../Services/privateApiService';
 import {createActivity, updateActivity} from '../../Services/Activities.Service'
 import getCurrentDate from '../../Utils/getCurrentDate';
 
@@ -19,11 +21,11 @@ const ActivitiesForm = () => {
 
     const { id } = useParams();
 
-    const url= "https://ongapi.alkemy.org/api/activities/"; //Modificar url y llamar al .env
+    const url= "https://ongapi.alkemy.org/api/activities"; //Modificar url y llamar al .env
 
     const fetch = async() =>{
         if(id){
-            const res = await Get(url+id)
+            const res = await Get(url+'/'+id)
             const {name, image, description} = await res.data.data
             console.log(res.data.data);
             setInitialValues({
@@ -40,10 +42,8 @@ const ActivitiesForm = () => {
 
     const handleChange = (e) => {
         if(e.target.name === 'name'){
-            setInitialValues({...initialValues, name: e.target.value})
-        }if(e.target.name === 'image'){
-            setInitialValues({...initialValues, image: e.target.value})
-        } 
+            setInitialValues({...initialValues, name: e.target.value});
+        }
     }
 
     const isBlank = () => {
@@ -65,7 +65,6 @@ const ActivitiesForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(initialValues);
         if(isBlank()){
             return;
         }
@@ -77,22 +76,35 @@ const ActivitiesForm = () => {
 
         //caso create
         if(!id){
-            //Post(url, createActivity(initialValues));
-            console.log("Actividad creada satisfactoriamente");
+            Post(url, createActivity(initialValues));
+            alert("Actividad creada satisfactoriamente");
             return;
         }
         //caso edit
-        if(id){
-            //Put(url + id, updateActivity(id, initialValues));
-            console.log("Actividad " + id + "actualizada exitosamente");
+        if(id){Put(url + '/' + id, updateActivity(id, initialValues));
+            alert("Actividad " + id + "actualizada exitosamente");
             return;
         }
     }
+    const handleImage = (element) => {
+        if(!element||!element.currentTarget.files)
+            return;
+        var file = element.currentTarget.files[0];
+        var reader = new FileReader();
+        reader.onloadend = function() {
+            setInitialValues({...initialValues, image: reader.result})
+        }
+        reader.readAsDataURL(file);
+
+    }
     
     return (
-        <form className="form-container" onSubmit={handleSubmit}>
+        <form className="form-container form-activity" onSubmit={handleSubmit}>
             <input className="input-field" type="text" name="name" value={initialValues.name} onChange={handleChange} placeholder="Activity Title"></input>
-            <input className="input-field" type="text" name="image" value={initialValues.image} onChange={handleChange} placeholder="Activity Image"></input>
+            <div className='input-field img-input-div'>
+                <img className='activity-img-prev'src={initialValues.image} alt={initialValues.name}/>
+                <input className="img-select" type="file" name="image" onChange={handleImage} placeholder="Activity Image"></input>
+            </div>
             <CKEditor
                     editor={ ClassicEditor }
                     data={ initialValues.description }
@@ -102,7 +114,7 @@ const ActivitiesForm = () => {
                         setInitialValues((prevState)=>({...prevState, description: data}));
                     } }
                 />
-            <button className="submit-btn" type="submit">Send</button>
+            <button className="create-backoffice-button button-create" type="submit">Send</button>
         </form>
     );
 }
