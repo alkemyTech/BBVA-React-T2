@@ -105,7 +105,7 @@ const SignUp = () => {
                         />
                     ))}
                     <span><input type="checkbox" onClick={checkTheBox}/>He leído y acepto 
-                    <Popup trigger={<a>los términos y condiciones</a>} position="">
+                    <Popup trigger={<a className='tyc-link'>los términos y condiciones</a>} position="center">
                         <Document file="tyc.pdf" onLoadSuccess={onDocumentLoadSuccess}>
                             <Page pageNumber={pageNumber} />
                         </Document>
