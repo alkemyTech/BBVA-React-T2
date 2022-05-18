@@ -17,12 +17,12 @@ import UserForm from "./Components/Backoffice/Users/UsersForm";
 import ScreenDashboard from "./Components/Backoffice/ScreenDashboard/ScreenDashboard";
 import SlidesForm from "./Components/Backoffice/Slides/SlidesForm";
 import CategoriesList from './Components/Backoffice/Categories/CategoriesList';
+import Slider from "./Components/Frontoffice/Home/Slider/Slider";
 
 function App() {
   return (
     <>
       <BrowserRouter>
-        <Prueba/>
         <Switch>
 
           <Route exact path="/backoffice/*">
@@ -48,6 +48,7 @@ function App() {
                 <Route path="/about" component={About} />
                 <Route path="/contact" component={Contact} />
               </Switch>
+              <Slider length={8}/>
             </Layout>
           </Route>
 
