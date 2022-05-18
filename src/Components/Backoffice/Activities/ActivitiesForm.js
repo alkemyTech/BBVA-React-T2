@@ -26,7 +26,6 @@ const ActivitiesForm = () => {
         if(id){
             const res = await Get(url+'/'+id)
             const {name, image, description} = await res.data.data
-            console.log(res.data.data);
             setInitialValues({
                 description, image, name
             })
