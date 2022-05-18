@@ -8,7 +8,7 @@ export function createActivity(activityBasics){
     //Params:
     //activityBasics: espera un objeto con los campos basicos de la actividad.
     
-    return {...activityBasics, created_at: getCurrentDate(), user_id: 0, updated_at: '', deleted_at: '', slug: ''};
+    return {...activityBasics, created_at: '', user_id: 0, updated_at: '', deleted_at: '', slug: ''};
 };
 
 export async function updateActivity(id, updatedActivityFields){
@@ -25,6 +25,5 @@ export async function updateActivity(id, updatedActivityFields){
     for(let i=0; i<updateKeys.length; i++){
         activity[updateKeys[i]]= updatedActivityFields[updateKeys[i]];
     }
-    activity['updated_at'] = getCurrentDate();
     return activity;
 }

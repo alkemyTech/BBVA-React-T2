@@ -22,7 +22,7 @@ const ActivitiesForm = () => {
 
     const url= process.env.REACT_APP_BASE_URL + process.env.REACT_APP_ACTIVITIES;
 
-    const fetch = async() =>{
+    const fetchData = async() =>{
         if(id){
             const res = await Get(url+'/'+id)
             const {name, image, description} = await res.data.data
@@ -34,7 +34,7 @@ const ActivitiesForm = () => {
      
     // Estimado para obtener la data de edicion 
     useEffect ( () => {
-        fetch()
+        fetchData()
     }, []);//pendiente ver porq no renderiza del todo bien
 
 
@@ -72,18 +72,17 @@ const ActivitiesForm = () => {
             return;
         }
 
+        //caso edit
+        if(id){
+            Put(url + '/' + id, updateActivity(id, initialValues));
+            alert("Actividad " + id + "actualizada exitosamente");
+        }
         //caso create
-        if(!id){
+        else{
             Post(url, createActivity(initialValues));
             alert("Actividad creada satisfactoriamente");
-            return;
         }
-        //caso edit
-        if(id){Put(url + '/' + id, updateActivity(id, initialValues));
-            alert("Actividad " + id + "actualizada exitosamente");
-            return;
-        }
-    }
+}
     const handleImage = (element) => {
         if(!element||!element.currentTarget.files)
             return;
