@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from '../Header/Header';
+import Header from '../Frontoffice/PublicHeader/PublicHeader';
 import Footer from '../Frontoffice/Footer/Footer';
 
 const Layout = ({children}) => {

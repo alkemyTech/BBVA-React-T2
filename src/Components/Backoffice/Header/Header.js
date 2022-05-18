@@ -10,7 +10,7 @@ export default function Header() {
     const toggle = () => setIsClicked(!isClicked)
 
     return (
-        <header className='header-container'>
+        <header className='header-backoffice-container'>
             <MenuIcon fontSize="large" onClick={toggle} />
             <img src='/logo.svg' alt='logo-ONG' />
         </header>
