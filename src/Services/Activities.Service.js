@@ -1,7 +1,7 @@
 import { Get } from "./publicApiService";
 import getCurrentDate from "../Utils/getCurrentDate";
 
-const url = "https://ongapi.alkemy.org/api/activities"; //Modificar con .env
+const url = process.env.REACT_APP_BASE_URL + process.env.REACT_APP_ACTIVITIES;
 
 export function createActivity(activityBasics){
     //La funcion devuelve un objeto con los campos de "Actividad"

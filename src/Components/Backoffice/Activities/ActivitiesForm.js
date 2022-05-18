@@ -20,7 +20,7 @@ const ActivitiesForm = () => {
 
     const { id } = useParams();
 
-    const url= "https://ongapi.alkemy.org/api/activities"; //Modificar url y llamar al .env
+    const url= process.env.REACT_APP_BASE_URL + process.env.REACT_APP_ACTIVITIES;
 
     const fetch = async() =>{
         if(id){
