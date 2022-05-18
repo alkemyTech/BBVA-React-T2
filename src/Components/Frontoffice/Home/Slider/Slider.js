@@ -28,6 +28,18 @@ function Slider() {
         </div>
     ))
 
+    const sliderIndicators = slides.map((slide, index) => (
+        <button 
+            key={index} 
+            onClick={(e) => {
+                items[index].scrollIntoView({behavior: "smooth"}); 
+                setCurrentItem(index);
+            }} 
+            className={`item__button ${currentItem === index ? 'active' : ''}`}
+        >
+        </button>
+    ))
+
     return ( 
         <div>
             <div className="slider">
