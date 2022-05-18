@@ -50,15 +50,13 @@ const SignUp = () => {
         }
     ];
 
-
-
     const postUser = async () => {
         const registerUser = {
             name: values.name,
             email: values.email,
             password: values.password
         }
-        const response = await Post(process.env.REACT_APP_BASE_URL + '/register', registerUser)
+        await Post(process.env.REACT_APP_BASE_URL + '/register', registerUser)
     }
 
     const handleSubmit = (e) => {
@@ -67,7 +65,7 @@ const SignUp = () => {
     };
 
     const onChange = (e) => {
-        const { name, value } = e.target
+        const { name, value } = e.target;
         setValues({ ...values, [name]: value });
     };
 
