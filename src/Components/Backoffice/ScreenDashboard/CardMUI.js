@@ -26,7 +26,7 @@ const CardMUI = ({ title, link, img }) => {
       <CardActions>
           <div className="btn-card">
             {/* <button className="btn-screendashboard">{link}Ir</button> */}
-            <Link to={`/${link}`}> <button className="btn-screendashboard">Ir</button></Link>
+            <Link to={`/backoffice/${link}`}> <button className="btn-screendashboard">Ir</button></Link>
           </div>
       </CardActions>
     </Card>
