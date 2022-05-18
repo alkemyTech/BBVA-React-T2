@@ -3,6 +3,10 @@ import { Get } from "../../../../Services/privateApiService";
 import "./Slider.css"
 
 function Slider({length = 5}) {
+
+    const baseURL = process.env.REACT_APP_BASE_URL;
+    const endpoint = process.env.REACT_APP_SLIDES;
+
     const [slides, setSlides] = useState([]);
 
     const [currentItem, setCurrentItem] = useState(0);
@@ -10,7 +14,7 @@ function Slider({length = 5}) {
     const itemRefs = useRef([]);
 
     const getSlides = async () => {
-        const response = await Get(`https://ongapi.alkemy.org/api/slides?limit=${length}`)
+        const response = await Get(`${baseURL + endpoint}?limit=${length}`)
         const slidesData = await response.data.data;
         itemRefs.current = slidesData.map (
             (ref, index) =>   itemRefs.current[index] = React.createRef()
