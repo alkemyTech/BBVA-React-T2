@@ -1,6 +1,7 @@
 import Card from '../../Cards/Card/Card'
 import { Get } from '../../../Services/publicApiService'
 import { useState, useEffect } from 'react'
+import alert from '../../Alerts/Alerts'
 import './Testimonials.css'
 
 const Testimonials = () => {
@@ -8,8 +9,13 @@ const Testimonials = () => {
     const [testimonials, setTestimonials] = useState([])
 
     const fetchTestimonials = async () => {
-        const res = await Get(endpoint)
-        setTestimonials(res.data.data)
+        try {
+            const res = await Get(endpoint)
+            setTestimonials(res.data.data)
+        }
+        catch (err) {
+            alert("Something went wrong. Please try again", "There was an error fetching the data", "error");
+        }
     }
 
     useEffect(() => {
