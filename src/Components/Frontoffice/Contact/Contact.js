@@ -19,9 +19,9 @@ const Contact = (props) => {
     const iconProp = { fontSize: 40, margin:1 }
 
   return (
-    <div className='container'>
+    <div className='contact-container'>
       <div className='contribuir-section'>
-        <h1 className='title'>¿Queres contribuir?</h1>
+        <h1 className='contact-title'>¿Queres contribuir?</h1>
 
         <Link to='/donar' className='contact__link'>
           <button type='button' className='primary-button contact__button'>
@@ -30,7 +30,7 @@ const Contact = (props) => {
         </Link>
       </div>
 
-      <h1 className='title'>¡Contactate con nosotros!</h1>
+      <h1 className='contact-title'>¡Contactate con nosotros!</h1>
 
       <div className='contact__data-section'>
           <p>Direccion: <b>{ address || 'direccion' }</b> </p>
@@ -59,7 +59,7 @@ const Contact = (props) => {
         </ul>
       </div>
 
-      <h2 className='title' >Puedes dejarnos tu consulta:</h2>
+      <h2 className='contact-title' >Puedes dejarnos tu consulta:</h2>
      
       <ContactForm/>
 

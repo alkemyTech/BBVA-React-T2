@@ -5,9 +5,9 @@ En la sección superior, mostrará un componente <Link> que redirigirá a la rut
 import './ActivitiesBackOffice.css';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import Activity from './Acitivity';
-import '../../general-styles.css';
-import { Delete, Get } from '../../Services/privateApiService';
+import Activity from './Activity';
+import '../../../general-styles.css';
+import { Delete, Get } from '../../../Services/privateApiService';
 
 const ActivitiesBackOffice = () => {
     const [activities, setActivities] = useState([]);
@@ -38,7 +38,7 @@ const ActivitiesBackOffice = () => {
         <>
         <div className="container-create-activity">
             <Link to={'/backoffice/activities/create'} className='container-create-activity__a'>
-                <button type='button' className= 'primary-backoffice-button button-create'>Crear nueva actividad</button>
+                <button type='button' className= 'create-backoffice-button button-create'>Crear nueva actividad</button>
             </Link>
         </div>
         <div class='list-container'>
@@ -54,7 +54,7 @@ const ActivitiesBackOffice = () => {
                         <Activity 
                             id={activity.id} 
                             name={activity.name} 
-                            createdAt={activity.createdAt} 
+                            createdAt={activity.created_at} 
                             image={activity.image} 
                             key={activity.id} 
                             handleDelete={handleDelete}

@@ -18,13 +18,13 @@ const PublicHeader = () => {
             </div>
            </div>
            <div className="container-list-header">
-             <ul className='list-container'>
-                <li className='list-container__li'><Link to='/'  className='link-public-header'>Inicio</Link></li>
-                <li className='list-container__li'><Link to='/about-us' className='link-public-header'>Nosotros</Link></li>
-                <li className='list-container__li'><Link to='/news' className='link-public-header'>Novedades</Link></li>
-                <li className='list-container__li'><Link to='/testimonials' className='link-public-header'>Testimonios</Link></li>
-                <li className='list-container__li'><Link to='/contact' className='link-public-header'>Contacto</Link></li>
-                <li className='list-container__li'><Link to='/contributes' className='link-public-header'>Contribuye</Link></li>
+             <ul className='list-container-header'>
+                <li className='list-container-header__li'><Link to='/'  className='link-public-header'>Inicio</Link></li>
+                <li className='list-container-header__li'><Link to='/about-us' className='link-public-header'>Nosotros</Link></li>
+                <li className='list-container-header__li'><Link to='/news' className='link-public-header'>Novedades</Link></li>
+                <li className='list-container-header__li'><Link to='/testimonials' className='link-public-header'>Testimonios</Link></li>
+                <li className='list-container-header__li'><Link to='/contact' className='link-public-header'>Contacto</Link></li>
+                <li className='list-container-header__li'><Link to='/contributes' className='link-public-header'>Contribuye</Link></li>
              </ul>
            </div>
            {getToken() ? (<button className="button-login-header" type="submit">Sign out</button>) : (
@@ -49,14 +49,14 @@ const PublicHeader = () => {
               </div>
               </div>
               <ul className="menu-items">
-                <li className='list-container__li'><Link to='/' className='link-public-header'>Inicio</Link></li>
-                <li className='list-container__li'><Link to='/about-us' className='link-public-header'>Nosotros</Link></li>
-                <li className='list-container__li'><Link to='/news' className='link-public-header'>Novedades</Link></li>
-                <li className='list-container__li'><Link to='/testimonials' className='link-public-header'>Testimonios</Link></li>
-                <li className='list-container__li'><Link to='/contact' className='link-public-header'>Contacto</Link></li>
-                <li className='list-container__li'><Link to='/contributes' className='link-public-header'>Contribuye</Link></li>
-                <li className='list-container__li'><Link to='/login'><button className="button-login-header" type="submit">Log in</button></Link></li>
-                <li className='list-container__li'><Link to='/register'><button className="button-register-header" type="submit">Registrate</button></Link></li>
+                <li className='list-container-header__li'><Link to='/' className='link-public-header'>Inicio</Link></li>
+                <li className='list-container-header__li'><Link to='/about-us' className='link-public-header'>Nosotros</Link></li>
+                <li className='list-container-header__li'><Link to='/news' className='link-public-header'>Novedades</Link></li>
+                <li className='list-container-header__li'><Link to='/testimonials' className='link-public-header'>Testimonios</Link></li>
+                <li className='list-container-header__li'><Link to='/contact' className='link-public-header'>Contacto</Link></li>
+                <li className='list-container-header__li'><Link to='/contributes' className='link-public-header'>Contribuye</Link></li>
+                <li className='list-container-header__li'><Link to='/login'><button className="button-login-header" type="submit">Log in</button></Link></li>
+                <li className='list-container-header__li'><Link to='/register'><button className="button-register-header" type="submit">Registrate</button></Link></li>
               </ul>
             </div>
           </nav>
