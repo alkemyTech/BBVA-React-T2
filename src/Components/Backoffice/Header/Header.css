@@ -1,20 +1,22 @@
-.header-container {
+.header-backoffice-container {
     padding: 10px;
+    background-color: #1f2333;
 }
 
-.header-container>svg[data-testid="MenuIcon"] {
+.header-backoffice-container>svg[data-testid="MenuIcon"] {
     visibility: hidden;
 }
 
 @media only screen and (max-width: 600px) {
-    .header-container {
+    .header-backoffice-container {
         display: flex;
         justify-content: space-between;
         align-items: center;
         padding: 10px 0 10px 10px;
     }
 
-    .header-container>svg[data-testid="MenuIcon"] {
+    .header-backoffice-container>svg[data-testid="MenuIcon"] {
         visibility: visible;
+        color:aliceblue
     }
 }
