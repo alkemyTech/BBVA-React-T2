@@ -34,4 +34,3 @@ const Post = async (endpoint, body) => {
 }
 
 export { Post, Get }
-
