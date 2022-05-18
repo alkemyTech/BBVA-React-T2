@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Get } from '../../../Services/publicApiService';
 import MembersList from "./MembersList";
 import './MembersAbout.css';
+import MembersForm from './MembersForm';
 
 function MembersAbout() {
 
@@ -36,6 +37,7 @@ function MembersAbout() {
             </div>
 
             <MembersList numberOfMembers={10}/>
+            <MembersForm/>
         </div>
      );
 }

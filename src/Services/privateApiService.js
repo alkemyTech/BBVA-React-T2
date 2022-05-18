@@ -37,4 +37,8 @@ const Post = (endpoint, body) => {
     }
 }
 
-export { Delete, Get, Post }
+const Put = () => {
+    console.log("PUT")
+}
+
+export { Delete, Get, Post, Put }
