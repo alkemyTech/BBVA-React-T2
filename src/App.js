@@ -14,11 +14,13 @@ import UserList from "./Components/Backoffice/Users/UserList";
 import OrganizationForm from "./Components/Backoffice/Organization/OrganizationForm";
 import ActivitiesBackOffice from './Components/Activities/ActivitiesBackOffice';
 import UserForm from "./Components/Backoffice/Users/UsersForm";
+import Prueba from "./Components/Frontoffice/prueba";
 
 function App() {
   return (
     <>
       <BrowserRouter>
+        <Prueba/>
         <Switch>
 
           <Route exact path="/backoffice/*">
