@@ -1,5 +1,5 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
+import { Get } from "../../../../Services/privateApiService";
 import "./Slider.css"
 
 function Slider({length = 5}) {
@@ -7,9 +7,14 @@ function Slider({length = 5}) {
 
     const [currentItem, setCurrentItem] = useState(0);
 
+    const itemRefs = useRef([]);
+
     const getSlides = async () => {
-        const response = await axios.get(`https://ongapi.alkemy.org/api/slides?limit=${length}`)
+        const response = await Get(`https://ongapi.alkemy.org/api/slides?limit=${length}`)
         const slidesData = await response.data.data;
+        itemRefs.current = slidesData.map (
+            (ref, index) =>   itemRefs.current[index] = React.createRef()
+        )
         setSlides(slidesData);
     }
 
@@ -17,24 +22,21 @@ function Slider({length = 5}) {
         getSlides();
     }, [])
 
-    const sliderItems = slides.map(slide => (
-        <div className="slider__item" key={slide.id}>
+    const sliderItems = slides.map((slide, i) => (
+        <div className="slider__item" key={slide.id} id={`item${i}`} ref={itemRefs.current[i]}>
             <img className="item__image" src={slide.image} />
             <div className="item__caption">
                 <h4 className="item__caption--name">{slide.name}</h4>
                 <p className="item__caption--description">{slide.description}</p>
             </div>
-            
         </div>
     ))
-
-    const items = document.getElementsByClassName("slider__item");
 
     const sliderIndicators = slides.map((slide, index) => (
         <button 
             key={index} 
             onClick={(e) => {
-                items[index].scrollIntoView({behavior: "smooth"}); 
+                itemRefs.current[index].current.scrollIntoView({behavior: "smooth"}); 
                 setCurrentItem(index);
             }} 
             className={`item__button ${currentItem === index ? 'active' : ''}`}
@@ -49,17 +51,17 @@ function Slider({length = 5}) {
     const handleChange = (e, type) => {
         if(type === "next") {
             const nextItem = currentItem + 1;
-            const isInOfRange = nextItem < items.length;
+            const isInOfRange = nextItem < slides.length;
             if(isInOfRange) {
                 setCurrentItem(nextItem);
-                items[nextItem].scrollIntoView({behavior: "smooth"});
+                itemRefs.current[nextItem].current.scrollIntoView({behavior: "smooth"});
             }
         } else if(type === "prev") {
             const prevItem = currentItem - 1;
             const isInOfRange = prevItem >= 0;
             if(isInOfRange) {
                 setCurrentItem(prevItem);
-                items[prevItem].scrollIntoView({behavior: "smooth"});
+                itemRefs.current[prevItem].current.scrollIntoView({behavior: "smooth"});
             }
         }
     }
