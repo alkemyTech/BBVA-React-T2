@@ -14,6 +14,7 @@ import UserList from "./Components/Backoffice/Users/UserList";
 import OrganizationForm from "./Components/Backoffice/Organization/OrganizationForm";
 import ActivitiesBackOffice from './Components/Activities/ActivitiesBackOffice';
 import UserForm from "./Components/Backoffice/Users/UsersForm";
+import CategoriesList from './Components/Backoffice/Categories/CategoriesList';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <BackofficeLayout>
               <Switch>
                 <Route exact path="/backoffice/users" component={UserList} />
+                <Route exact path="/backoffice/categories" component={UserList} />
                 <Route path="/backoffice/users/create" component={UserForm} />
                 <Route path="/backoffice/users/edit/:id" component={UserForm} />
                 <Route path="/backoffice/organization/edit" component={OrganizationForm} />
