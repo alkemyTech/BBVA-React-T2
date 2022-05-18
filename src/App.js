@@ -53,7 +53,6 @@ function App() {
                 <Route path="/about" component={About} />
                 <Route path="/contact" component={Contact} />
               </Switch>
-              <Slider length={8}/>
             </Layout>
           </Route>
 
