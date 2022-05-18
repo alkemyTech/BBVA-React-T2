@@ -8,6 +8,7 @@ import '../../../general-styles.css'
 import './SignUp.css';
 // Resources
 import signUpImg from '../Login/imagenONG.jpeg'
+// Services
 import { Post } from '../../../Services/publicApiService'
 
 const SignUp = () => {
@@ -50,19 +51,17 @@ const SignUp = () => {
         }
     ];
 
-    const postUser = async () => {
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
         const registerUser = {
             name: values.name,
             email: values.email,
             password: values.password
         }
-        await Post(process.env.REACT_APP_BASE_URL + '/register', registerUser)
-    }
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        postUser();
-    };
+        Post(process.env.REACT_APP_BASE_URL + '/register', registerUser);
+    }
 
     const onChange = (e) => {
         const { name, value } = e.target;
@@ -95,5 +94,6 @@ const SignUp = () => {
         </>
     );
 };
+
 
 export default SignUp;
