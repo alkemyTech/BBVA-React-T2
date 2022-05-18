@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import '../PublicHeader/PublicHeaderStyles.css'
 import getToken from '../../../Services/getToken'
 
-let PublicHeader = () => {
+const PublicHeader = () => {
 
     return (
         <header className="header-container">
@@ -27,7 +27,7 @@ let PublicHeader = () => {
                 <li className='list-container__li'><Link to='/contributes' className='link-public-header'>Contribuye</Link></li>
              </ul>
            </div>
-           {getToken() ? (<></>) : (
+           {getToken() ? (<button className="button-login-header" type="submit">Sign out</button>) : (
              <div className="container-buttons-header">
              <Link to='/login'><button className="button-login-header" type="submit">Log in</button></Link>
              <Link to='/register'><button className="button-register-header" type="submit">Registrate</button></Link>
