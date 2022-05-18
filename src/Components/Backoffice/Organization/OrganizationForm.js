@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { Redirect } from 'react-router-dom'
 import './OrganizationForm.css';
 import '../../../general-styles.css';
-import { validateImageFormat } from '../../../Services/validatorsService'
+//import { validateImageFormat } from '../../../Services/validatorsService'
 
 const OrganizationForm = () => {
     const [initialValues, setInitialValues] = useState({
@@ -63,16 +63,20 @@ const OrganizationForm = () => {
             !isUrl(initialValues.linkedinUrl, 'linkedin')) {
                 return;
         }
-        if(!validateImageFormat(initialValues.logo)) {
+        /*
+          if(!validateImageFormat(initialValues.logo)) {
             setErrors({'logo': 'El fomato del logo no es valido. Solo se aceptan jpg y png'});
             alert('El fomato del logo no es valido. Solo se aceptan jpg y png')
             return;
         }
+        */
+      
         alert('enviando formulario')
         //borrar la linea de arriba y hacer lo que correspond
     }
 
     return (
+        <div className="main">
         <form className="organization-form-container" onSubmit={handleSubmit}>
             <input className="form-input" type="text" name='name' onChange={handleChange} placeholder="Nombre"></input>
             <input className="form-input" type="text" name='shortDescription' onChange={handleChange} placeholder="Breve descripcion" ></input>
@@ -81,9 +85,10 @@ const OrganizationForm = () => {
             <input className="form-input" type="text" name='twitterUrl' onChange={handleChange} placeholder="Link a Twitter" ></input>
             <input className="form-input" type="text" name='instagramUrl' onChange={handleChange} placeholder="Link a Instagram" ></input>
             <input className="form-input" type="text" name='linkedinUrl' onChange={handleChange} placeholder="Link a LinkedIn" ></input>
-            <input className="form-input" type="file" id='img1' accept="image/png, image/jpeg" alt='new logo' src="logo.jpg" name='logo' placeholder="Logo" onChange={handleChange}></input>
-            <button type="submit" className="form-button primary-backoffice-button">Enviar</button>
+            <input className="file-input form-input" type="file" id='img1' accept="image/png, image/jpeg" alt='new logo' src="logo.jpg" name='logo' placeholder="Logo" onChange={handleChange}></input>
+            <button type="submit" className="form-button create-backoffice-button">Enviar</button>
         </form>
+        </div>
     )
 }
 

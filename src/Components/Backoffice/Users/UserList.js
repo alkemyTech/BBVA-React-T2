@@ -1,4 +1,4 @@
-import { Get, Delete } from '../../Services/privateApiService'
+import { Get, Delete } from '../../../Services/privateApiService'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import './UserList.css'
@@ -6,14 +6,15 @@ import './UserList.css'
 const UserList = () => {
     
     const [userList, setUserList] = useState([])
+    const endpoint = process.env.REACT_APP_BASE_URL + process.env.REACT_APP_USERS
 
     const deleteUser = (id) => {
-        Delete('users/' + id)
+        Delete(endpoint + '/' + id)
         fetchData();
     }
 
     const fetchData = async () => {
-        const res = await Get(process.env.REACT_APP_BASE_URL + "users?limit=15");
+        const res = await Get(endpoint + "?limit=15");
         setUserList(res.data.data)
       };
 
@@ -22,12 +23,12 @@ const UserList = () => {
       }, []);
     
     return(
-        <div className="main">
-        <div className="container">
+        <div className="user-table">
+        <div className="container-users">
             <h1 className='title-users'>Usuarios</h1>
             <div className='align-right'>
                 <Link to={'/backoffice/users/create'}>
-                    <button className='primary-backoffice-button'>Crear usuario</button>
+                    <button className='create-backoffice-button'>Crear usuario</button>
                 </Link>
             </div>
             <table className='users-table'>
