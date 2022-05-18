@@ -18,7 +18,8 @@ const Get = async (endpoint) => {
     } catch (error) {
         return error;
     }
-}  
+
+}
 
 const Post = async (endpoint, body) => {
     if(!endpoint){
