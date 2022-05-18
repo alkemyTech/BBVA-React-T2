@@ -7,8 +7,8 @@ export function createActivity(activityBasics){
     //La funcion devuelve un objeto con los campos de "Actividad"
     //Params:
     //activityBasics: espera un objeto con los campos basicos de la actividad.
-
-
+    
+    return {...activityBasics, created_at: getCurrentDate(), user_id: 0, updated_at: '', deleted_at: '', slug: ''};
 };
 
 export async function updateActivity(id, updatedActivityFields){
