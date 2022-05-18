@@ -18,8 +18,8 @@ const About = () => {
   
   return (
     <>
-      <div className="container">
-        <div className="logo">
+      <div className="container-about">
+        <div className="section-container-about">
             <div className="main-text">
                 <h1 className="about-title">Nosotros</h1>
                 <div className="about-text">{text}</div>

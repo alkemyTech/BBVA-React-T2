@@ -17,7 +17,7 @@ const Activities = () => {
     },[setActivities])
 
   return (
-    <div className="general-container-activities">
+    <div className="general-container-activities"><br /><br />
         {
             activities.map((activity) => {
                 return (

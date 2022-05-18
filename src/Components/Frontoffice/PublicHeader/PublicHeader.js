@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 
 import '../PublicHeader/PublicHeaderStyles.css'
+import getToken from '../../../Services/getToken'
 
 const PublicHeader = () => {
 
@@ -17,20 +18,21 @@ const PublicHeader = () => {
             </div>
            </div>
            <div className="container-list-header">
-             <ul className='list-container'>
-                <li className='list-container__li'><Link to='/'  className='link-public-header'>Inicio</Link></li>
-                <li className='list-container__li'><Link to='/about-us' className='link-public-header'>Nosotros</Link></li>
-                <li className='list-container__li'><Link to='/news' className='link-public-header'>Novedades</Link></li>
-                <li className='list-container__li'><Link to='/testimonials' className='link-public-header'>Testimonios</Link></li>
-                <li className='list-container__li'><Link to='/contact' className='link-public-header'>Contacto</Link></li>
-                <li className='list-container__li'><Link to='/contributes' className='link-public-header'>Contribuye</Link></li>
+             <ul className='list-container-header'>
+                <li className='list-container-header__li'><Link to='/'  className='link-public-header'>Inicio</Link></li>
+                <li className='list-container-header__li'><Link to='/about-us' className='link-public-header'>Nosotros</Link></li>
+                <li className='list-container-header__li'><Link to='/news' className='link-public-header'>Novedades</Link></li>
+                <li className='list-container-header__li'><Link to='/testimonials' className='link-public-header'>Testimonios</Link></li>
+                <li className='list-container-header__li'><Link to='/contact' className='link-public-header'>Contacto</Link></li>
+                <li className='list-container-header__li'><Link to='/contributes' className='link-public-header'>Contribuye</Link></li>
              </ul>
            </div>
-           <div className="container-buttons-header">
-              <Link to='/login'><button className="button-login-header" type="submit">Log in</button></Link>
-              <Link to='/register'><button className="button-register-header" type="submit">Registrate</button></Link>
-           </div> 
-
+           {getToken() ? (<div className="container-buttons-header"><button className="button-login-header" type="submit">Sign out</button></div>) : (
+             <div className="container-buttons-header">
+             <Link to='/login'><button className="button-login-header" type="submit">Log in</button></Link>
+             <Link to='/register'><button className="button-register-header" type="submit">Registrate</button></Link>
+          </div> 
+           )}
            <nav className="navbar">
             <div className="navbar-container container">
               <input className='input-hamburguer-menu' type="checkbox" name="" id="" />
@@ -47,14 +49,20 @@ const PublicHeader = () => {
               </div>
               </div>
               <ul className="menu-items">
-                <li className='list-container__li'><Link to='/' className='link-public-header'>Inicio</Link></li>
-                <li className='list-container__li'><Link to='/about-us' className='link-public-header'>Nosotros</Link></li>
-                <li className='list-container__li'><Link to='/news' className='link-public-header'>Novedades</Link></li>
-                <li className='list-container__li'><Link to='/testimonials' className='link-public-header'>Testimonios</Link></li>
-                <li className='list-container__li'><Link to='/contact' className='link-public-header'>Contacto</Link></li>
-                <li className='list-container__li'><Link to='/contributes' className='link-public-header'>Contribuye</Link></li>
-                <li className='list-container__li'><Link to='/login'><button className="button-login-header" type="submit">Log in</button></Link></li>
-                <li className='list-container__li'><Link to='/register'><button className="button-register-header" type="submit">Registrate</button></Link></li>
+                <li className='list-container-header__li'><Link to='/' className='link-public-header'>Inicio</Link></li>
+                <li className='list-container-header__li'><Link to='/about-us' className='link-public-header'>Nosotros</Link></li>
+                <li className='list-container-header__li'><Link to='/news' className='link-public-header'>Novedades</Link></li>
+                <li className='list-container-header__li'><Link to='/testimonials' className='link-public-header'>Testimonios</Link></li>
+                <li className='list-container-header__li'><Link to='/contact' className='link-public-header'>Contacto</Link></li>
+                <li className='list-container-header__li'><Link to='/contributes' className='link-public-header'>Contribuye</Link></li>
+                {getToken() ? (
+                  <li className='list-container-header__li'><button className="button-login-header" type="submit">Sign out</button></li>
+                ) : (
+                  <div>
+                  <li className='list-container-header__li'><Link to='/login'><button className="button-login-header" type="submit">Log in</button></Link></li>
+                  <li className='list-container-header__li'><Link to='/register'><button className="button-register-header" type="submit">Registrate</button></Link></li>
+                  </div>
+                )}
               </ul>
             </div>
           </nav>
