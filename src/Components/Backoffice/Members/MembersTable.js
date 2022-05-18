@@ -97,7 +97,7 @@ const MembersTable = () => {
         aria-describedby="alert-dialog-description"
       >
         <DialogContent id="alert-dialog-title">
-          <h2>¿Estas seguro de querer borrar al usuario {selectedMember.name} ?</h2>
+          <h2>¿Estas seguro de querer borrar al miembro {selectedMember.name} ?</h2>
         </DialogContent>
         <DialogActions>
           <Button variant="contained" onClick={handleClose}>Cancelar</Button>
