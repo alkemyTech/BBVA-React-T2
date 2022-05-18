@@ -12,6 +12,8 @@ body{
 .input-field{
     border-radius: 5px;
     background-color: aliceblue;
+    border-color: var(--primary-backoffice-button);
+    font-family: var(--p-font);
 }
 
 .img-input-div{
