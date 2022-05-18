@@ -11,6 +11,9 @@ import './SignUp.css';
 import signUpImg from '../Login/imagenONG.jpeg'
 // Services
 import { Post } from '../../../Services/publicApiService'
+// Popup
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
 
 const SignUp = () => {
 
@@ -93,7 +96,11 @@ const SignUp = () => {
                             onChange={onChange}
                         />
                     ))}
-                    <span><input type="checkbox" onClick={checkTheBox}/>He leído y acepto los términos y condiciones</span>
+                    <span><input type="checkbox" onClick={checkTheBox}/>He leído y acepto 
+                    <Popup trigger={<button>los términos y condiciones</button>} position="right center">
+                         <div>Popup content here !!</div>
+                    </Popup>
+                    </span>
 
                     <button className="primary-button" type="submit">Registrate</button>
 
