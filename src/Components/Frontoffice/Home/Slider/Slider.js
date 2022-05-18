@@ -40,6 +40,24 @@ function Slider() {
         </button>
     ))
 
+    const handleChange = (e, type) => {
+        if(type === "next") {
+            const nextItem = currentItem + 1;
+            const isInOfRange = nextItem < items.length;
+            if(isInOfRange) {
+                setCurrentItem(nextItem);
+                items[nextItem].scrollIntoView({behavior: "smooth"});
+            }
+        } else if(type === "prev") {
+            const prevItem = currentItem - 1;
+            const isInOfRange = prevItem >= 0;
+            if(isInOfRange) {
+                setCurrentItem(prevItem);
+                items[prevItem].scrollIntoView({behavior: "smooth"});
+            }
+        }
+    }
+
     return ( 
         <div>
             <div className="slider">
