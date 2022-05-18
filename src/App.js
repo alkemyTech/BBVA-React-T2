@@ -1,16 +1,6 @@
-<<<<<<< HEAD
 import React from 'react';
 import './App.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import About from './Components/Frontoffice/About/About'
-import UserList from './Components/Users/UserList';
-import Layout from './Components/Layout/Layout';
-import Organization from './Components/Backoffice/Organization/Organization';
-=======
-import React from "react";
-import "./App.css";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
->>>>>>> dd173da308e5bae3085840377498ed7eaba5cc74
 
 //Public
 import Layout from "./Components/Layout/Layout";
@@ -21,6 +11,7 @@ import Contact from "./Components/Frontoffice/Contact/Contact";
 import BackofficeLayout from "./Components/Layout/BackofficeLayout";
 import UserList from "./Components/Backoffice/Users/UserList";
 
+import Organization from './Components/Backoffice/Organization/Organization';
 import OrganizationForm from "./Components/Backoffice/Organization/OrganizationForm";
 import ActivitiesBackOffice from './Components/Backoffice/Activities/ActivitiesBackOffice';
 import UserForm from "./Components/Backoffice/Users/UsersForm";
@@ -33,11 +24,6 @@ function App() {
     <>
       <BrowserRouter>
         <Switch>
-<<<<<<< HEAD
-          <Route path="/about" component={About} />
-          <Route exact path="/backoffice/users" component={UserList} />
-          <Route exact path="/backoffice/organization" component={Organization} />
-=======
 
           <Route exact path="/backoffice/*">
             <BackofficeLayout>
@@ -52,6 +38,7 @@ function App() {
                 <Route path="/backoffice/activities/edit/:id" />
                 <Route path="/backoffice/slides/create" component={SlidesForm} />
                 <Route path="/backoffice/slides/edit/:id" component={SlidesForm} />
+                <Route exact path="/backoffice/organization" component={Organization} />
               </Switch>
             </BackofficeLayout>
           </Route>
@@ -66,7 +53,6 @@ function App() {
           </Route>
 
 
->>>>>>> dd173da308e5bae3085840377498ed7eaba5cc74
         </Switch>
       </BrowserRouter>
     </>
