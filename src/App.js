@@ -6,7 +6,6 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Layout from "./Components/Layout/Layout";
 import About from "./Components/Frontoffice/About/About";
 import Contact from "./Components/Frontoffice/Contact/Contact";
-import ActivitiesFrontoffice from './Components/Frontoffice/ActivitiesFrontoffice/Activities'
 
 //Backoffice
 import BackofficeLayout from "./Components/Layout/BackofficeLayout";
@@ -47,7 +46,6 @@ function App() {
               <Switch>
                 <Route path="/about" component={About} />
                 <Route path="/contact" component={Contact} />
-                <Route path="/activities" component={ActivitiesFrontoffice} />
               </Switch>
             </Layout>
           </Route>
