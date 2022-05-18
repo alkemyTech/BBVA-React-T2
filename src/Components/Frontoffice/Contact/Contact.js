@@ -19,7 +19,7 @@ const Contact = (props) => {
     const iconProp = { fontSize: 40, margin:1 }
 
   return (
-    <div className='container'>
+    <div className='contact-container'>
       <div className='contribuir-section'>
         <h1 className='contact-title'>¿Queres contribuir?</h1>
 

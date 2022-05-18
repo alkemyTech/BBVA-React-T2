@@ -1,7 +1,20 @@
+<<<<<<< HEAD
+=======
+.contact-container {
+  width: 60%;
+  margin: auto;
+  margin-top: 20px;
+}
+
+>>>>>>> 29314463ff26b5d59124be6b6d5c259ffa5282a6
 .contact-title {
   font-family: var(--title-font) ;
   font-size: 32px;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 29314463ff26b5d59124be6b6d5c259ffa5282a6
 .contact__button {
   margin-top: 20px;
 }
