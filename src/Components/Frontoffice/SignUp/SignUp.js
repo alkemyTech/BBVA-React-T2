@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 // Components
 import FormInput from './FormInput';
+import Alert from '../../Alerts/Alerts'
 // CSS
 import '../../../general-styles.css'
 import './SignUp.css';
@@ -19,6 +20,8 @@ const SignUp = () => {
         password: "",
         confirmPassword: ""
     });
+
+    const [check, setCheck] = useState(false)
 
     const inputs = [
         {
@@ -60,13 +63,21 @@ const SignUp = () => {
             password: values.password
         }
 
-        Post(process.env.REACT_APP_BASE_URL + '/register', registerUser);
+        if(check){
+            Post(process.env.REACT_APP_BASE_URL + '/register', registerUser);
+        } else {
+            Alert('Error', 'Debe aceptar los términos y condiciones', 'warning')
+        }
     }
 
     const onChange = (e) => {
         const { name, value } = e.target;
         setValues({ ...values, [name]: value });
     };
+
+    const checkTheBox = () => {
+        setCheck(!check)
+    }
 
     return (
         <>
@@ -82,6 +93,7 @@ const SignUp = () => {
                             onChange={onChange}
                         />
                     ))}
+                    <span><input type="checkbox" onClick={checkTheBox}/>He leído y acepto los términos y condiciones</span>
 
                     <button className="primary-button" type="submit">Registrate</button>
 
