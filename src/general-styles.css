@@ -9,10 +9,6 @@
 
   --primary-color-backoffice: #444;
   --secondary-color-backoffice: #2b3046;
-<<<<<<< HEAD
-
-  --title-font: 'Poppins', sans-serif;
-=======
   --primary-backoffice-button: #8cb3df;
   --secondary-backoffice-button: #fdb77d;
   --create-backoffice-button: #8fe1bf;
@@ -22,7 +18,6 @@
 
   --title-font: 'Poppins', sans-serif;
   --p-font: 'Mulish', sans-serif;
->>>>>>> 80d37d7c5ea65fdde5a8ce8fa869b58fe655811f
   --biggest-font-size: 2rem;
   --h1-font-size: 1.5rem;
   --h2-font-size: 1.25rem;

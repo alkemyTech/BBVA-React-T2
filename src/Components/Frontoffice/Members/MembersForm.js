@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import '../FormStyles.css';
-import { validateImageFormat, validateHasContent, validateSocialNetworkUrl, validateLength } from '../../Services/validatorsService';
-import { Post, Put, Get } from '../../Services/privateApiService';
+import '../../FormStyles.css';
+import { validateImageFormat, validateHasContent, validateSocialNetworkUrl, validateLength } from '../../../Services/validatorsService';
+import { Post, Put, Get } from '../../../Services/privateApiService';
 import { useParams } from 'react-router-dom';
 
 const MembersForm = () => {
@@ -84,12 +84,13 @@ const MembersForm = () => {
     e.preventDefault();
     if(validateForm()) {
       let response;
-
-      id 
-      ? response = await Put(path + `/${id}`, formValues)
-      : response = await Post(path, formValues);
-
-      return await response;       
+      const request = async () => { 
+        id 
+        ? response = await Put(path + `/${id}`, formValues)
+        : response = await Post(path, formValues);
+        return await response;       
+      }
+      request();
   }
 }
 
