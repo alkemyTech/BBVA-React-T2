@@ -29,6 +29,17 @@
     padding: 2rem;
     border: 1px solid #000;
     border-radius: 10px;
+
+    z-index: 1000;
+}
+
+.pop-up-container-hidden {
+    visibility: hidden;
+    position: absolute;
+}
+
+.pop-up-container-visible {
+    visibility: auto;
 }
 
 .pop-up-form {
@@ -36,7 +47,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
 }
 
 .pop-up-form__input {
