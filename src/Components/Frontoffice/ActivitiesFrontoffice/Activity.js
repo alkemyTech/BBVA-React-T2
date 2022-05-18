@@ -1,16 +1,16 @@
-import Title from './Title'
+import './ActivitiesFrontofficeStyles.css'
+
+import { Link } from 'react-router-dom';
 
 const Activity = ({ id, name, image }) => {
     return (
-        <div className='activity-container rows-container'>
-          <Title id={id} name={name} />
-            <p className='activity-container-p__name'>{name}Nombre de la actividad</p>
-            <img src={image} alt='imagen de la actividad' className='activity-container__img'/>
-            <div className='button-container'>
-                {/* {<Link to={'/backoffice/activities/edit/' + id}>
-                    <button type='button' className='primary-backoffice-button button-container__edit'>Editar</button>
-                </Link>} */}
-                <button type='button' className='button-container__delete secondary-backoffice-button' >Redirigir a la actividad</button>
+        <div className='activity-container-frontoffice rows-container-activities-frontoffice'>
+            <p className='activity-frontoffice-container-p__name'>{name}Nombre de la actividad</p>
+            <img src={image} alt='imagen de la actividad' className='activity-frontoffice-container__img'/>
+            <div className='activity-frontoffice-button-container'>
+                {<Link to={'/backoffice/activities/' + id}>
+                    <button type='button' className='btn-activities-frontoffice'>Conocer más</button>
+                </Link>}
             </div>
         </div>
     )
