@@ -3,7 +3,6 @@ import { Redirect } from 'react-router-dom'
 import './OrganizationForm.css';
 import '../../../general-styles.css';
 import { validateImageFormat } from '../../../Services/validatorsService'
-import { setIsAdmin, getIsAdmin } from '../../Backoffice/RoutesSecurity/RoutesSecurity';
 
 const OrganizationForm = () => {
     const [initialValues, setInitialValues] = useState({
@@ -17,7 +16,6 @@ const OrganizationForm = () => {
         logo: ''
     })
     const [errors, setErrors] = useState({})
-    const [tokenAdmin, setTokenAdmin] = useState()
   
     const handleChange = (e) => {
         setInitialValues({...initialValues, [e.target.name]: e.target.value})
@@ -73,22 +71,8 @@ const OrganizationForm = () => {
         alert('enviando formulario')
         //borrar la linea de arriba y hacer lo que correspond
     }
-    
-    const checkIsAdmin = async () => {
-        let result = await getIsAdmin()
-        setTokenAdmin(localStorage.getItem('isAdmin'))
-        return result;
-    }
-
-    useEffect(() => {
-        checkIsAdmin();
-    },[])
 
     return (
-        <>
-        {//Si no es admin, redirige al home.
-        (tokenAdmin == 'false') && <Redirect to="/" />
-        }
         <form className="organization-form-container" onSubmit={handleSubmit}>
             <input className="form-input" type="text" name='name' onChange={handleChange} placeholder="Nombre"></input>
             <input className="form-input" type="text" name='shortDescription' onChange={handleChange} placeholder="Breve descripcion" ></input>
@@ -100,7 +84,6 @@ const OrganizationForm = () => {
             <input className="form-input" type="file" id='img1' accept="image/png, image/jpeg" alt='new logo' src="logo.jpg" name='logo' placeholder="Logo" onChange={handleChange}></input>
             <button type="submit" className="form-button primary-backoffice-button">Enviar</button>
         </form>
-        </>
     )
 }
 
