@@ -11,7 +11,7 @@ import Contact from "./Components/Frontoffice/Contact/Contact";
 import BackofficeLayout from "./Components/Layout/BackofficeLayout";
 import UserList from "./Components/Backoffice/Users/UserList";
 import OrganizationForm from "./Components/Backoffice/Organization/OrganizationForm";
-import ActivitiesForm from './Components/Activities/ActivitiesForm';
+import ActivitiesForm from './Components/Backoffice/Activities/ActivitiesForm';
 import ActivitiesBackOffice from './Components/Backoffice/Activities/ActivitiesBackOffice';
 import UserForm from "./Components/Backoffice/Users/UsersForm";
 import ScreenDashboard from "./Components/Backoffice/ScreenDashboard/ScreenDashboard";

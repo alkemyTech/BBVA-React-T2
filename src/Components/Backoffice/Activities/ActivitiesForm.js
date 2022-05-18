@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import '../FormStyles.css';
-import './ActivitiesForm.css'
-import '../Backoffice/Activities/ActivitiesBackOffice.css'
-import {validateImageFormat} from '../../Services/validatorsService.js';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import {Get, Post, Put} from '../../Services/privateApiService';
-import {createActivity, updateActivity} from '../../Services/Activities.Service'
-import getCurrentDate from '../../Utils/getCurrentDate';
+import {Get, Post, Put} from '../../../Services/privateApiService';
+import {validateImageFormat} from '../../../Services/validatorsService.js';
+import {createActivity, updateActivity} from '../../../Services/Activities.Service';
+import '../../FormStyles.css';
+import './ActivitiesForm.css';
+import './ActivitiesBackOffice.css';
 
 const ActivitiesForm = () => {
     const [initialValues, setInitialValues] = useState({
