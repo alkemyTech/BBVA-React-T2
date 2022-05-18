@@ -8,6 +8,7 @@ import '../../../general-styles.css'
 import './SignUp.css';
 // Resources
 import signUpImg from '../Login/imagenONG.jpeg'
+import { Post } from '../../../Services/publicApiService'
 
 const SignUp = () => {
 
@@ -49,8 +50,20 @@ const SignUp = () => {
         }
     ];
 
+
+
+    const postUser = async () => {
+        const registerUser = {
+            name: values.name,
+            email: values.email,
+            password: values.password
+        }
+        const response = await Post(process.env.REACT_APP_BASE_URL + '/register', registerUser)
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
+        postUser();
     };
 
     const onChange = (e) => {
@@ -60,8 +73,8 @@ const SignUp = () => {
 
     return (
         <>
-            <div className="form-container">
-                <img className="logo" src='./logo.svg' alt="logo-ONG" />
+            <div className="form-container-signup">
+                <img className="logo-signup" src='./logo.svg' alt="logo-ONG" />
 
                 <form onSubmit={handleSubmit}>
                     {inputs.map((input, index) => (
@@ -80,7 +93,7 @@ const SignUp = () => {
                     </span>
                 </form>
             </div >
-            <img className="container-hands-img" /*src={signUpImg}*/ alt="signup-img" />
+            <img className="container-hands-img" src={signUpImg} alt="signup-img" />
         </>
     );
 };

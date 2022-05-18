@@ -8,8 +8,8 @@ const FormInput = ({ errorMessage, onChange, ...inputProps }) => {
     const handleFocus = (e) => setFocused(true);
 
     return (
-        <div className="input-container">
-            <input className="input"
+        <div className="input-container-signup">
+            <input className="input-signup"
                 {...inputProps}
                 onChange={onChange}
                 onBlur={handleFocus}
@@ -19,7 +19,7 @@ const FormInput = ({ errorMessage, onChange, ...inputProps }) => {
                 }
                 focused={focused.toString()}
             />
-            <span className="error-message">{errorMessage}</span>
+            <span className="error-message-signup">{errorMessage}</span>
         </div>
     );
 };
