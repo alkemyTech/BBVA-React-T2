@@ -11,9 +11,10 @@ import './SignUp.css';
 import signUpImg from '../Login/imagenONG.jpeg'
 // Services
 import { Post } from '../../../Services/publicApiService'
-// Popup
+// Términos y condiciones
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
+import { Document, Page } from 'react-pdf/dist/esm/entry.webpack'
 
 const SignUp = () => {
 
@@ -57,6 +58,13 @@ const SignUp = () => {
         }
     ];
 
+    const [numPages, setNumPages] = useState(null);
+    const [pageNumber, setPageNumber] = useState(1);
+
+    function onDocumentLoadSuccess({ numPages }) {
+        setNumPages(numPages);
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -97,8 +105,13 @@ const SignUp = () => {
                         />
                     ))}
                     <span><input type="checkbox" onClick={checkTheBox}/>He leído y acepto 
-                    <Popup trigger={<button>los términos y condiciones</button>} position="right center">
-                         <div>Popup content here !!</div>
+                    <Popup trigger={<a>los términos y condiciones</a>} position="">
+                        <Document file="tyc.pdf" onLoadSuccess={onDocumentLoadSuccess}>
+                            <Page pageNumber={pageNumber} />
+                        </Document>
+                        <p>
+                            Page {pageNumber} of {numPages}
+                        </p>
                     </Popup>
                     </span>
 
