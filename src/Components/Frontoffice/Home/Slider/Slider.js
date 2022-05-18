@@ -28,6 +28,8 @@ function Slider() {
         </div>
     ))
 
+    const items = document.getElementsByClassName("slider__item");
+
     const sliderIndicators = slides.map((slide, index) => (
         <button 
             key={index} 
