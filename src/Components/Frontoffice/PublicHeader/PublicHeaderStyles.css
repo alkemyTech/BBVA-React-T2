@@ -16,13 +16,13 @@
     justify-content: right;
     align-items: right;
   }
-  .list-container{
+  .list-container-header{
     list-style: none;
     display: flex;
     justify-content: space-around;
     float:left;
   }
-  .list-container > .list-container__li{
+  .list-container-header > .list-container-header__li{
     padding-right: calc(0.6em + 0.25vw);
     font-size: calc(0.7em + 0.4vw);
     text-decoration: none;
@@ -69,7 +69,7 @@
     text-transform: uppercase;
     text-align: left;
   }
-  .list-container > .list-container__li:hover{
+  .list-container-header > .list-container-header__li:hover{
     cursor: pointer;
     font-weight: bold;
   }
@@ -176,7 +176,7 @@
     list-style: none;
     text-align: center;
   }
-  .navbar  .menu-items .list-container__li {
+  .navbar  .menu-items .list-container-header__li {
     margin-bottom: 1.8rem;
     margin-right: 2em;
     font-size: 1rem;
@@ -213,10 +213,10 @@
     border-radius: 50%;
     background: #0038ff;
   }
-  .navbar-container > .menu-items > .list-container__li{
+  .navbar-container > .menu-items > .list-container-header__li{
     color: #fff;
   }
-  .menu-items > .list-container__li > .button-login-header .button-register-header{
+  .menu-items > .list-container-header__li > .button-login-header .button-register-header{
     width: 120px;
     margin-left: 1rem;
     height: 30px;
@@ -236,7 +236,7 @@
     color:#24252a;
     font-weight: bold;
   }
-  .menu-items > .list-container__li > .button-login-header:hover .button-register-header:hover{
+  .menu-items > .list-container-header__li > .button-login-header:hover .button-register-header:hover{
     cursor: pointer;
     color: #e5e5e5;
   }

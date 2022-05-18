@@ -38,7 +38,7 @@ const Footer = () => {
                 <LogoOng className='logo-container__svg'/>
                 <hr className="footer-container__hr"/>
             </div>
-            <ul className='list-container'>
+            <ul className='list-container-footer'>
                 <li className='list-container__li'>Inicio</li>
                 <li className='list-container__li'>Nosotros</li>
                 <li className='list-container__li'>Novedades</li>

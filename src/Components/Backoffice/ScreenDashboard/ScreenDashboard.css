@@ -1,8 +1,9 @@
 .container-dashboard {
   display: flex;
+  background-color: var(--secondary-color-backoffice);
 }
 .container-cards {
-  background-color: floralwhite;
+  background-color: var(--secondary-color-backoffice);
   width: 100vw;
   padding: 1em 1em 1em 1em;
   margin-bottom: 1em;

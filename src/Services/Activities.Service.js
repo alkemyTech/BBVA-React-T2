@@ -1,7 +1,7 @@
 import { Get } from "./publicApiService";
 import getCurrentDate from "../Utils/getCurrentDate";
 
-const url = "https://ongapi.alkemy.org/api/activities/"; //Modificar con .env
+const url = "https://ongapi.alkemy.org/api/activities"; //Modificar con .env
 
 export function createActivity(activityBasics){
     //La funcion devuelve un objeto con los campos de "Actividad"
@@ -18,7 +18,7 @@ export async function updateActivity(id, updatedActivityFields){
     //updatedActivityFields: espera un objeto con los campos que fueron actualizados
     let activity;
     const updateKeys = Object.keys(updatedActivityFields);
-    await Get(url + id).then((res)=>{
+    await Get(url + '/' + id).then((res)=>{
         activity = res.data.data
     })
 
