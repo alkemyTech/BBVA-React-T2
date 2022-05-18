@@ -22,3 +22,25 @@
     color: #fff;
     font-family: 'Poppins';
 }
+
+.pop-up-container {
+    width: 50%;
+    margin: 2rem auto;
+    padding: 2rem;
+    border: 1px solid #000;
+    border-radius: 10px;
+}
+
+.pop-up-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.pop-up-form__input {
+    width: 100%;
+    margin: .5rem 0;
+    padding: 1rem;
+}

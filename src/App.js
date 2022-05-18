@@ -8,6 +8,8 @@ import About from "./Components/Frontoffice/About/About";
 import Contact from "./Components/Frontoffice/Contact/Contact";
 import SignUp from "./Components/Frontoffice/SignUp/SignUp";
 import Login from './Components/Frontoffice/Login/Login'
+import Donations from './Components/Frontoffice/Donations/Donation';
+import Thanks from './Components/Frontoffice/Donations/Thanks';
 //Backoffice
 import BackofficeLayout from "./Components/Layout/BackofficeLayout";
 import UserList from "./Components/Backoffice/Users/UserList";
@@ -52,6 +54,8 @@ function App() {
                 <Route path="/about" component={About} />
                 <Route path="/contact" component={Contact} />
                 <Route path="/login" component={Login} />
+                <Route path="/donar" component={Donations} />
+                <Route path="/gracias" component={Thanks} />
               </Switch>
             </Layout>
           </Route>
