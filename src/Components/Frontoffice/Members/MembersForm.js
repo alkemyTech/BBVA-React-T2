@@ -89,9 +89,9 @@ const MembersForm = () => {
     if(validateForm()) {
       let response;
         id 
-        ? response = await Put(path + `/${id}`, formValues)
-        : response = await Post(path, formValues);
-        return await response;       
+        ? response = Put(path + `/${id}`, formValues)
+        : response = Post(path, formValues);
+        return response;       
   }
 }
 
