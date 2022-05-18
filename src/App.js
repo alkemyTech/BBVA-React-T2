@@ -1,6 +1,6 @@
-import React from "react";
-import "./App.css";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import React from 'react';
+import './App.css';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 //Public
 import Layout from "./Components/Layout/Layout";
@@ -12,6 +12,7 @@ import Login from './Components/Frontoffice/Login/Login'
 import BackofficeLayout from "./Components/Layout/BackofficeLayout";
 import UserList from "./Components/Backoffice/Users/UserList";
 
+import Organization from './Components/Backoffice/Organization/Organization';
 import OrganizationForm from "./Components/Backoffice/Organization/OrganizationForm";
 import ActivitiesBackOffice from './Components/Backoffice/Activities/ActivitiesBackOffice';
 import UserForm from "./Components/Backoffice/Users/UsersForm";
@@ -38,6 +39,7 @@ function App() {
                 <Route path="/backoffice/activities/edit/:id" />
                 <Route path="/backoffice/slides/create" component={SlidesForm} />
                 <Route path="/backoffice/slides/edit/:id" component={SlidesForm} />
+                <Route exact path="/backoffice/organization" component={Organization} />
               </Switch>
             </BackofficeLayout>
           </Route>
