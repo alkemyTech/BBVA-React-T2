@@ -11,6 +11,10 @@
   --secondary-color-backoffice: #2b3046;
   --primary-backoffice-button: #8cb3df;
   --secondary-backoffice-button: #fdb77d;
+  --create-backoffice-button: #8fe1bf;
+  --primary-backoffice-hover: #468ad8;
+  --secondary-backoffice-hover: #fc933d;
+  --create-backoffice-hover: #6ab596;
 
   --title-font: 'Poppins', sans-serif;
   --p-font: 'Mulish', sans-serif;
@@ -43,7 +47,8 @@
 .primary-button,
 .secondary-button,
 .primary-backoffice-button,
-.secondary-backoffice-button {
+.secondary-backoffice-button,
+.create-backoffice-button {
   display: inline-block;
   padding: 10px 40px;
   border-radius: 15px;
@@ -74,6 +79,10 @@
   background-color: var(--secondary-backoffice-button)
 }
 
+.create-backoffice-button {
+  background-color: var(--create-backoffice-button)
+}
+
 .input-form {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
@@ -86,4 +95,16 @@
 .primary-button:hover,
 .secondary-button:hover {
   background-color: #444;
+}
+
+.primary-backoffice-button:hover {
+  background-color: var(--primary-backoffice-hover);
+}
+
+.secondary-backoffice-button:hover {
+  background-color: var(--secondary-backoffice-hover);
+}
+
+.create-backoffice-button:hover {
+  background-color: var(--create-backoffice-hover)
 }

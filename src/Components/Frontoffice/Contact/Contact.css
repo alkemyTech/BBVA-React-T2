@@ -1,3 +1,14 @@
+.contact-container {
+  width: 60%;
+  margin: auto;
+  margin-top: 20px;
+}
+
+.contact-title {
+  font-family: var(--title-font) ;
+  font-size: 32px;
+}
+
 .contact__button {
   margin-top: 20px;
 }
