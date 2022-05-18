@@ -12,7 +12,7 @@ const MembersList = () => {
 
         <div className='members__upper-bar'>
           <Link to='/backoffice/members/create'>
-              <button className='primary-backoffice-button'>Crear nuevo miembro</button>
+              <button className='create-backoffice-button'>Crear nuevo miembro</button>
           </Link>
         </div>
         
