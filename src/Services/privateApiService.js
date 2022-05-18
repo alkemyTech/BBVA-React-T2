@@ -7,8 +7,9 @@ const config = {
 
 const Get = (endpoint) => {
     
-    if(!endpoint) throw new Error("Parameter 'endpoint' is not defined.")
-
+    if(!endpoint){
+        throw new Error("Parameter 'endpoint' is not defined.")
+    }
     return axios.get(endpoint, config)
         .then((res) => res)
         .catch((err) => err);
