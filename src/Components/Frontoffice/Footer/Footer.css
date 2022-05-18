@@ -19,14 +19,14 @@
     margin: 0 4rem;
 }
 
-.list-container {
+.list-container-footer {
     list-style: none;
     display: flex;
     justify-content: space-evenly;
     width: 70%;
     margin-top: 30px;
 
-    font-family: 'Mullish';
+    font-family: 'Mulish',sans-serif;
     font-size: 15px;
     line-height: 19px;
 }
@@ -64,7 +64,7 @@
         margin: 0 1rem;
     }
 
-    .list-container {
+    .list-container-footer {
         margin: 0;
         padding: 0;
         justify-content: space-around;

@@ -11,14 +11,15 @@ const Get = async (endpoint) => {
     if(!endpoint){
         throw new Error("Parameter 'endpoint' is not defined.")
     }
-
+  
     try {
         const response = await axios.get(endpoint);
         return response; 
     } catch (error) {
         return error;
     }
-}  
+
+}
 
 const Post = async (endpoint, body) => {
     if(!endpoint){
@@ -34,4 +35,3 @@ const Post = async (endpoint, body) => {
 }
 
 export { Post, Get }
-

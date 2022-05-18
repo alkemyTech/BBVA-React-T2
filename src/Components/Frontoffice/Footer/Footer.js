@@ -4,7 +4,7 @@ import axios from 'axios';
 import {ReactComponent as LogoFacebook} from '../../../assets/facebook.svg';
 import {ReactComponent as LogoInstagram} from '../../../assets/instagram.svg';
 import {ReactComponent as LogoTwitter} from '../../../assets/twitter.svg';
-import {ReactComponent as LogoLinkedIn} from '../../assets/linkedin.svg';
+import {ReactComponent as LogoLinkedIn} from '../../../assets/linkedin.svg';
 import {ReactComponent as LogoOng} from '../../../assets/ong.svg';
 
 const Footer = () => {
@@ -38,7 +38,7 @@ const Footer = () => {
                 <LogoOng className='logo-container__svg'/>
                 <hr className="footer-container__hr"/>
             </div>
-            <ul className='list-container'>
+            <ul className='list-container-footer'>
                 <li className='list-container__li'>Inicio</li>
                 <li className='list-container__li'>Nosotros</li>
                 <li className='list-container__li'>Novedades</li>
