@@ -1,7 +1,12 @@
-.main {
+.container-users{
+    width: 60%;
+    margin: auto;
+    padding: 20px 0;
+}
+
+.user-table {
     background-color: var(--secondary-color-backoffice);
-    height: 100vh;
-    overflow: hidden;
+    height: auto;  
 }
 
 .title-users {
@@ -26,5 +31,9 @@
 
 .users-table {
     margin-top: 20px;
+}
+
+.create {
+    color: var(--create-backoffice-button)
 }
 

@@ -12,9 +12,10 @@ import BackofficeLayout from "./Components/Layout/BackofficeLayout";
 import UserList from "./Components/Backoffice/Users/UserList";
 
 import OrganizationForm from "./Components/Backoffice/Organization/OrganizationForm";
-import ActivitiesBackOffice from './Components/Activities/ActivitiesBackOffice';
-import SlidesForm from "./Components/Backoffice/Slides/SlidesForm";
+import ActivitiesBackOffice from './Components/Backoffice/Activities/ActivitiesBackOffice';
 import UserForm from "./Components/Backoffice/Users/UsersForm";
+import ScreenDashboard from "./Components/Backoffice/ScreenDashboard/ScreenDashboard";
+import SlidesForm from "./Components/Backoffice/Slides/SlidesForm";
 import CategoriesList from './Components/Backoffice/Categories/CategoriesList';
 
 function App() {
@@ -26,8 +27,9 @@ function App() {
           <Route exact path="/backoffice/*">
             <BackofficeLayout>
               <Switch>
+                <Route exact path="/backoffice" component={ScreenDashboard} />
                 <Route exact path="/backoffice/users" component={UserList} />
-                <Route exact path="/backoffice/categories" component={UserList} />
+                <Route exact path="/backoffice/categories" component={CategoriesList} />
                 <Route path="/backoffice/users/create" component={UserForm} />
                 <Route path="/backoffice/users/edit/:id" component={UserForm} />
                 <Route path="/backoffice/organization/edit" component={OrganizationForm} />
