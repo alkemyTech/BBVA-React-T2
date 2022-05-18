@@ -40,6 +40,10 @@ function Slider() {
         </button>
     ))
 
+    const sliderInnerStyles = {
+        width: `${slides.length * 100}%`
+    }
+
     const handleChange = (e, type) => {
         if(type === "next") {
             const nextItem = currentItem + 1;
