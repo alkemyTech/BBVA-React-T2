@@ -22,13 +22,17 @@ const MembersForm = () => {
   })
 
   const getMember = async () => {
-    const response = await Get(path + `/${id}`);
-    const memberData = await response.data.data;
-    setFormValues({...memberData});
+    if(id) {
+      const response = await Get(path + `/${id}`);
+      const memberData = await response.data.data;
+      setFormValues({...memberData});
+    } else {
+      throw new Error("El miembro no existe")
+    }
   }
 
   useEffect(() => {
-    if(id) getMember();
+    getMember();
   }, [])
 
   const imageABase64 = (element) => {
@@ -84,13 +88,10 @@ const MembersForm = () => {
     e.preventDefault();
     if(validateForm()) {
       let response;
-      const request = async () => { 
         id 
         ? response = await Put(path + `/${id}`, formValues)
         : response = await Post(path, formValues);
         return await response;       
-      }
-      request();
   }
 }
 
