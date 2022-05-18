@@ -1,32 +1,66 @@
-import React from 'react';
-import '../../CardListStyles.css';
+import '../Activities/ActivitiesBackOffice.css';
+import '../../../general-styles.css';
+
+import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { Delete, Get } from '../../../Services/privateApiService';
+
+import News from './News.js';
 
 const NewsList = () => {
-    const newsMock = [
-        {id: 2, name: 'Titulo de prueba', description: 'Descripcion de prueba'},
-        {id: 1, name: 'Titulo de prueba', description: 'Descripcion de prueba'},
-        {id: 3, name: 'Titulo de prueba', description: 'Descripcion de prueba'}
-    ];
+    const [news, setNews] = useState([]);
+    const endpoint = process.env.REACT_APP_BASE_URL + process.env.REACT_APP_NEWS;
+
+    const getNews = async () => {
+        let res = await Get(endpoint);
+        setNews(res.data.data)
+    }
+
+    const handleDelete = async (id) => {
+        try {
+            await Delete(`${endpoint + '/' + id}`);
+            await getNews();
+            setNews(news.filter(news => news.id !== id));
+        } catch (err) {
+            alert('error')
+        }
+    }
+    
+    useEffect(() => {
+        getNews()
+    },[setNews])
 
     return (
-        <div>
-            <h1>Listado de Novedades</h1>
-            <ul className="list-container">
-                {newsMock.length > 0 ? 
-                    newsMock.map((element) => {
-                        return(
-                            <li className="card-info" key={element.id}>
-                                <h3>{element.name}</h3>
-                                <p>{element.description}</p>
-                            </li>
-                        )
-                    })
-                :
-                    <p>No hay novedades</p>
-                }
-            </ul>
+        <>
+        <div className="container-create-activity">
+            <Link to={'/backoffice/news/create'} className='container-create-activity__a'>
+                <button type='button' className= 'create-backoffice-button button-create'>Crear nueva novedad</button>
+            </Link>
         </div>
-    );
+        <div class='list-container'>
+            <h1 class='list-container__h1'>Lista de actividades</h1>
+            <section className='list-container__section rows-container'> 
+                <p>Nombre</p>
+                <p>Imagen</p>
+                <p>Creado</p>
+            </section>
+            {
+                news.map((news) => {
+                    return (
+                        <News 
+                            id={news.id} 
+                            name={news.name} 
+                            createdAt={news.created_at} 
+                            image={news.image} 
+                            key={news.id} 
+                            handleDelete={handleDelete}
+                        />
+                    )
+                })
+            }
+        </div>
+        </>
+    )
 }
- 
+
 export default NewsList;

@@ -17,6 +17,7 @@ import UserForm from "./Components/Backoffice/Users/UsersForm";
 import ScreenDashboard from "./Components/Backoffice/ScreenDashboard/ScreenDashboard";
 import SlidesForm from "./Components/Backoffice/Slides/SlidesForm";
 import CategoriesList from './Components/Backoffice/Categories/CategoriesList';
+import NewsList from "./Components/Backoffice/News/NewsList";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
                 <Route path="/backoffice/activities/edit/:id" />
                 <Route path="/backoffice/slides/create" component={SlidesForm} />
                 <Route path="/backoffice/slides/edit/:id" component={SlidesForm} />
+                <Route path="/backoffice/news" component={NewsList} />
               </Switch>
             </BackofficeLayout>
           </Route>
