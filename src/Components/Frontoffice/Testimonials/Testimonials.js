@@ -1,8 +1,8 @@
 import Card from '../../Cards/Card/Card'
-import Spinner from '../../../features/Spinner/Spinner'
+import Spinner from '../../Spinner/Spinner'
 import { Get } from '../../../Services/publicApiService'
 import { useState, useEffect } from 'react'
-import alert from '../../Alerts/Alerts'
+import Alert from '../../Alerts/Alerts'
 import './Testimonials.css'
 
 const Testimonials = () => {
@@ -19,7 +19,7 @@ const Testimonials = () => {
         }
         catch (err) {
             setIsLoading(false)
-            alert("Something went wrong. Please try again", "There was an error fetching the data", "error");
+            Alert("Something went wrong. Please try again", "There was an error fetching the data", "error");
         }
     }
 
