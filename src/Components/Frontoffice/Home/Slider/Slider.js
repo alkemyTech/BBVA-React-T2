@@ -17,6 +17,17 @@ function Slider() {
         getSlides();
     }, [])
 
+    const sliderItems = slides.map(slide => (
+        <div className="slider__item" key={slide.id}>
+            <img className="item__image" src={slide.image} />
+            <div className="item__caption">
+                <h4 className="item__caption--name">{slide.name}</h4>
+                <p className="item__caption--description">{slide.description}</p>
+            </div>
+            
+        </div>
+    ))
+
     return ( 
         <div>
             <div className="slider">
