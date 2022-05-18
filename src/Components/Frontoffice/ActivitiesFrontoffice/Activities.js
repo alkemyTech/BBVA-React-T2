@@ -2,8 +2,6 @@ import Activity from './Activity'
 import { useState, useEffect } from 'react'
 import { Get } from '../../../Services/privateApiService';
 
-{/* Utiliza método get para taer lista de actividades */}
-
 const Activities = () => {
 
     const [activities, setActivities] = useState([]);
