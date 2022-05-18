@@ -1,57 +1,74 @@
 import { useHistory } from "react-router-dom";
 import { useState } from 'react'
 import React from 'react';
+import Alert from '../../Alerts/Alerts'
+import { validCardNumber, validCodeLength, validAmount } from '../../../features/validations/creditCardValidations';
 
 import './Donation.css';
 
 const Donation = (props) => {
     const history = useHistory();
-
+    
     const [initialValues, setInitialValues] = useState({
         name: '',
         creditNumber: '',
         id: '',
-        securityCode: '',
-        expiration: ''
+        securityCode: ''
     })
 
     const handleChange = (e) => {
         setInitialValues({...initialValues, [e.target.name] : e.target.value});
     }
     
+    //chequeo si los campos estan completos o son vacios
+    const isBlank = () => {
+        let keys = Object.keys(initialValues);
+        //en el for hago keys.lenght-1 para evitar verificar el campo logo en este lugar
+        for (let i = 0; i < keys.length; i++) {
+            console.log(initialValues[keys[i]])
+            let str = initialValues[keys[i]];
+            if (!str || /^\s*$/.test(str)) {
+                Alert('Error', 'Debes completar todos los campos', 'error');
+                return true;
+            }
+        }     
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
+        if(isBlank()) {
+            return;
+        }
+        //tarjeta de prueba 4111111111111111
+        if (!validCardNumber(initialValues.creditNumber)) {
+            Alert('Error', 'el numero de la tarjeta es invalido', 'error')
+            return;
+        }
+        if (!validCodeLength(initialValues.securityCode)) {
+            Alert('Error', 'El codigo de seguridad es invalido', 'error')
+            return;
+        }
+        if (!validAmount(initialValues.amount)) {
+            Alert('Error' , 'No puedes ingresar un valor menor a 0', 'error')
+            return;
+        }
         history.push({
             pathname: '/gracias',
             state: { contribution: initialValues.amount}
-        });
-    }
-
-    const handleClick = (e) => {
-        e.preventDefault();
-        let popUp = document.getElementById('popUp');
-        popUp.classList.remove('pop-up-container-hidden');
-        popUp.classList.remove('pop-up-container-visible');
-        
+        })
     }
 
     return (
         <>
-        <div className='donation-container'>
-            <h1 className='donation-container-h1'>{props.message}</h1>
-            <button className='donation-container-button' type='submit' onClick={handleClick}>
-                contribuir
-            </button>
-        </div>
+        <h2 className="donation-h2">Ingrese los datos de su tarjeta para realizar la donación</h2>
         <div id='popUp' className='pop-up-container pop-up-container-hidden'>
             <form className='pop-up-form' onSubmit={handleSubmit}>
-                <input className='pop-up-form__input' type='text' name='name' onChange={handleChange} placeholder='nombre'></input>
-                <input className='pop-up-form__input' type='text' name='creditNumber' onChange={handleChange} placeholder='numero de tarjeta'></input>
-                <input className='pop-up-form__input' type='text' name='id' onChange={handleChange} placeholder='numero de dni'></input>
-                <input className='pop-up-form__input' type='text' name='securityCode' onChange={handleChange} placeholder='codigo de seguridad'></input>
-                <input className='pop-up-form__input' type='text' name='expiration' onChange={handleChange} placeholder='fecha de vencimiento'></input>
+                <input className='pop-up-form__input' type='text' name='name' onChange={handleChange} placeholder='Nombre'></input>
+                <input className='pop-up-form__input' type='text' name='creditNumber' onChange={handleChange} placeholder='Numero de tarjeta'></input>
+                <input className='pop-up-form__input' type='text' name='id' onChange={handleChange} placeholder='Numero de dni'></input>
+                <input className='pop-up-form__input' type='text' name='securityCode' onChange={handleChange} placeholder='Codigo de seguridad'></input>
                 <input className='pop-up-form__input' type='number' name='amount' onChange={handleChange} placeholder='Donacion'></input>
-                <button type='submit'>Donar</button>
+                <button className='secondary-button pop-up-form__button' type='submit'>Donar</button>
             </form>
         </div>
         </>
