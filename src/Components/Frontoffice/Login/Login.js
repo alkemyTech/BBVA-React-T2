@@ -3,7 +3,6 @@ import { useHistory } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import setLogin from "../../../Services/Login.service";
 import getToken from "../../../Services/getToken";
-import { setIsAdmin } from '../../Backoffice/RoutesSecurity/RoutesSecurity';
 
 import "./LoginStyle.css";
 
@@ -23,7 +22,6 @@ const Login = () => {
         })
         .catch((err) => {})
         .finally(() => {});
-      await setIsAdmin();
       resetForm();
       setSubmittedForm(true);
       setTimeout(() => setSubmittedForm(false), 5000);
