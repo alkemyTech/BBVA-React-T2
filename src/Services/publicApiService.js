@@ -18,7 +18,8 @@ const Get = async (endpoint) => {
     } catch (error) {
         return error;
     }
-}  
+
+}
 
 const Post = async (endpoint, body) => {
     if(!endpoint){
@@ -34,4 +35,3 @@ const Post = async (endpoint, body) => {
 }
 
 export { Post, Get }
-

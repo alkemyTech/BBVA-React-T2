@@ -23,12 +23,12 @@ const UserList = () => {
       }, []);
     
     return(
-        <div className="main">
-        <div className="container">
+        <div className="user-table">
+        <div className="container-users">
             <h1 className='title-users'>Usuarios</h1>
             <div className='align-right'>
                 <Link to={'/backoffice/users/create'}>
-                    <button className='primary-backoffice-button'>Crear usuario</button>
+                    <button className='create-backoffice-button'>Crear usuario</button>
                 </Link>
             </div>
             <table className='users-table'>

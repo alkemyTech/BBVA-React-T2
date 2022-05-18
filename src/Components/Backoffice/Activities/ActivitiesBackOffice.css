@@ -63,6 +63,15 @@
     margin-right: 1.3rem;
 }
 
+.activity-container__img {
+    width: 20%;
+    object-fit: cover;
+}
+
+.activity-container-p__name {
+    width: 10%;
+}
+
 @media only screen and (max-width: 1024px){
     .button-container{
         width: 25%;
@@ -86,8 +95,13 @@
         align-self: center;
     }
 
+    .activity-container-p__name {
+        width: 100%;
+    }
+
     .activity-container-p__name, .activity-container__img, .activity-container-p__createAt {
         max-width: 100%;
         text-align: center;
+        margin-bottom: 1rem;
     }
 }
