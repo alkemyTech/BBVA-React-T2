@@ -21,15 +21,14 @@ const MembersForm = () => {
     facebookUrl: ''
   })
 
+  const getMember = async () => {
+    const response = await Get(path + `/${id}`);
+    const memberData = await response.data.data;
+    setFormValues({...memberData});
+  }
+
   useEffect(() => {
-    if(id) {
-      const getMember = async () => {
-        const response = await Get(path + `/${id}`);
-        const memberData = await response.data.data;
-        setFormValues({...memberData});
-      }
-      getMember();
-    }
+    if(id) getMember();
   }, [])
 
   const imageABase64 = (element) => {
@@ -49,25 +48,9 @@ const MembersForm = () => {
   }
 
   const handleChange = (e) => {
-    switch (e.target.name) {
-      case 'name':
-        setFormValues({...formValues, name: e.target.value})
-        break;
-      case 'description':
-        setFormValues({...formValues, description: e.target.value})
-        break;
-      case 'image':
-        imageABase64(e)
-        break;
-      case 'linkedinUrl':
-        setFormValues({...formValues, linkedinUrl: e.target.value})
-        break;
-      case 'facebookUrl':
-        setFormValues({...formValues, facebookUrl: e.target.value})
-        break;
-      default:
-        break;
-    }
+    e.target.name !== "image" 
+    ? setFormValues({...formValues, [e.target.name]: e.target.value}) 
+    : imageABase64();
   }
 
   const validateForm = () => {
@@ -100,17 +83,13 @@ const MembersForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if(validateForm()) {
-      async function createMember() {
-        const response = await Post(path, formValues)
-        return response;
-      }
-      async function editMember() {
-        const response = await Post(path + `/${id}`, formValues)
-        return response;
-      }
+      let response;
 
-      id ? editMember() : createMember()
-      
+      id 
+      ? response = await Put(path + `/${id}`, formValues)
+      : response = await Post(path, formValues);
+
+      return await response;       
   }
 }
 
