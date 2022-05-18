@@ -1,9 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import './MembersScreen.css'
+import './MembersList.css'
 import MembersTable from './MembersTable'
 
-const MembersScreen = () => {
+const MembersList = () => {
   return (
     <div className='members-screen'>
       <div className='members-container'>
@@ -23,4 +23,4 @@ const MembersScreen = () => {
   )
 }
 
-export default MembersScreen;
+export default MembersList;

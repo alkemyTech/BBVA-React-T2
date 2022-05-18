@@ -16,7 +16,7 @@ import UserForm from "./Components/Backoffice/Users/UsersForm";
 import ScreenDashboard from "./Components/Backoffice/ScreenDashboard/ScreenDashboard";
 import SlidesForm from "./Components/Backoffice/Slides/SlidesForm";
 import CategoriesList from './Components/Backoffice/Categories/CategoriesList';
-import MembersScreen from './Components/Backoffice/Members/MembersScreen';
+import MembersList from './Components/Backoffice/Members/MembersList';
 import MembersForm from './Components/Backoffice/Members/MembersForm';
 
 function App() {
@@ -42,7 +42,7 @@ function App() {
                 <Route path="/backoffice/slides/create" component={SlidesForm} />
                 <Route path="/backoffice/slides/edit/:id" component={SlidesForm} />
 
-                <Route exact path="/backoffice/members" component={MembersScreen} />
+                <Route exact path="/backoffice/members" component={MembersList} />
                 <Route path="/backoffice/members/create" component={MembersForm} />
                 <Route path="/backoffice/members/edit/:id" component={MembersForm} />
               </Switch>

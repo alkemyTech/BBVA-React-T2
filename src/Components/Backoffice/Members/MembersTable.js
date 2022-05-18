@@ -7,7 +7,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import Button from '@mui/material/Button';
 
-const ENDPOINT = process.env.REACT_APP_BASE_URL + process.env.REACT_APP_MEMBERS
+const endpoint = process.env.REACT_APP_BASE_URL + process.env.REACT_APP_MEMBERS
 
 const MembersTable = () => {
   const [membersData, setMembersData] = useState([]);
@@ -16,7 +16,7 @@ const MembersTable = () => {
   
   
   const deleteMember = async () => {
-    const res = await Delete(ENDPOINT +'/' + selectedMember.id)
+    const res = await Delete(endpoint +'/' + selectedMember.id)
     if(res.data.success){
       fetchMembersData();
       handleClose();
@@ -24,7 +24,7 @@ const MembersTable = () => {
   }
 
   const fetchMembersData = async () => {
-      const res = await Get (ENDPOINT + "?limit=10");
+      const res = await Get (endpoint + "?limit=10");
       const { data } = res.data;
       setMembersData(data); 
   };
