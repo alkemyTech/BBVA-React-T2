@@ -15,16 +15,18 @@ const MembersTable = () => {
   const [selectedMember, setSelectedMember] = useState('');
   
   
-  const deleteMember = () => {
-    Delete(ENDPOINT +'/' + selectedMember.id)
-    setOpen(false);
-    fetchMembersData();
+  const deleteMember = async () => {
+    const res = await Delete(ENDPOINT +'/' + selectedMember.id)
+    if(res.data.success){
+      fetchMembersData();
+      handleClose();
+    }
   }
 
   const fetchMembersData = async () => {
-    const res = await Get (ENDPOINT + "?limit=10");
-    const { data } = res.data;
-    setMembersData(data)
+      const res = await Get (ENDPOINT + "?limit=10");
+      const { data } = res.data;
+      setMembersData(data); 
   };
   
   useEffect(() => {
