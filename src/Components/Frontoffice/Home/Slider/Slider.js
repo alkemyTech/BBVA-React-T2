@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import "./Slider.css"
 
-function Slider({length}) {
+function Slider({length = 5}) {
     const [slides, setSlides] = useState([]);
 
     const [currentItem, setCurrentItem] = useState(0);
