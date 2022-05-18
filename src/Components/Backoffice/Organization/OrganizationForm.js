@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react'
 import { Redirect } from 'react-router-dom'
 import './OrganizationForm.css';
 import '../../../general-styles.css';
-// import { validateImageFormat } from '../../../Services/validatorsService'
-import { getRole, addOrGetToken } from '../../Backoffice/RoutesSecurity/RoutesSecurity';
+import { validateImageFormat } from '../../../Services/validatorsService'
+import { setIsAdmin, getIsAdmin } from '../../Backoffice/RoutesSecurity/RoutesSecurity';
 
 const OrganizationForm = () => {
     const [initialValues, setInitialValues] = useState({
@@ -17,19 +17,8 @@ const OrganizationForm = () => {
         logo: ''
     })
     const [errors, setErrors] = useState({})
-    const [isAdmin, setIsAdmin] = useState([])
-    
-    /* Hago una llamada a la función checkRole que retornará un boolean dependiendo de si es true o false
-    */
-    const updateIsAdmin = async ()  => {
-        try {
-            let result =  await getRole()
-            return result
-        } catch(err) {
-            return err
-        }
-    }
-
+    const [tokenAdmin, setTokenAdmin] = useState()
+  
     const handleChange = (e) => {
         setInitialValues({...initialValues, [e.target.name]: e.target.value})
     }
@@ -76,32 +65,29 @@ const OrganizationForm = () => {
             !isUrl(initialValues.linkedinUrl, 'linkedin')) {
                 return;
         }
-        // if(!validateImageFormat(initialValues.logo)) {
-        //     setErrors({'logo': 'El fomato del logo no es valido. Solo se aceptan jpg y png'});
-        //     alert('El fomato del logo no es valido. Solo se aceptan jpg y png')
-        //     return;
-        // }
+        if(!validateImageFormat(initialValues.logo)) {
+            setErrors({'logo': 'El fomato del logo no es valido. Solo se aceptan jpg y png'});
+            alert('El fomato del logo no es valido. Solo se aceptan jpg y png')
+            return;
+        }
         alert('enviando formulario')
         //borrar la linea de arriba y hacer lo que correspond
     }
-
-    const checkAdmin = () => {
-        if (addOrGetToken) {
-            updateIsAdmin()
-            .then((res) => setIsAdmin(res))
-            .catch((err) => err)
-        } else {
-            setIsAdmin(true)
-        }
+    
+    const checkIsAdmin = async () => {
+        let result = await getIsAdmin()
+        setTokenAdmin(localStorage.getItem('isAdmin'))
+        return result;
     }
+
     useEffect(() => {
-        checkAdmin();
+        checkIsAdmin();
     },[])
 
     return (
         <>
         {//Si no es admin, redirige al home.
-        !isAdmin && <Redirect to="/" />
+        (tokenAdmin == 'false') && <Redirect to="/" />
         }
         <form className="organization-form-container" onSubmit={handleSubmit}>
             <input className="form-input" type="text" name='name' onChange={handleChange} placeholder="Nombre"></input>

@@ -6,7 +6,7 @@ const isAdmin = (role_id) => {
     if(role_id === 1) {return true;} else {return false;}
 }
 
-const getRole = async () => {
+const setIsAdmin = async () => {
     try {
         //utilizo la funcion de privateService que va a hacer la llamada al endpoint auth/me 
         //La funcion get se encarga de obtener el token y enviarlo por el header, por eso no se especifica acá
@@ -29,12 +29,13 @@ const getRole = async () => {
     }
 }
 
-const addOrGetToken = () => {
-    const token = localStorage.getItem('isAdmin');
-    
-    if (token === true) {
-        return true
+const getIsAdmin = async () => {
+    let token = localStorage.getItem('isAdmin');
+    if (token == null || token == undefined) {
+        await setIsAdmin();
+        token = await localStorage.getItem('isAdmin');
     }
+    return token;
 }
 
-export { getRole, addOrGetToken };
+export { setIsAdmin, getIsAdmin };
