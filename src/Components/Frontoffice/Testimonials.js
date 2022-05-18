@@ -7,8 +7,13 @@ const Testimonials = () => {
     const [testimonials, setTestimonials] = useState([])
 
     const fetchTestimonials = async () => {
-        const res = await Get()
+        const res = await Get(endpoint)
+        console.log(res)
     }
+
+    useEffect(() => {
+        fetchTestimonials()
+    }, [])
 
     return(
         <div>
