@@ -40,6 +40,7 @@ import MembersForm from './Components/Backoffice/Members/MembersForm';
 
 import TestimonialsList from './Components/Backoffice/Testimonials/TestimonialsList';
 import TestimonialForm from "./Components/Backoffice/Testimonials/TestimonialsForm";
+import SlidesList from './Components/Backoffice/Slides/SlidessList';
 
 
 function App() {
@@ -74,6 +75,7 @@ function App() {
                 <Route path="/backoffice/activities/edit/:id" component={ActivitiesForm} />
                 <Route path="/backoffice/activities/create" component={ActivitiesForm} />
 
+                <Route exact path="/backoffice/slides" component={SlidesList} />
                 <Route path="/backoffice/slides/create" component={SlidesForm} />
                 <Route path="/backoffice/slides/edit/:id" component={SlidesForm} />
 
