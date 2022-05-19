@@ -5,6 +5,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import {Get, Post, Put} from '../../../Services/privateApiService';
 import {validateImageFormat} from '../../../Services/validatorsService.js';
 import '../../FormStyles.css';
+import './NewsForm.css'
 
 const NewsForm = () => {
     const [initialValues, setInitialValues] = useState({
@@ -122,7 +123,7 @@ const NewsForm = () => {
                         setInitialValues((prevState)=>({...prevState, content: data}));
                     } }
                 />
-            <select className="select-field" name="category" value={initialValues.category_id || ''} onChange={handleChange}>
+            <select className="select-field " name="category" value={initialValues.category_id || ''} onChange={handleChange}>
                 <option value="" disabled>Select category</option>
                 {categories.map( (category) => {
                     const {id, description} = category;
@@ -131,7 +132,7 @@ const NewsForm = () => {
                     )
                 })}
             </select>
-            <button className="submit-btn" type="submit">Send</button>
+            <button className="create-backoffice-button button-create" type="submit">Send</button>
         </form>
     );
 }
