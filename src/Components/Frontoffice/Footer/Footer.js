@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import './Footer.css';
 import axios from 'axios';
 import {ReactComponent as LogoFacebook} from '../../../assets/facebook.svg';
@@ -38,26 +39,26 @@ const Footer = () => {
                 <LogoOng className='logo-container__svg'/>
                 <hr className="footer-container__hr"/>
             </div>
-            <ul className='list-container-footer'>
-                <li className='list-container__li'>Inicio</li>
-                <li className='list-container__li'>Nosotros</li>
-                <li className='list-container__li'>Novedades</li>
-                <li className='list-container__li'>Testimonios</li>
-                <li className='list-container__li'>Contacto</li>
-                <li className='list-container__li'>Contribuye</li>
-            </ul>
+             <ul className='list-container-footer'>
+                <li className='list-container__li'><Link to='/'  className='link-public-header'>Inicio</Link></li>
+                <li className='list-container__li'><Link to='/about' className='link-public-header'>Nosotros</Link></li>
+                <li className='list-container__li'><Link to='/news' className='link-public-header'>Novedades</Link></li>
+                <li className='list-container__li'><Link to='/testimonials' className='link-public-header'>Testimonios</Link></li>
+                <li className='list-container__li'><Link to='/contact' className='link-public-header'>Contacto</Link></li>
+                <li className='list-container__li'><Link to='/donar' className='link-public-header'>Contribuye</Link></li>
+             </ul>
             <hr className="footer-container__hr"/>
             <div className='socialmedia-container'>
-                <a target="_blank" href={instagram} className='socialmedia-container__a'>
+                <a target="_blank" href={instagram} className='socialmedia-container__a' rel="noreferrer">
                     <LogoInstagram className='socialmedia-container__a-svg'/>
                 </a>
-                <a target="_blank" href={facebook} className='socialmedia-container__a'>
+                <a target="_blank" href={facebook} className='socialmedia-container__a' rel="noreferrer">
                     <LogoFacebook className='socialmedia-container__a-svg'/>
                 </a>         
-                <a target="_blank" href={twitter} className='socialmedia-container__a'>
+                <a target="_blank" href={twitter} className='socialmedia-container__a' rel="noreferrer" >
                     <LogoTwitter className='socialmedia-container__a-svg'/>
                 </a>
-                <a target="_blank" href={linkedin} className='socialmedia-container__a'> 
+                <a target="_blank" href={linkedin} className='socialmedia-container__a' rel="noreferrer"> 
                     <LogoLinkedIn className='socialmedia-container__a-svg'/>
                 </a>
             </div>
