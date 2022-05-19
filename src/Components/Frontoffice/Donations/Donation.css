@@ -46,6 +46,18 @@
 
 .thanks-title {
     margin: 2rem auto;
+    font-size: 2rem;
     text-align: center;
     font-family: var(--title-font);
+}
+
+.thanks-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.link-thanks {
+    text-decoration: none;
 }

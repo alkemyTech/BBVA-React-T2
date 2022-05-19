@@ -1,7 +1,15 @@
+import { Link } from 'react-router-dom';
+
 const Thanks = ( props ) => {
     let contribution = props.location.state.contribution;
     return (
-        <h1 className="thanks-title">Gracias por Contribuir con ${contribution}. Apreciamos mucho su colaboración con la ONG Somos Mas</h1>
+        <div className='thanks-container'>
+            <p className="thanks-title">Tu donacion de ${contribution} fue recibida con exito. </p>
+            <p className="thanks-title">Muchas gracias por colaborar con la ONG Somos Mas. Lo apreciamos mucho</p>
+            <Link to={'/'} className='link-thanks'>
+                <button type='button' className='primary-button button-thanks'>Ir a inicio</button>
+            </Link>        
+        </div>
     )
 }
 

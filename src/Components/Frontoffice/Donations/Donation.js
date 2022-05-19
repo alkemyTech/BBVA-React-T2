@@ -25,7 +25,6 @@ const Donation = (props) => {
         let keys = Object.keys(initialValues);
         //en el for hago keys.lenght-1 para evitar verificar el campo logo en este lugar
         for (let i = 0; i < keys.length; i++) {
-            console.log(initialValues[keys[i]])
             let str = initialValues[keys[i]];
             if (!str || /^\s*$/.test(str)) {
                 return true;
