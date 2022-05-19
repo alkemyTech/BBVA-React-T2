@@ -16,9 +16,9 @@ import Thanks from './Components/Frontoffice/Donations/Thanks';
 //Backoffice
 import BackofficeLayout from "./Components/Layout/BackofficeLayout";
 import UserList from "./Components/Backoffice/Users/UserList";
-
 import Organization from './Components/Backoffice/Organization/Organization';
 import OrganizationForm from "./Components/Backoffice/Organization/OrganizationForm";
+import ActivitiesForm from './Components/Backoffice/Activities/ActivitiesForm';
 import ActivitiesBackOffice from './Components/Backoffice/Activities/ActivitiesBackOffice';
 import UserForm from "./Components/Backoffice/Users/UsersForm";
 import ScreenDashboard from "./Components/Backoffice/ScreenDashboard/ScreenDashboard";
@@ -28,6 +28,8 @@ import CategoriesForm from './Components/Backoffice/Categories/CategoriesForm';
 import NewsList from "./Components/Backoffice/News/NewsList";
 import MembersList from './Components/Backoffice/Members/MembersList';
 import MembersForm from './Components/Backoffice/Members/MembersForm';
+import TestimonialForm from "./Components/Backoffice/Testimonials/TestimonialsForm";
+import TestimonialsList from './Components/Backoffice/Testimonials/TestimonialsList';
 
 function App() {
   return (
@@ -52,8 +54,8 @@ function App() {
                 <Route path="/backoffice/organization/edit" component={OrganizationForm} />
 
                 <Route exact path="/backoffice/activities" component={ActivitiesBackOffice} />
-                <Route path="/backoffice/activities/edit/:id" />
-
+                <Route path="/backoffice/activities/edit/:id" component={ActivitiesForm}/>
+                <Route path="/backoffice/activities/create" component={ActivitiesForm} />
                 <Route path="/backoffice/slides/create" component={SlidesForm} />
                 <Route path="/backoffice/slides/edit/:id" component={SlidesForm} />
 
@@ -62,6 +64,10 @@ function App() {
                 <Route exact path="/backoffice/members" component={MembersList} />
                 <Route path="/backoffice/members/create" component={MembersForm} />
                 <Route path="/backoffice/members/edit/:id" component={MembersForm} />
+
+                <Route exact path="/backoffice/testimonials" component={TestimonialsList} />
+                <Route path="/backoffice/testimonials/create" component={TestimonialForm} />
+                <Route path="/backoffice/testimonials/edit/:id" component={TestimonialForm} />
               </Switch>
             </BackofficeLayout>
           </Route>
@@ -75,7 +81,6 @@ function App() {
                 <Route path="/about" component={About} />
                 <Route path="/contact" component={Contact} />
                 <Route path="/testimonials" component={Testimonials} />
-                <Route path="/login" component={Login} />
                 <Route path="/donar" component={Donations} />
                 <Route path="/gracias" component={Thanks} />
               </Switch>
