@@ -6,7 +6,6 @@ const Activities = () => {
 
     const [activities, setActivities] = useState([]);
     const endpoint = process.env.REACT_APP_BASE_URL + process.env.REACT_APP_ACTIVITIES;
-
     const getActivities = async () => {
         let res = await Get(endpoint);
         setActivities(res.data.data)
