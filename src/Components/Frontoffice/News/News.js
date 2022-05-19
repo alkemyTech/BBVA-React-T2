@@ -11,8 +11,7 @@ const New = () => {
 
     const getNews = async () => {
         const response = await Get(REACT_APP_BASE_URL + REACT_APP_NEWS)
-        const news = await response.data.data;
-        setNews([...news]);
+        setNews(response.data.data);
     }
 
     useEffect(() => {
@@ -24,13 +23,13 @@ const New = () => {
             <h1 className='new-frontOffice-section-title'>Novedades</h1>
             {
                 news.map((newItem) => {
-                    const { name, image, content } = newItem;
+                    const { name, image, content, id } = newItem;
                     return (
-                        <>
+                        <div key={id}>
                             <h1 className='new-frontOffice-title'>{name}</h1>
                             <img className='new-frontOffice-image' src={image} alt={name} />
                             <p className='new-frontOffice-description' dangerouslySetInnerHTML={{ __html: content }}></p>
-                        </>
+                        </div>
                     )
                 })
             }
