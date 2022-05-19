@@ -57,7 +57,7 @@ function App() {
           <Route exact path="/backoffice/*">
             <BackofficeLayout>
               <Switch>
-                <Route exact path="/backoffice" component={ScreenDashboard} />
+                <Route exact path="/backoffice/dashboard" component={ScreenDashboard} />
                 
                 <Route exact path="/backoffice/users" component={UserList} />
                 <Route path="/backoffice/users/create" component={UserForm} />
