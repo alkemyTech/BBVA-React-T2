@@ -90,6 +90,18 @@ const SignUp = () => {
         setCheck(!check)
     }
 
+    const previousPage = () => {
+        if(pageNumber > 1) {
+            setPageNumber(pageNumber - 1)
+        }
+    }
+
+    const nextPage = () => {
+        if(pageNumber < 4) {
+            setPageNumber(pageNumber + 1)
+        }
+    }
+
     return (
         <>
             <div className="form-container-signup">
@@ -105,7 +117,8 @@ const SignUp = () => {
                         />
                     ))}
                     <span><input type="checkbox" onClick={checkTheBox}/>He leído y acepto 
-                    <Popup trigger={<a className='tyc-link'>los términos y condiciones</a>} position="center">
+                    <Popup trigger={<a className='tyc-link'> los términos y condiciones</a>} position="center">
+                        <div><button onClick={previousPage}>Anterior</button><button onClick={nextPage}>Siguiente</button></div>
                         <Document file="tyc.pdf" onLoadSuccess={onDocumentLoadSuccess}>
                             <Page pageNumber={pageNumber} />
                         </Document>
