@@ -19,6 +19,7 @@ import UserList from "./Components/Backoffice/Users/UserList";
 
 import Organization from './Components/Backoffice/Organization/Organization';
 import OrganizationForm from "./Components/Backoffice/Organization/OrganizationForm";
+import ActivitiesForm from './Components/Backoffice/Activities/ActivitiesForm';
 import ActivitiesBackOffice from './Components/Backoffice/Activities/ActivitiesBackOffice';
 import UserForm from "./Components/Backoffice/Users/UsersForm";
 import ScreenDashboard from "./Components/Backoffice/ScreenDashboard/ScreenDashboard";
@@ -49,8 +50,8 @@ function App() {
                 <Route path="/backoffice/organization/edit" component={OrganizationForm} />
 
                 <Route exact path="/backoffice/activities" component={ActivitiesBackOffice} />
-                <Route path="/backoffice/activities/edit/:id" />
-
+                <Route path="/backoffice/activities/edit/:id" component={ActivitiesForm}/>
+                <Route path="/backoffice/activities/create" component={ActivitiesForm} />
                 <Route path="/backoffice/slides/create" component={SlidesForm} />
                 <Route path="/backoffice/slides/edit/:id" component={SlidesForm} />
 
