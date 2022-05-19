@@ -13,14 +13,8 @@ const Contact = (props) => {
 
   const history = useHistory();
 
-  const checkIsAdmin = async () => {
-    const response = await getIsAdmin();
-    return response;
-  }
-
-  
   useEffect(() => {
-    if(checkIsAdmin()) {
+    if(getIsAdmin()) {
       history.push("/backoffice/dashboard")
     }
   }, [])

@@ -7,16 +7,10 @@ import { useState, useEffect } from 'react'
 
 const PublicHeader = () => {
 
-
-  const checkIsAdmin = async () => {
-    const response = await getIsAdmin();
-    return response;
-  }
-
   const [isAdmin, setIsAdmin] = useState(false);
   
   useEffect(() => {
-    if(checkIsAdmin()) {
+    if(getIsAdmin()) {
       setIsAdmin(true)
     }
   }, [])
