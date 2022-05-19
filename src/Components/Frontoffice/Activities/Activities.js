@@ -10,22 +10,20 @@ const Activities = () => {
     const endpoint = process.env.REACT_APP_BASE_URL + process.env.REACT_APP_ACTIVITIES;
     const [loader, setLoader] = useState(true);
 
-    const handleSpinner = () => {
-        setTimeout(() => setLoader(false), 1800);
-    }
-
     const getActivities = async () => {
+        setLoader(true);
         let res = await Get(endpoint);
         try {
             const res = await Get(endpoint);
             setActivities(res.data.data);
+            setLoader(false);
         } catch (err) {
             Alert("Something went wrong. Please try again", "There was an error loading the Activities List", "error");
+            setLoader(false);
         }
     }
 
     useEffect(() => {
-        handleSpinner();
         getActivities()
     },[setActivities])
     
