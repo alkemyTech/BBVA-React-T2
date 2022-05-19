@@ -30,12 +30,12 @@ const NewsForm = () => {
             setInitialValues({
                 name, image, content, category_id
             })
-            setLoading(false);
         }
         await Get(urlCategories)
         .then( (res) =>{
             setCategories(res.data.data);
-        });   
+        });  
+        setLoading(false); 
     };
      
     // Estimado para obtener la data de edicion 
@@ -45,10 +45,7 @@ const NewsForm = () => {
     }, []);
 
     const handleChange = (e) => {
-        if(e.target.name === 'name'){
-            setInitialValues({...initialValues, name: e.target.value}) 
-        } if(e.target.name === 'category') {
-            setInitialValues({...initialValues, category_id: e.target.value})
+            setInitialValues({...initialValues, [e.target.name]: e.target.value})
         }
     }
     const handleImage = (element) => {
@@ -104,7 +101,6 @@ const NewsForm = () => {
             Post(url, initialValues);
             alert("Actividad creada satisfactoriamente");
         }
-        console.log(initialValues);
     }
 
     return (
