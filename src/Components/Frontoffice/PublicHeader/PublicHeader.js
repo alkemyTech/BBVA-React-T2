@@ -38,7 +38,8 @@ const PublicHeader = () => {
                 <li className='list-container-header__li'><Link to='/about' className='link-public-header'>Nosotros</Link></li>
                 <li className='list-container-header__li'><Link to='/news' className='link-public-header'>Novedades</Link></li>
                 <li className='list-container-header__li'><Link to='/testimonials' className='link-public-header'>Testimonios</Link></li>
-                {isAdmin || <li className='list-container-header__li'><Link to='/contact' className='link-public-header'>Contacto</Link></li>}
+                {isAdmin ? (<li className='list-container-header__li'><Link to='/backoffice/dashboard' className='link-public-header'>Backoffice</Link></li>): 
+                (<li className='list-container-header__li'><Link to='/contact' className='link-public-header'>Contacto</Link></li>)}
                 <li className='list-container-header__li'><Link to='/donar' className='link-public-header'>Contribuye</Link></li>
                 <li className='list-container-header__li'><Link to='/activities' className='link-public-header'>Actividades</Link></li>
              </ul>

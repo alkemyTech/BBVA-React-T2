@@ -11,6 +11,8 @@ import { Link } from 'react-router-dom';
 //Header y footer
 import PublicHeader from '../PublicHeader/PublicHeader';
 import Footer from '../Footer/Footer';
+//Slider
+import Slider from './Slider/Slider';
 
 const Home = () => {
     const [homeData, setHomeData] = useState([]);
@@ -61,10 +63,7 @@ const Home = () => {
                     </Link>
                 </div>
 
-                <img className='home-right-container'
-                    src='./images/hands.png'
-                    alt='imagen-de-bienvenida'
-                />
+                <Slider />
             </div>
 
             {/* ABOUT SECTION*/}
