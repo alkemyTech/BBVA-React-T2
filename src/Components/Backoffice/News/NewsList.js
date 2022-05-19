@@ -12,11 +12,6 @@ const NewsList = () => {
     const [news, setNews] = useState([]);
     const endpoint = process.env.REACT_APP_BASE_URL + process.env.REACT_APP_NEWS;
 
-    // const getNews = async () => {
-    //     let res = await Get(endpoint);
-    //     setNews(res.data.data)
-    // }
-
     const handleDelete = async (id) => {
         try {
             await Delete(`${endpoint + '/' + id}`);
