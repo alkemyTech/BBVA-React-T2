@@ -84,16 +84,19 @@ const MembersForm = () => {
     return true;
   }
 
-  const handleSubmit = (e) => {
+  
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    
     if(validateForm()) {
       let response;
         id 
         ? response = await Put(path + `/${id}`, formValues)
         : response = await Post(path, formValues);
         return await response;       
-  }
+  } 
 }
+  
 
   return (
     <form className="form-container" onSubmit={handleSubmit}>
