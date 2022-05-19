@@ -21,6 +21,7 @@ import ScreenDashboard from "./Components/Backoffice/ScreenDashboard/ScreenDashb
 import SlidesForm from "./Components/Backoffice/Slides/SlidesForm";
 import CategoriesList from './Components/Backoffice/Categories/CategoriesList';
 import NewsList from "./Components/Backoffice/News/NewsList";
+import CategoriesForm from './Components/Backoffice/Categories/CategoriesForm';
 
 function App() {
   return (
@@ -34,6 +35,8 @@ function App() {
                 <Route exact path="/backoffice" component={ScreenDashboard} />
                 <Route exact path="/backoffice/users" component={UserList} />
                 <Route exact path="/backoffice/categories" component={CategoriesList} />
+                <Route exact path="/backoffice/categories/create" component={CategoriesForm} />
+                <Route exact path="/backoffice/categories/edit/:id" component={CategoriesForm} />
                 <Route path="/backoffice/users/create" component={UserForm} />
                 <Route path="/backoffice/users/edit/:id" component={UserForm} />
                 <Route path="/backoffice/organization/edit" component={OrganizationForm} />

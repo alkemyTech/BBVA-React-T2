@@ -30,7 +30,7 @@ const Post = (endpoint, body) => {
     if (!body) throw new Error("parameter 'body' is not defined")
 
     if (getPrivateHeaderAuth) {
-        axios.post(endpoint, body)
+    return axios.post(endpoint, body)
             .then(res => res)
             .catch(err => err)
     }
@@ -46,7 +46,7 @@ const Put = (endpoint, body) => {
     if (!endpoint) {
         throw new Error("parameter 'endpoint' is not definded");
     }
-    axios.put(endpoint, body, headers)
+   return axios.put(endpoint, body, headers)
         .then(res => res)
         .catch(err => err);
 }
