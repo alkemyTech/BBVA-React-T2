@@ -1,16 +1,27 @@
-import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Link, useHistory } from 'react-router-dom'
 import './Contact.css'
 import ContactForm from './ContactForm'
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
+import { getIsAdmin } from '../../Backoffice/RoutesSecurity/RoutesSecurity'
+
 
 import MapView from '../Map/MapView'
 import Alert from '../../Alerts/Alerts';
 
 const Contact = (props) => {
+
+  const history = useHistory();
+
+  useEffect(() => {
+    if(getIsAdmin()) {
+      history.push("/backoffice/dashboard")
+    }
+  }, [])
+
   const { 
     address, 
     instagram_url, 
