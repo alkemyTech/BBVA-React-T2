@@ -15,9 +15,12 @@ const NewsForm = () => {
     });
     const [errors, setErrors] = useState();
     const [loading, setLoading] = useState();
+    const [categories, setCategories] = useState([]);
 
     const { id } = useParams();
     const url = process.env.REACT_APP_BASE_URL + process.env.REACT_APP_NEWS;
+    const urlCategories = process.env.REACT_APP_BASE_URL + process.env.REACT_APP_CATEGORIES;
+
 
     const fetchData = async() =>{
         if(id){
@@ -28,6 +31,10 @@ const NewsForm = () => {
             })
             setLoading(false);
         }
+        await Get(urlCategories)
+        .then( (res) =>{
+            setCategories(res.data.data);
+        });   
     };
      
     // Estimado para obtener la data de edicion 
@@ -102,7 +109,7 @@ const NewsForm = () => {
     }
 
     return (
-        <form className="form-container" onSubmit={handleSubmit}>
+        <form className="form-container form-news" onSubmit={handleSubmit}>
             <input className="input-field" type="text" name="name" value={initialValues.name || ''} onChange={handleChange} placeholder='News Title'></input>
             <div className='input-field img-input-div'>
                 <img className='activity-img-prev'src={initialValues.image} alt={initialValues.name}/>
@@ -119,9 +126,12 @@ const NewsForm = () => {
                 />
             <select className="select-field" name="category" value={initialValues.category_id || ''} onChange={handleChange}>
                 <option value="" disabled>Select category</option>
-                <option value="1">Demo option 1</option>
-                <option value="2">Demo option 2</option>
-                <option value="3">Demo option 3</option>
+                {categories.map( (category) => {
+                    const {id, description} = category;
+                    return(
+                        <option value={id} key={id}>{description}</option>
+                    )
+                })}
             </select>
             <button className="submit-btn" type="submit">Send</button>
         </form>
