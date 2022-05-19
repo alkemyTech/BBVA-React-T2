@@ -67,8 +67,9 @@ const SignUp = () => {
     const [numPages, setNumPages] = useState(null);
     const [pageNumber, setPageNumber] = useState(1);
 
+    //get del token para redireccionamiento si el usarios esta autenticado
     const token = getToken();
-    if(token) return <Redirect to=''/>
+    if(token) return <Redirect to='/'/>
 
     function onDocumentLoadSuccess({ numPages }) {
         setNumPages(numPages);
