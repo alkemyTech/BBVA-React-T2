@@ -17,7 +17,10 @@ import 'reactjs-popup/dist/index.css';
 import { Document, Page } from 'react-pdf/dist/esm/entry.webpack'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+
+//redireccion y token
 import { Redirect } from "react-router-dom";
+import getToken from '../../../Services/getToken';
 
 const SignUp = () => {
 
@@ -64,7 +67,7 @@ const SignUp = () => {
     const [numPages, setNumPages] = useState(null);
     const [pageNumber, setPageNumber] = useState(1);
 
-    const token = localStorage.getItem('token');
+    const token = getToken();
     if(token) return <Redirect to=''/>
 
     function onDocumentLoadSuccess({ numPages }) {
