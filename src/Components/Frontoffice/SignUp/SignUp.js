@@ -53,7 +53,6 @@ const SignUp = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(values.username, values.email, values.password);
 
         const registerUser = {
             name: values.username.toString(),
