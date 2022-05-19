@@ -8,7 +8,7 @@ import '../../FormStyles.css';
 
 const NewsForm = () => {
     const [initialValues, setInitialValues] = useState({
-        title: '',
+        name: '',
         image: '',
         content: '',
         category: ''
@@ -17,9 +17,11 @@ const NewsForm = () => {
     const { id } = useParams();
     const url = process.env.REACT_APP_BASE_URL + process.env.REACT_APP_NEWS;
 
+    
+
     const handleChange = (e) => {
-        if(e.target.name === 'title'){
-            setInitialValues({...initialValues, title: e.target.value})
+        if(e.target.name === 'name'){
+            setInitialValues({...initialValues, name: e.target.value})
         } if(e.target.name === 'content'){
             setInitialValues({...initialValues, content: e.target.value})
         } if(e.target.name === 'category') {
@@ -45,7 +47,7 @@ const NewsForm = () => {
 
     return (
         <form className="form-container" onSubmit={handleSubmit}>
-            <input className="input-field" type="text" name="title" value={initialValues.title || ''} onChange={handleChange} placeholder='News Title'></input>
+            <input className="input-field" type="text" name="name" value={initialValues.name || ''} onChange={handleChange} placeholder='News Title'></input>
             <div className='input-field img-input-div'>
                 <img className='activity-img-prev'src={initialValues.image} alt={initialValues.name}/>
                 <input className="img-select" type="file" name="image" onChange={handleImage} placeholder="News Image"></input>
