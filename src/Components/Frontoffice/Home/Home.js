@@ -8,6 +8,9 @@ import CardNews from '../../Cards/CardNews/CardNews';
 // Services
 import { Get } from '../../../Services/publicApiService'
 import { Link } from 'react-router-dom';
+//Header y footer
+import PublicHeader from '../PublicHeader/PublicHeader';
+import Footer from '../Footer/Footer';
 
 const Home = () => {
     const [homeData, setHomeData] = useState([]);
@@ -38,6 +41,8 @@ const Home = () => {
     }, []);
 
     return (
+        <>
+        <PublicHeader/>
         <div className='home-frontoffice-container'>
             <div id='container-home-welcomeText-img'>
                 <div className='home-left-container'>
@@ -117,6 +122,8 @@ const Home = () => {
             </div>
 
         </div>
+        <Footer />
+        </>
     )
 }
 
