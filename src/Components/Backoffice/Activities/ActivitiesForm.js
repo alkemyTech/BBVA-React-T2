@@ -29,11 +29,13 @@ const ActivitiesForm = () => {
             setInitialValues({
                 description, image, name
             })
+            setLoading(false);
         }
     };
      
     // Estimado para obtener la data de edicion 
     useEffect ( () => {
+        setLoading(true);
         fetchData()
     }, []);//pendiente ver porq no renderiza del todo bien
 
