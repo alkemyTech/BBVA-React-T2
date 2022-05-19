@@ -17,12 +17,10 @@ const Login = () => {
     
       setLogin(BASE_URL, user)
         .then((res) => {
-          console.log(res)
           setToken(res.data.data.token);
           localStorage.setItem("token", res.data.data.token);
         })
-        .catch((err) => {})
-        .finally(() => {});
+        .catch((err) => {return err})
       resetForm();
       setSubmittedForm(true);
       setTimeout(() => setSubmittedForm(false), 5000);
