@@ -45,9 +45,7 @@ const NewsForm = () => {
 
     const handleChange = (e) => {
         if(e.target.name === 'name'){
-            setInitialValues({...initialValues, name: e.target.value})
-        } if(e.target.name === 'content'){
-            setInitialValues({...initialValues, content: e.target.value})
+            setInitialValues({...initialValues, name: e.target.value}) 
         } if(e.target.name === 'category') {
             setInitialValues({...initialValues, category_id: e.target.value})
         }
@@ -112,7 +110,7 @@ const NewsForm = () => {
         <form className="form-container form-news" onSubmit={handleSubmit}>
             <input className="input-field" type="text" name="name" value={initialValues.name || ''} onChange={handleChange} placeholder='News Title'></input>
             <div className='input-field img-input-div'>
-                <img className='activity-img-prev'src={initialValues.image} alt={initialValues.name}/>
+                <img className='activity-img-prev'src={initialValues.image} alt='Imagen Novedad'/>
                 <input className="img-select" type="file" name="image" onChange={handleImage} placeholder="News Image"></input>
             </div>
             <CKEditor

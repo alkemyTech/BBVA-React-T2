@@ -100,7 +100,7 @@ const ActivitiesForm = () => {
         <form className="form-container form-activity" onSubmit={handleSubmit}>
             <input className="input-field" type="text" name="name" value={initialValues.name} onChange={handleChange} placeholder="Activity Title"></input>
             <div className='input-field img-input-div'>
-                <img className='activity-img-prev'src={initialValues.image} alt={initialValues.name}/>
+                <img className='activity-img-prev'src={initialValues.image} alt='Imagen Actividad'/>
                 <input className="img-select" type="file" name="image" onChange={handleImage} placeholder="Activity Image"></input>
             </div>
             <CKEditor
