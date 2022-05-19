@@ -15,6 +15,8 @@ import { Post } from '../../../Services/publicApiService'
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import { Document, Page } from 'react-pdf/dist/esm/entry.webpack'
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 const SignUp = () => {
 
@@ -97,7 +99,7 @@ const SignUp = () => {
     }
 
     const nextPage = () => {
-        if(pageNumber < 4) {
+        if(pageNumber < numPages) {
             setPageNumber(pageNumber + 1)
         }
     }
@@ -106,7 +108,17 @@ const SignUp = () => {
         <>
             <div className="form-container-signup">
                 <img className="logo-signup" src='./logo.svg' alt="logo-ONG" />
-
+                <span><input type="checkbox" onClick={checkTheBox}/>He leído y acepto 
+                    <Popup trigger={<a className='tyc-link'> los términos y condiciones</a>} position="top center">
+                        <div><ArrowBackIosIcon onClick={previousPage} className='page-button'>Anterior</ArrowBackIosIcon><ArrowForwardIosIcon onClick={nextPage} className='page-button'>Siguiente</ArrowForwardIosIcon></div>
+                        <p>
+                            Page {pageNumber} of {numPages}
+                        </p>
+                        <Document file="tyc.pdf" onLoadSuccess={onDocumentLoadSuccess}>
+                            <Page pageNumber={pageNumber} />
+                        </Document>
+                    </Popup>
+                    </span>
                 <form onSubmit={handleSubmit}>
                     {inputs.map((input, index) => (
                         <FormInput
@@ -116,17 +128,6 @@ const SignUp = () => {
                             onChange={onChange}
                         />
                     ))}
-                    <span><input type="checkbox" onClick={checkTheBox}/>He leído y acepto 
-                    <Popup trigger={<a className='tyc-link'> los términos y condiciones</a>} position="center">
-                        <div><button onClick={previousPage}>Anterior</button><button onClick={nextPage}>Siguiente</button></div>
-                        <Document file="tyc.pdf" onLoadSuccess={onDocumentLoadSuccess}>
-                            <Page pageNumber={pageNumber} />
-                        </Document>
-                        <p>
-                            Page {pageNumber} of {numPages}
-                        </p>
-                    </Popup>
-                    </span>
 
                     <button className="primary-button" type="submit">Registrate</button>
 
