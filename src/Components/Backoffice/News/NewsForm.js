@@ -81,6 +81,11 @@ const NewsForm = () => {
         if(isBlank()){
             return;
         }
+        if(!validateImageFormat(initialValues.image)){
+            setErrors({'image': 'El fomato de la imagen no es valido. Solo se aceptan jpg y png'});
+            alert('El fomato de la image no es valido. Solo se aceptan jpg y png')
+            return;
+        }
         console.log(initialValues);
     }
 
