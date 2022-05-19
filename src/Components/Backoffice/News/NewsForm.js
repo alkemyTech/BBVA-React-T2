@@ -86,6 +86,15 @@ const NewsForm = () => {
             alert('El fomato de la image no es valido. Solo se aceptan jpg y png')
             return;
         }
+        if(id){
+            Put(url + '/' + id, initialValues);
+            alert("Actividad " + id + "actualizada exitosamente");
+        }
+        //caso create
+        else{
+            Post(url, initialValues);
+            alert("Actividad creada satisfactoriamente");
+        }
         console.log(initialValues);
     }
 
