@@ -1,26 +1,34 @@
-import React, { useState, useEffect } from 'react';
-import '../../CardListStyles.css';
-//import functions
-import Alert from '../../Alerts/Alerts.js';
-import { Get } from '../../../Services/privateApiService.js';
-import Spinner from '../../Spinner/Spinner.js';
+import '../Activities/ActivitiesBackOffice.css';
+import '../../../general-styles.css';
+
+import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { Delete, Get } from '../../../Services/privateApiService';
+import Alert from '../../Alerts/Alerts';
+
+
+import Alert from '../../Alerts/Alerts';
+
+import News from './News.js';
 
 const NewsList = () => {
     const [news, setNews] = useState([]);
-    const [loader, setLoader] = useState(true);
+    const endpoint = process.env.REACT_APP_BASE_URL + process.env.REACT_APP_NEWS;
 
-    const handleSpinner = () => {
-        setTimeout(() => setLoader(false), 2000);
+    const handleDelete = async (id) => {
+        try {
+            await Delete(`${endpoint + '/' + id}`);
+            await getNews();
+            setNews(news.filter(news => news.id !== id));
+        } catch (err) {
+            alert('error')
+        }
     }
+    
+    useEffect(() => {
+        getNews()
+    },[setNews])
 
-    const newsMock = [
-        {id: 2, name: 'Titulo de prueba', description: 'Descripcion de prueba'},
-        {id: 1, name: 'Titulo de prueba', description: 'Descripcion de prueba'},
-        {id: 3, name: 'Titulo de prueba', description: 'Descripcion de prueba'}
-    ];
-
-    //Lo que está dentro de esta función debería ser reemplazo por lo la peticion real a la api.
-    //Si la función falla saltará la alerta diciendo que hubo un error.
     const getNews = async () => {
         try {
             const res = await Get('endpoint');
@@ -31,33 +39,41 @@ const NewsList = () => {
     }
 
     useEffect(() => {
-        handleSpinner();
+        //handleSpinner();
         getNews();
     },[])
 
     return (
         <>
-            { (loader)? <Spinner /> :
-                <div>
-                    <h1>Listado de Novedades</h1>
-                    <ul className="list-container">
-                        {newsMock.length > 0 ? 
-                            newsMock.map((element) => {
-                                return(
-                                    <li className="card-info" key={element.id}>
-                                        <h3>{element.name}</h3>
-                                        <p>{element.description}</p>
-                                    </li>
-                                )
-                            })
-                    :
-                        <p>No hay novedades</p>
-                    }
-                </ul>
-            </div>
+        <div className="container-create-activity">
+            <Link to={'/backoffice/news/create'} className='container-create-activity__a'>
+                <button type='button' className= 'create-backoffice-button button-create'>Crear nueva novedad</button>
+            </Link>
+        </div>
+        <div class='list-container'>
+            <h1 class='list-container__h1'>Lista de actividades</h1>
+            <section className='list-container__section rows-container'> 
+                <p>Nombre</p>
+                <p>Imagen</p>
+                <p>Creado</p>
+            </section>
+            {
+                news.map((news) => {
+                    return (
+                        <News 
+                            id={news.id} 
+                            name={news.name} 
+                            createdAt={news.created_at} 
+                            image={news.image} 
+                            key={news.id} 
+                            handleDelete={handleDelete}
+                        />
+                    )
+                })
             }
+        </div>
         </>
-    );
+    )
 }
- 
+
 export default NewsList;

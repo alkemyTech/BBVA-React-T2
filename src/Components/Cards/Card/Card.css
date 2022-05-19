@@ -21,11 +21,16 @@
     height: 75px;
     top: 16px;
     left: 16px;
-
+    object-fit: cover;
     border-radius: 50px;
 }
 .card .card-desc{
     text-align: left;
     white-space: initial;
     overflow: hidden;
+}
+
+.card-name {
+    word-break: break-all;
+
 }
