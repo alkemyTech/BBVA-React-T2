@@ -87,6 +87,7 @@ const MembersForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
     if(validateForm()) {
       let response;
         id 
@@ -98,6 +99,7 @@ const MembersForm = () => {
        Alert("Exito", data.message, "success")     
   }
 }
+  
 
   return (
     <form className="form-container" onSubmit={handleSubmit}>
