@@ -12,7 +12,6 @@ const Activities = () => {
 
     const getActivities = async () => {
         setLoader(true);
-        let res = await Get(endpoint);
         try {
             const res = await Get(endpoint);
             setActivities(res.data.data);

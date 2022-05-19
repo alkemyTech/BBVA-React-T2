@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react'
 import { Redirect } from 'react-router-dom'
+import Alert from '../../Alerts/Alerts';
 import './OrganizationForm.css';
 import '../../../general-styles.css';
-//import { validateImageFormat } from '../../../Services/validatorsService'
+import { validateImageFormat } from '../../../Services/validatorsService'
 
 const OrganizationForm = () => {
     const [initialValues, setInitialValues] = useState({
@@ -28,7 +29,7 @@ const OrganizationForm = () => {
             let str = initialValues[keys[i]];
             if (!str || /^\s*$/.test(str)) {
                 setErrors({[keys[i]]: 'El campo ' + keys[i] + ' no puede estar vacio'})
-                alert('Error: el campo ' + keys[i] + ' no puede estar vacio')
+                Alert('Error','Error: el campo ' + keys[i] + ' no puede estar vacio', 'error')
                 return true;
             } else {
                 break;
@@ -46,7 +47,7 @@ const OrganizationForm = () => {
           '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
         if(!pattern.test(str)) {
             setErrors({[str]: 'El campo ' + str + ' no puede estar vacio'});
-            alert('Error: la url de ' + campo + ' no es valida')
+            Alert('Error','Error: la url de ' + campo + ' no es valida', 'error')
             return false;
         }
         return true;
@@ -63,16 +64,12 @@ const OrganizationForm = () => {
             !isUrl(initialValues.linkedinUrl, 'linkedin')) {
                 return;
         }
-        /*
           if(!validateImageFormat(initialValues.logo)) {
             setErrors({'logo': 'El fomato del logo no es valido. Solo se aceptan jpg y png'});
-            alert('El fomato del logo no es valido. Solo se aceptan jpg y png')
+            Alert('Error','El fomato del logo no es valido. Solo se aceptan jpg y png','error')
             return;
         }
-        */
-      
-        alert('enviando formulario')
-        //borrar la linea de arriba y hacer lo que correspond
+        Alert('Exito', 'Organizacion creada con exito', 'success');
     }
 
     return (

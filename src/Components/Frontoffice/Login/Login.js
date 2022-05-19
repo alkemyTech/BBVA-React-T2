@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import setLogin from "../../../Services/Login.service";
 import getToken from "../../../Services/getToken";
@@ -111,7 +111,9 @@ const Login = () => {
           <br />
           <div className="register-link-container">
             <div className="register-question">No tienes cuenta? </div>
-            <div className="register-link"> Registrate! </div>
+            <Link to='/singup'>
+              <div className="register-link"> Registrate! </div>
+            </Link>
           </div>
         </div>
       </div>

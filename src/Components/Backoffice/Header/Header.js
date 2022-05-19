@@ -1,18 +1,14 @@
-import { useState } from 'react';
-// Material UI components
-import MenuIcon from '@mui/icons-material/Menu';
+import { Link } from 'react-router-dom';
 import './Header.css';
+import Sidebar from './Sidebar/Sibebar';
 
 export default function Header() {
-
-    const [isClicked, setIsClicked] = useState(false);
-
-    const toggle = () => setIsClicked(!isClicked)
-
     return (
         <header className='header-backoffice-container'>
-            <MenuIcon fontSize="large" onClick={toggle} />
-            <img src='/logo.svg' alt='logo-ONG' />
+            <Sidebar />
+            <Link to={'/backoffice/dashboard'}>
+                <img src='/logo.svg' alt='logo-ONG' />
+            </Link>
         </header>
     )
 }

@@ -38,7 +38,7 @@ const MembersForm = () => {
 
   const imageABase64 = (element) => {
     if(!validateImageFormat(element.target.value)) {
-      alert("Formato de imagen inválido, debe ser .png o .jpg");
+      Alert('Error',"Formato de imagen inválido, debe ser .png o .jpg", 'error');
       element.target.value = '';
       return false;
     }
@@ -62,7 +62,7 @@ const MembersForm = () => {
     for (const field in formValues) {
       const fieldValue = formValues[field];
       if(!validateHasContent(fieldValue)){
-        alert('Todos los campos son obligatorios');
+        Alert('Error','Todos los campos son obligatorios', 'error');
         return false;
       }
     }
