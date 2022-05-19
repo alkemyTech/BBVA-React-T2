@@ -4,6 +4,8 @@ import '../../../general-styles.css';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Delete, Get } from '../../../Services/privateApiService';
+import Alert from '../../Alerts/Alerts';
+
 
 import Alert from '../../Alerts/Alerts';
 
@@ -37,7 +39,7 @@ const NewsList = () => {
     }
 
     useEffect(() => {
-        handleSpinner();
+        //handleSpinner();
         getNews();
     },[])
 

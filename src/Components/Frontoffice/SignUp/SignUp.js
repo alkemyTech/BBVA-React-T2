@@ -71,9 +71,9 @@ const SignUp = () => {
         e.preventDefault();
 
         const registerUser = {
-            name: values.name,
-            email: values.email,
-            password: values.password
+            name: values.username.toString(),
+            email: values.email.toString(),
+            password: values.password.toString()
         }
 
         if(check){
