@@ -40,6 +40,10 @@
     text-decoration: none;
 }
 
+.tyc-link {
+    color:blue
+}
+
 @media only screen and (max-width: 900px) {
 
     .form-container-signup {
