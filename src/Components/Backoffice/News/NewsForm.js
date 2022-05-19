@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-//Espacio para el ckeditor
-
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import {Get, Post, Put} from '../../../Services/privateApiService';
 import {validateImageFormat} from '../../../Services/validatorsService.js';
 import '../../FormStyles.css';
@@ -108,7 +108,15 @@ const NewsForm = () => {
                 <img className='activity-img-prev'src={initialValues.image} alt={initialValues.name}/>
                 <input className="img-select" type="file" name="image" onChange={handleImage} placeholder="News Image"></input>
             </div>
-            <input className="input-field" type="text" name="content" value={initialValues.content || ''} onChange={handleChange}></input>
+            <CKEditor
+                    editor={ ClassicEditor }
+                    data={ initialValues.content }
+                    name="content"
+                    onChange={( event, editor ) => {
+                        const data = editor.getData();
+                        setInitialValues((prevState)=>({...prevState, content: data}));
+                    } }
+                />
             <select className="select-field" name="category" value={initialValues.category_id || ''} onChange={handleChange}>
                 <option value="" disabled>Select category</option>
                 <option value="1">Demo option 1</option>
