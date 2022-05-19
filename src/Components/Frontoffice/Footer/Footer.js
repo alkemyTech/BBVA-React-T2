@@ -7,13 +7,15 @@ import {ReactComponent as LogoInstagram} from '../../../assets/instagram.svg';
 import {ReactComponent as LogoTwitter} from '../../../assets/twitter.svg';
 import {ReactComponent as LogoLinkedIn} from '../../../assets/linkedin.svg';
 import {ReactComponent as LogoOng} from '../../../assets/ong.svg';
+import { getIsAdmin } from '../../Backoffice/RoutesSecurity/RoutesSecurity'
 
 const Footer = () => {
     const [instagram, setInstagram] = useState('');
     const [facebook, setFacebook] = useState('');
     const [linkedin, setLinkedIn] = useState('');
     const [twitter, setTwtitter] = useState('');
-    
+    const [isAdmin, setIsAdmin] = useState(false);
+
 
     const getData = async () => {
         try {
@@ -27,8 +29,17 @@ const Footer = () => {
         }
     }
 
+  
+    const checkIsAdmin = async () => {
+        let response = await getIsAdmin();
+        if (response === 'true') {
+        setIsAdmin(true)
+        }
+    }
+
     useEffect (() => {      
         getData();
+        checkIsAdmin();
     }, [])
 
 
@@ -44,7 +55,7 @@ const Footer = () => {
                 <li className='list-container__li'><Link to='/about' className='link-public-header'>Nosotros</Link></li>
                 <li className='list-container__li'><Link to='/news' className='link-public-header'>Novedades</Link></li>
                 <li className='list-container__li'><Link to='/testimonials' className='link-public-header'>Testimonios</Link></li>
-                <li className='list-container__li'><Link to='/contact' className='link-public-header'>Contacto</Link></li>
+                {isAdmin || <li className='list-container__li'><Link to='/contact' className='link-public-header'>Contacto</Link></li>}
                 <li className='list-container__li'><Link to='/donar' className='link-public-header'>Contribuye</Link></li>
                 <li className='list-container__li'><Link to='/activities' className='link-public-header'>Actividades</Link></li>
              </ul>

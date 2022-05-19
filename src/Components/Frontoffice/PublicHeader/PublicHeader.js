@@ -9,10 +9,15 @@ const PublicHeader = () => {
 
   const [isAdmin, setIsAdmin] = useState(false);
   
-  useEffect(() => {
-    if(getIsAdmin()) {
+  const checkIsAdmin = async () => {
+    let response = await getIsAdmin();
+    if (response === 'true') {
       setIsAdmin(true)
     }
+  }
+
+  useEffect(() => {
+    checkIsAdmin();
   }, [])
 
     return (
