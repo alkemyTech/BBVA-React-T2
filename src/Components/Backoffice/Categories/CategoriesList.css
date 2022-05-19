@@ -41,7 +41,7 @@
     height: calc(100vh - 77px);
     display: flex;
     justify-content: center;
-    overflow: hidden;
+    overflow: scroll;
 }
 
 .categories-table__img-container{
