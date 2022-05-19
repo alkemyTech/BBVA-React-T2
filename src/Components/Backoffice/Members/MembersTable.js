@@ -1,40 +1,56 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Get, Delete } from '../../../Services/privateApiService';
-import Pagination from '@mui/material/Pagination';
-import Stack from '@mui/material/Stack';
 import './MembersTable.css'
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import Button from '@mui/material/Button';
 
-const BASE_URL = process.env.REACT_APP_BASE_URL
-const ENDPOINT = process.env.REACT_APP_MEMBERS
+const endpoint = process.env.REACT_APP_BASE_URL + process.env.REACT_APP_MEMBERS
 
 const MembersTable = () => {
-  const [membersData, setMembersData] = useState([])
-
-  const deleteMember = (id) => {
-    const url = BASE_URL + ENDPOINT;
-    Delete(url +'/' + id)
-    fetchMembersData();
-  }
+  const [membersData, setMembersData] = useState([]);
+  const [open, setOpen] = useState(false);
+  const [selectedMember, setSelectedMember] = useState('');
   
+  
+  const deleteMember = async () => {
+    const res = await Delete(endpoint +'/' + selectedMember.id)
+    if(res.data.success){
+      fetchMembersData();
+      handleClose();
+    }
+  }
+
   const fetchMembersData = async () => {
-    const url = BASE_URL + ENDPOINT
-    const res = await Get (url + "?limit=20");
-    const { data } = res.data;
-    setMembersData(data)
+      const res = await Get (endpoint + "?limit=10");
+      const { data } = res.data;
+      setMembersData(data); 
   };
   
   useEffect(() => {
     fetchMembersData();
   }, []);
+
+
+  const handleClickOpen = (user) => {
+    setSelectedMember(user);
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setSelectedMember('');
+    setOpen(false);
+  };
   
 
 
   return (
-    <div className='members-table'>
-      <table >
+    <div className='members-table-container'>
+      <table className='members-table' >
         <thead>
-          <tr>
+          <tr className='members-table-header'>
               <th className='member-th'>Nombre</th>
               <th className='member-th'>Foto</th>
               <th className='member-th'>Opciones</th>
@@ -43,14 +59,14 @@ const MembersTable = () => {
         <tbody>
           {membersData.map( (member) =>{
               return(
-                  <tr key={member.id}>
+                  <tr key={member.id} className='member-row-data'>
                       <td className='member-text'>
                         {member.name}
                       </td>
 
                       <td className='member-text'>
                         <div className='member-container-img'>
-                          <img className='member-img' src={member.image}/>
+                          <img className='member-img' alt={`${member.name} avatar`} src={member.image}/>
                         </div>
                       </td>
 
@@ -63,7 +79,7 @@ const MembersTable = () => {
                       </td>
 
                       <td className='member-text'>
-                          <button onClick={() => deleteMember(member.id)} 
+                          <button onClick={() => handleClickOpen(member)} 
                                   className='secondary-backoffice-button'>
                             Borrar
                           </button>
@@ -73,9 +89,22 @@ const MembersTable = () => {
           })}
         </tbody>
       </table>
-      {/* <Stack spacing={2} className="pagination-stack">
-        <Pagination size="large" variant="outlined" count={10} color="primary" />
-      </Stack> */}
+      
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogContent id="alert-dialog-title">
+          <h2>¿Estas seguro de querer borrar al miembro {selectedMember.name} ?</h2>
+        </DialogContent>
+        <DialogActions>
+          <Button variant="contained" onClick={handleClose}>Cancelar</Button>
+          <Button variant="outlined" color="error" onClick={deleteMember}>Borrar</Button>
+        </DialogActions>
+      </Dialog>
+
     </div>
   )
 }

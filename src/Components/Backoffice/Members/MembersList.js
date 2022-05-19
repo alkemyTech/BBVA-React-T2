@@ -1,18 +1,18 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import './MembersScreen.css'
+import './MembersList.css'
 import MembersTable from './MembersTable'
 
-const MembersScreen = () => {
+const MembersList = () => {
   return (
-    <div className='main members-screen'>
-      <div className='container'>
+    <div className='members-screen'>
+      <div className='members-container'>
 
         <h1 className='title members-title'>Miembros</h1>
 
         <div className='members__upper-bar'>
           <Link to='/backoffice/members/create'>
-              <button className='primary-backoffice-button'>Crear nuevo miembro</button>
+              <button className='create-backoffice-button'>Crear nuevo miembro</button>
           </Link>
         </div>
         
@@ -23,4 +23,4 @@ const MembersScreen = () => {
   )
 }
 
-export default MembersScreen;
+export default MembersList;

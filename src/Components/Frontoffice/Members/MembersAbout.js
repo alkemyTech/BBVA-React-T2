@@ -36,6 +36,10 @@ function MembersAbout() {
             </div>
 
             <MembersList numberOfMembers={10}/>
+<<<<<<< HEAD
+=======
+
+>>>>>>> e01cde3e766e8027c58f12cbacf9261f7612b644
         </div>
      );
 }

@@ -1,7 +1,11 @@
-.members-table{
+.members-table-container{
   display: flex;
   align-items: center;
   flex-direction: column;
+}
+
+.members-table{
+  width:70%;
 }
 
 .member-th{
@@ -26,6 +30,17 @@
   font-size: 18px;
 }
 
-.pagination-stack {
-  color: white;
+
+@media (max-width: 768px){
+  .member-row-data {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 5rem;
+  }
+
+  .members-table-header{
+    display: none;
+  }
+
 }
