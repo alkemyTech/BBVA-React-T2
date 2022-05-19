@@ -20,9 +20,8 @@ const CategoriesForm = () => {
 
     const getCategory = async () => {
         if(id) {
-          const { data } = await Get(endpoint + `/${id}`);
-          const category = await data.data;
-          const { name, image, description } = category;
+          const response = await Get(endpoint + `/${id}`);
+          const { name, image, description } = response.data.data;
           setInitialValues((prevState) =>({...prevState, name, image, description }));
         }
     }
