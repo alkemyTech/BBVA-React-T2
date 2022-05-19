@@ -21,7 +21,7 @@ const TestimonialForm = () => {
     const getTestimonial = async () => {
         if(id) {
           const res = await Get(endpoint + `/${id}`);
-          const { name, image, description } = await res.data.data;
+          const { name, image, description } = res.data.data;
           setInitialValues((prevState) =>({...prevState, name, image, description }));
         }
       }
