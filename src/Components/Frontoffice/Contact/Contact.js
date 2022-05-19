@@ -37,7 +37,7 @@ const Contact = (props) => {
         })
       },
       (error) => {
-        Alert('Error', 'Hubo un error intentando mostrar el mapa. Permite la ubicación y vuelva a intentarlo.', 'error');
+        Alert('Tu ubicación no se mostrará', 'Si quieres que tu ubicación se visualice en el mapa, permitela y vuelva a intentarlo.', 'warning');
       },
       { 
         enableHighAccuracy: true //esta linea permite usar la ubicación del gps de los dispositivos para mayor precisión
