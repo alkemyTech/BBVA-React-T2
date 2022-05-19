@@ -28,6 +28,8 @@ import ActivitiesForm from './Components/Backoffice/Activities/ActivitiesForm';
 import ActivitiesBackOffice from './Components/Backoffice/Activities/ActivitiesBackOffice';
 
 import NewsList from "./Components/Backoffice/News/NewsList";
+import NewsForm from './Components/Backoffice/News/NewsForm';
+
 import SlidesForm from "./Components/Backoffice/Slides/SlidesForm";
 
 import CategoriesList from './Components/Backoffice/Categories/CategoriesList';
@@ -45,6 +47,12 @@ function App() {
     <>
       <BrowserRouter>
         <Switch>
+        
+                <Route exact path="/" component={Home} />
+                <Route path="/login" component={Login} />
+                <Route path="/signup" component={SignUp} />
+       
+
 
           <Route exact path="/backoffice/*">
             <BackofficeLayout>
@@ -69,7 +77,9 @@ function App() {
                 <Route path="/backoffice/slides/create" component={SlidesForm} />
                 <Route path="/backoffice/slides/edit/:id" component={SlidesForm} />
 
-                <Route path="/backoffice/news" component={NewsList} />
+                <Route exact path="/backoffice/news" component={NewsList} />
+                <Route path="/backoffice/news/create" component={NewsForm} />
+                <Route path="/backoffice/news/edit/:id" component={NewsForm} />
 
                 <Route exact path="/backoffice/members" component={MembersList} />
                 <Route path="/backoffice/members/create" component={MembersForm} />
@@ -85,9 +95,6 @@ function App() {
           <Route>
             <Layout>
               <Switch>
-                <Route path="/" exact component={Home} />
-                <Route path="/login" component={Login} />
-                <Route path="/signup" component={SignUp} />
                 <Route path="/about" component={About} />
                 <Route path="/contact" component={Contact} />
                 <Route path="/testimonials" component={Testimonials} />
@@ -97,7 +104,6 @@ function App() {
               </Switch>
             </Layout>
           </Route>
-
 
         </Switch>
       </BrowserRouter>
