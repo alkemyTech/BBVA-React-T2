@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { Redirect } from 'react-router-dom'
 import './OrganizationForm.css';
 import '../../../general-styles.css';
 //import { validateImageFormat } from '../../../Services/validatorsService'
@@ -15,11 +16,10 @@ const OrganizationForm = () => {
         logo: ''
     })
     const [errors, setErrors] = useState({})
-
+  
     const handleChange = (e) => {
         setInitialValues({...initialValues, [e.target.name]: e.target.value})
     }
-
     //chequeo si los campos estan completos o son vacios
     const isBlank = () => {
         let keys = Object.keys(initialValues);
@@ -74,6 +74,7 @@ const OrganizationForm = () => {
         alert('enviando formulario')
         //borrar la linea de arriba y hacer lo que correspond
     }
+
     return (
         <div className="main">
         <form className="organization-form-container" onSubmit={handleSubmit}>
