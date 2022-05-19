@@ -25,7 +25,7 @@ const MembersForm = () => {
   const getMember = async () => {
     if(id) {
       const response = await Get(path + `/${id}`);
-      const memberData = await response.data.data;
+      const memberData = response.data.data;
       setFormValues({...memberData});
     } else {
       throw new Error("El miembro no existe")
