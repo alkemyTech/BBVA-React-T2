@@ -4,6 +4,7 @@ import '../../../general-styles.css';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Delete, Get } from '../../../Services/privateApiService';
+import Alert from '../../Alerts/Alerts';
 
 import News from './News.js';
 
@@ -33,7 +34,7 @@ const NewsList = () => {
             await getNews();
             setNews(news.filter(news => news.id !== id));
         } catch (err) {
-            alert('error')
+            Alert("Something went wrong. Please try again", "There was an error loading the userList", "error");
         }
     }
 
