@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import  { Get }  from "../../../Services/publicApiService";
 import MembersAbout from "../Members/MembersAbout";
 import Spinner from "../../Spinner/Spinner";
+import Alert from "../../Alerts/Alerts";
 
 const About = () => {
 
@@ -10,9 +11,12 @@ const About = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const fetchData = async () => {
-    const res = await Get(process.env.REACT_APP_BASE_URL + process.env.REACT_APP_ORGANIZATION);
+    const res = await Get(process.env.REACT_APP_BASE_URL + process.env.REACT_APP_ORGANIZATION)
+    .catch( (erro)=>{
+      Alert('Error', 'Hubo un error en la llamada a la API', 'error');
+    });
     setText(res.data.data.long_description);
-    setIsLoading(false);
+    setTimeout(() => {setIsLoading(false)}, 800);
   };
 
   useEffect(() => {
@@ -21,7 +25,7 @@ const About = () => {
   
   return (
     <>
-      {isLoading ? (<Spinner/>) : (
+      {isLoading ? (<Spinner/>):(<></>)}
         <>
           <div className="container-about">
             <div className="section-container-about">
@@ -34,7 +38,6 @@ const About = () => {
           </div>
           <MembersAbout/>
         </>
-      )}
     </>
   );
 };
