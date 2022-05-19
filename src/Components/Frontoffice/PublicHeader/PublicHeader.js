@@ -30,7 +30,7 @@ const PublicHeader = () => {
            {getToken() ? (<div className="container-buttons-header"><button className="button-login-header" type="submit">Sign out</button></div>) : (
              <div className="container-buttons-header">
              <Link to='/login'><button className="button-login-header" type="submit">Log in</button></Link>
-             <Link to='/register'><button className="button-register-header" type="submit">Registrate</button></Link>
+             <Link to='/signup'><button className="button-register-header" type="submit">Registrate</button></Link>
           </div> 
            )}
            <nav className="navbar">
@@ -60,7 +60,7 @@ const PublicHeader = () => {
                 ) : (
                   <div>
                   <li className='list-container-header__li'><Link to='/login'><button className="button-login-header" type="submit">Log in</button></Link></li>
-                  <li className='list-container-header__li'><Link to='/register'><button className="button-register-header" type="submit">Registrate</button></Link></li>
+                  <li className='list-container-header__li'><Link to='/signup'><button className="button-register-header" type="submit">Registrate</button></Link></li>
                   </div>
                 )}
               </ul>
