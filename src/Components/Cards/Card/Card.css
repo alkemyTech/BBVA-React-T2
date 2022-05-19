@@ -29,3 +29,8 @@
     white-space: initial;
     overflow: hidden;
 }
+
+.card-name {
+    word-break: break-all;
+
+}
