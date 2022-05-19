@@ -28,7 +28,7 @@ const NewsList = () => {
 
     const getNews = async () => {
         try {
-            const res = await Get('endpoint');
+            const res = await Get(endpoint);
             setNews(res.data.data);
         } catch (err) {
             Alert("Something went wrong. Please try again", "There was an error loading the userList", "error");
@@ -47,8 +47,8 @@ const NewsList = () => {
                 <button type='button' className= 'create-backoffice-button button-create'>Crear nueva novedad</button>
             </Link>
         </div>
-        <div class='list-container'>
-            <h1 class='list-container__h1'>Lista de actividades</h1>
+        <div className='list-container'>
+            <h1 className='list-container__h1'>Lista de actividades</h1>
             <section className='list-container__section rows-container'> 
                 <p>Nombre</p>
                 <p>Imagen</p>

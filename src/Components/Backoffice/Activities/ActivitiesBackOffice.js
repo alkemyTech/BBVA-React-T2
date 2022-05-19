@@ -41,8 +41,8 @@ const ActivitiesBackOffice = () => {
                 <button type='button' className= 'create-backoffice-button button-create'>Crear nueva actividad</button>
             </Link>
         </div>
-        <div class='list-container'>
-            <h1 class='list-container__h1'>Lista de actividades</h1>
+        <div className='list-container'>
+            <h1 className='list-container__h1'>Lista de actividades</h1>
             <section className='list-container__section rows-container'> 
                 <p>Nombre</p>
                 <p>Imagen</p>

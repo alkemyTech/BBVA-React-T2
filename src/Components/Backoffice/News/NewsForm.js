@@ -3,9 +3,9 @@ import { useParams } from 'react-router-dom';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import {Get, Post, Put} from '../../../Services/privateApiService';
-import {validateImageFormat} from '../../../Services/validatorsService.js';
 import '../../FormStyles.css';
-import './NewsForm.css'
+import './NewsForm.css';
+import Alert from '../../Alerts/Alerts'
 
 const NewsForm = () => {
     const [initialValues, setInitialValues] = useState({
@@ -46,7 +46,7 @@ const NewsForm = () => {
 
     const handleChange = (e) => {
             setInitialValues({...initialValues, [e.target.name]: e.target.value})
-        }
+    }
     
     const handleImage = (element) => {
         if(!element||!element.currentTarget.files)
@@ -66,19 +66,33 @@ const NewsForm = () => {
             let str = initialValues[keys[i]];
             if (!str || /^\s*$/.test(str)) {
                 setErrors({[keys[i]]: 'El campo ' + keys[i] + ' no puede estar vacio'})
-                alert('Error: el campo ' + keys[i] + ' no puede estar vacio')
+                Alert('Error','Error: el campo ' + keys[i] + ' no puede estar vacio','error')
                 return true;
             }
         } 
         if (initialValues.content === "<p> </p>"){
             setErrors({'content': 'El campo contenido no puede estar vacio'})
-            alert('Error: el campo contenido no puede estar vacio')
+            Alert('Error','Error: el campo contenido no puede estar vacio','error')
             return true;
         }     
         if (initialValues.category_id === ""){
             setErrors({'category_id': 'Debe seleccionar una categoria'})
-            alert('Error: Debe seleccionar una categoria')
+            Alert('Error','Error: Debe seleccionar una categoria','error')
             return true;
+        }
+    }
+
+    function validateImageFormat() {
+
+        const isPng = initialValues.image.substring(11,14) === 'png' 
+                    || initialValues.image.substring(initialValues.image.length -3, initialValues.image.length) === 'png';
+        const isJpg = initialValues.image.substring(11,15) === 'jpeg' 
+                    || initialValues.image.substring(initialValues.image.length -4, initialValues.image.length) === 'jpeg';;
+    
+        if (isPng || isJpg) {
+          return true;
+        } else {
+            console.log('false')
         }
     }
 
@@ -87,19 +101,19 @@ const NewsForm = () => {
         if(isBlank()){
             return;
         }
-        if(!validateImageFormat(initialValues.image)){
+        if(!validateImageFormat(initialValues.image.result)){
             setErrors({'image': 'El fomato de la imagen no es valido. Solo se aceptan jpg y png'});
-            alert('El fomato de la image no es valido. Solo se aceptan jpg y png')
+            Alert('Error','El fomato de la image no es valido. Solo se aceptan jpg y png', 'error')
             return;
         }
         if(id){
             Put(url + '/' + id, initialValues);
-            alert("Actividad " + id + "actualizada exitosamente");
+            Alert('Exito',"Actividad " + id + "actualizada exitosamente", 'success');
         }
         //caso create
         else{
             Post(url, initialValues);
-            alert("Actividad creada satisfactoriamente");
+            Alert('Exito',"Actividad creada satisfactoriamente",'success');
         }
     }
 
@@ -119,7 +133,7 @@ const NewsForm = () => {
                         setInitialValues((prevState)=>({...prevState, content: data}));
                     } }
                 />
-            <select className="select-field " name="category" value={initialValues.category_id || ''} onChange={handleChange}>
+            <select className="select-field " name="category" value={initialValues.category_id || ''} onChange={e => setInitialValues({...initialValues, category_id: e.target.value})}>
                 <option value="" disabled>Select category</option>
                 {categories.map( (category) => {
                     const {id, description} = category;
