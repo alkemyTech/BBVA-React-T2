@@ -53,13 +53,13 @@ const SignUp = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        console.log(values.username, values.email, values.password);
 
         const registerUser = {
-            name: values.name,
-            email: values.email,
-            password: values.password
+            name: values.username.toString(),
+            email: values.email.toString(),
+            password: values.password.toString()
         }
-
         Post(process.env.REACT_APP_BASE_URL + '/register', registerUser);
     }
 

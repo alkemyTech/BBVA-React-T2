@@ -11,14 +11,15 @@ const Login = () => {
   const [token, setToken] = useState();
   let history = useHistory();
 
-  const BASE_URL = process.env.REACT_APP_BASE_URL;
+  const BASE_URL = process.env.REACT_APP_BASE_URL + '/login';
 
   function handleSubmit(user, {resetForm}) {
     
       setLogin(BASE_URL, user)
         .then((res) => {
-          setToken(res.data.token);
-          localStorage.setItem("token", res.data.token);
+          console.log(res)
+          setToken(res.data.data.token);
+          localStorage.setItem("token", res.data.data.token);
         })
         .catch((err) => {})
         .finally(() => {});
