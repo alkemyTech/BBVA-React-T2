@@ -13,6 +13,7 @@ const NewsForm = () => {
         content: '',
         category_id: ''
     });
+    const [errors, setErrors] = useState();
 
     const { id } = useParams();
     const url = process.env.REACT_APP_BASE_URL + process.env.REACT_APP_NEWS;
@@ -53,8 +54,33 @@ const NewsForm = () => {
 
     }
 
+    const isBlank = () => {
+        let keys = Object.keys(initialValues);
+        for (let i = 0; i < keys.length-2; i++) {
+            let str = initialValues[keys[i]];
+            if (!str || /^\s*$/.test(str)) {
+                setErrors({[keys[i]]: 'El campo ' + keys[i] + ' no puede estar vacio'})
+                alert('Error: el campo ' + keys[i] + ' no puede estar vacio')
+                return true;
+            }
+        } 
+        if (initialValues.content === "<p> </p>"){
+            setErrors({'content': 'El campo contenido no puede estar vacio'})
+            alert('Error: el campo contenido no puede estar vacio')
+            return true;
+        }     
+        if (initialValues.category_id === ""){
+            setErrors({'category_id': 'Debe seleccionar una categoria'})
+            alert('Error: Debe seleccionar una categoria')
+            return true;
+        }
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
+        if(isBlank()){
+            return;
+        }
         console.log(initialValues);
     }
 
