@@ -13,7 +13,7 @@ const Login = () => {
 
   const BASE_URL = process.env.REACT_APP_BASE_URL + '/login';
 
-  function handleSubmit(user, {resetForm}) {
+  async function handleSubmit(user, {resetForm}) {
     
       setLogin(BASE_URL, user)
         .then((res) => {
@@ -24,7 +24,9 @@ const Login = () => {
       resetForm();
       setSubmittedForm(true);
       setTimeout(() => setSubmittedForm(false), 5000);
+      
   }
+
 
   return (
     <>
