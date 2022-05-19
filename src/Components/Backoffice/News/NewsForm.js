@@ -1,4 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+//Espacio para el ckeditor
+
+import {Get, Post, Put} from '../../../Services/privateApiService';
+import {validateImageFormat} from '../../../Services/validatorsService.js';
 import '../../FormStyles.css';
 
 const NewsForm = () => {
