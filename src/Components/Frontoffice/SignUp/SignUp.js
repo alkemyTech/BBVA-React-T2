@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 // Components
 import FormInput from './FormInput';
+import Alert from '../../Alerts/Alerts'
 // CSS
 import '../../../general-styles.css'
 import './SignUp.css';
@@ -10,6 +11,12 @@ import './SignUp.css';
 import signUpImg from '../Login/imagenONG.jpeg'
 // Services
 import { Post } from '../../../Services/publicApiService'
+// Términos y condiciones
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
+import { Document, Page } from 'react-pdf/dist/esm/entry.webpack'
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 const SignUp = () => {
 
@@ -19,6 +26,8 @@ const SignUp = () => {
         password: "",
         confirmPassword: ""
     });
+
+    const [check, setCheck] = useState(false)
 
     const inputs = [
         {
@@ -51,16 +60,27 @@ const SignUp = () => {
         }
     ];
 
+    const [numPages, setNumPages] = useState(null);
+    const [pageNumber, setPageNumber] = useState(1);
+
+    function onDocumentLoadSuccess({ numPages }) {
+        setNumPages(numPages);
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
 
         const registerUser = {
-            name: values.name,
-            email: values.email,
-            password: values.password
+            name: values.username.toString(),
+            email: values.email.toString(),
+            password: values.password.toString()
         }
 
-        Post(process.env.REACT_APP_BASE_URL + '/register', registerUser);
+        if(check){
+            Post(process.env.REACT_APP_BASE_URL + '/register', registerUser);
+        } else {
+            Alert('Error', 'Debe aceptar los términos y condiciones', 'warning')
+        }
     }
 
     const onChange = (e) => {
@@ -68,11 +88,37 @@ const SignUp = () => {
         setValues({ ...values, [name]: value });
     };
 
+    const checkTheBox = () => {
+        setCheck(!check)
+    }
+
+    const previousPage = () => {
+        if(pageNumber > 1) {
+            setPageNumber(pageNumber - 1)
+        }
+    }
+
+    const nextPage = () => {
+        if(pageNumber < numPages) {
+            setPageNumber(pageNumber + 1)
+        }
+    }
+
     return (
         <>
             <div className="form-container-signup">
                 <img className="logo-signup" src='./logo.svg' alt="logo-ONG" />
-
+                <span><input type="checkbox" onClick={checkTheBox}/>He leído y acepto 
+                    <Popup trigger={<a className='tyc-link'> los términos y condiciones</a>} position="top center">
+                        <div><ArrowBackIosIcon onClick={previousPage} className='page-button'></ArrowBackIosIcon><ArrowForwardIosIcon onClick={nextPage} className='page-button'></ArrowForwardIosIcon></div>
+                        <p>
+                            Page {pageNumber} of {numPages}
+                        </p>
+                        <Document file="tyc.pdf" onLoadSuccess={onDocumentLoadSuccess}>
+                            <Page pageNumber={pageNumber} />
+                        </Document>
+                    </Popup>
+                    </span>
                 <form onSubmit={handleSubmit}>
                     {inputs.map((input, index) => (
                         <FormInput
