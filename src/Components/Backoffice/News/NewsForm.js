@@ -14,6 +14,7 @@ const NewsForm = () => {
         category_id: ''
     });
     const [errors, setErrors] = useState();
+    const [loading, setLoading] = useState();
 
     const { id } = useParams();
     const url = process.env.REACT_APP_BASE_URL + process.env.REACT_APP_NEWS;
@@ -25,11 +26,13 @@ const NewsForm = () => {
             setInitialValues({
                 name, image, content, category_id
             })
+            setLoading(false);
         }
     };
      
     // Estimado para obtener la data de edicion 
     useEffect ( () => {
+        setLoading(true);
         fetchData()
     }, []);
 
