@@ -12,6 +12,7 @@ import Login from './Components/Frontoffice/Login/Login'
 import Testimonials from './Components/Frontoffice/Testimonials/Testimonials'
 import Donations from './Components/Frontoffice/Donations/Donation';
 import Thanks from './Components/Frontoffice/Donations/Thanks';
+import Activities from './Components/Frontoffice/Activities/Activities'
 
 //Backoffice
 import BackofficeLayout from "./Components/Layout/BackofficeLayout";
@@ -83,6 +84,7 @@ function App() {
                 <Route path="/testimonials" component={Testimonials} />
                 <Route path="/donar" component={Donations} />
                 <Route path="/gracias" component={Thanks} />
+                <Route path="/activities" component={Activities} />
               </Switch>
             </Layout>
           </Route>
