@@ -2,8 +2,24 @@ import { Link } from 'react-router-dom'
 
 import '../PublicHeader/PublicHeaderStyles.css'
 import getToken from '../../../Services/getToken'
+import { getIsAdmin } from '../../Backoffice/RoutesSecurity/RoutesSecurity'
+import { useState, useEffect } from 'react'
 
 const PublicHeader = () => {
+
+
+  const checkIsAdmin = async () => {
+    const response = await getIsAdmin();
+    return response;
+  }
+
+  const [isAdmin, setIsAdmin] = useState(false);
+  
+  useEffect(() => {
+    if(checkIsAdmin()) {
+      setIsAdmin(true)
+    }
+  }, [])
 
     return (
         <header className="header-container">
@@ -23,7 +39,7 @@ const PublicHeader = () => {
                 <li className='list-container-header__li'><Link to='/about-us' className='link-public-header'>Nosotros</Link></li>
                 <li className='list-container-header__li'><Link to='/news' className='link-public-header'>Novedades</Link></li>
                 <li className='list-container-header__li'><Link to='/testimonials' className='link-public-header'>Testimonios</Link></li>
-                <li className='list-container-header__li'><Link to='/contact' className='link-public-header'>Contacto</Link></li>
+                {isAdmin || <li className='list-container-header__li'><Link to='/contact' className='link-public-header'>Contacto</Link></li>}
                 <li className='list-container-header__li'><Link to='/contributes' className='link-public-header'>Contribuye</Link></li>
              </ul>
            </div>
