@@ -11,11 +11,13 @@ const About = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const fetchData = async () => {
-    const res = await Get(process.env.REACT_APP_BASE_URL + process.env.REACT_APP_ORGANIZATION)
-    .catch( (erro)=>{
+    await Get(process.env.REACT_APP_BASE_URL + process.env.REACT_APP_ORGANIZATION).then(
+      (res) => {
+        setText(res.data.data.long_description);
+      }
+    ).catch( (erro)=>{
       Alert('Error', 'Hubo un error en la llamada a la API', 'error');
     });
-    setText(res.data.data.long_description);
     setTimeout(() => {setIsLoading(false)}, 800);
   };
 
@@ -25,7 +27,7 @@ const About = () => {
   
   return (
     <>
-      {isLoading ? (<Spinner/>):(<></>)}
+      {isLoading ? (<Spinner/>):(
         <>
           <div className="container-about">
             <div className="section-container-about">
@@ -38,6 +40,7 @@ const About = () => {
           </div>
           <MembersAbout/>
         </>
+      )}
     </>
   );
 };
