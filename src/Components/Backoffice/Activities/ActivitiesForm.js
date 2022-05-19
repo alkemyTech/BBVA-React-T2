@@ -83,7 +83,7 @@ const ActivitiesForm = () => {
         }
         if(!validateImageFormat(initialValues.image)){
             setErrors({'image': 'El fomato de la imagen no es valido. Solo se aceptan jpg y png'});
-            Alert('Error', 'El fomato de la image no es valido. Solo se aceptan jpg y png' 'error')
+            Alert('Error', 'El fomato de la image no es valido. Solo se aceptan jpg y png', 'error')
             return;
         }
 
