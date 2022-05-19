@@ -24,3 +24,25 @@
   border: 1px solid #c1c1c1;
   background-color: aliceblue;
 }
+
+.testimonial-form-container-img {
+  width: 100px;
+  height: 100px;
+}
+.testimonial-form__img {
+  border-radius: 10%;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.testimonial-image-selection-section{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem 0;
+}
+
+.placeholder {
+  background-color: white;
+}

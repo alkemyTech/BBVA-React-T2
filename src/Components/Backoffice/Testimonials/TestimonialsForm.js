@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 import './TestimonialsForm.css';
 import { Get, Put, Post } from '../../../Services/privateApiService';
 import { validateHasContent, validateImageFormat, validateLength } from '../../../Services/validatorsService';
+import placeholder from '../../../assets/placeholder-image.png'
+import Alert from '../../Alerts/Alerts';
 
 const endpoint = process.env.REACT_APP_BASE_URL +  process.env.REACT_APP_TESTIMONIALS;
 
@@ -20,8 +22,8 @@ const TestimonialForm = () => {
         if(id) {
           const { data } = await Get(endpoint + `/${id}`);
           const testimonial = await data.data;
-          console.log(testimonial)
-        //   setInitialValues({...testimonial});
+          const { name, image, description } = testimonial;
+          setInitialValues((prevState) =>({...prevState, name, image, description }));
         }
       }
 
@@ -44,15 +46,6 @@ const TestimonialForm = () => {
         }
         reader.readAsDataURL(file);    
       }
-
-      
-    // const handleChange = (e) => {
-    //     if(e.target.name === 'name'){
-    //         setInitialValues({...initialValues, name: e.target.value})
-    //     } if(e.target.name === 'description'){
-    //         setInitialValues({...initialValues, description: e.target.value})
-    //     }
-    // }
 
     
       const handleChange = (e) => {
@@ -82,21 +75,37 @@ const TestimonialForm = () => {
       const handleSubmit = async (e) => {
         e.preventDefault();
         if(validateForm()) {
-          let response;
-            id 
-            ? response = await Put(endpoint + `/${id}`, initialValues)
-            : response = await Post(endpoint, initialValues);
-            return await response;       
-      }
+          const response=  id ? await Put(endpoint + `/${id}`, initialValues) : await Post(endpoint, initialValues);  
+          const { data } = await response; 
+
+          Alert("Exito", data.message, "success")  
+        }
     }
 
     return (
     <div className='testimonial-form-container'>  
         <form className="testimonial-form" onSubmit={handleSubmit}>
             <h1 className='testimonial-form__title'>{ id? "Actualizar un Testimonio" : "Crear nuevo Testimonio"}</h1>
-            <input className="testimonial-form__input-field" type="text" name="name" value={initialValues.name} onChange={handleChange} placeholder="Testimonial Title" required></input>
-            <input className="testimonial-form__input-field" type="text" name="description" value={initialValues.description} onChange={handleChange} placeholder="Testimonial description" required></input>
-            <input className="testimonial-form__input-field" type="file" accept=".jpg, .png" name="image" onChange={handleChange} required></input>
+            
+            <input className="testimonial-form__input-field" type="text" name="name" value={initialValues.name} onChange={handleChange} placeholder="Testimonial Title" required/>
+            <textarea className="testimonial-form__input-field" name="description" value={initialValues.description} onChange={handleChange} placeholder="Testimonial description" required/>
+            
+            <div className='testimonial-image-selection-section'>
+              
+              {initialValues.image? (
+                  <div className='testimonial-form-container-img'>
+                    <img className='testimonial-form__img' src={initialValues.image} alt={`${initialValues.name} testimonial`}/>
+                  </div>
+                ) : (
+                  <div className='testimonial-form-container-img'>
+                    <img className='testimonial-form__img placeholder' src={placeholder} alt="placeholder"/>
+                  </div>
+                )
+              }
+
+              <input className="testimonial-form__input-field" type="file" accept=".jpg, .png" name="image" onChange={handleChange} required/>
+            </div>
+
             <button className="create-backoffice-button" type="submit">{(id ? 'Actualizar':'Crear') + ' Testimonio'}</button>
         </form>
     </div>

@@ -12,19 +12,20 @@ const endpoint = process.env.REACT_APP_BASE_URL + process.env.REACT_APP_TESTIMON
 const TestimonialsTable = () => {
   const [testimonialsData, setTestimonialsData] = useState([]);
   const [open, setOpen] = useState(false);
-  const [selectedMember, setSelectedMember] = useState('');
+  const [selectedTestimonial, setSelectedTestimonial] = useState('');
 
   
 
   const deleteTestimonial = async () => {
-    const res = await Delete(endpoint +'/' + selectedMember.id)
+    const res = await Delete(endpoint +'/' + selectedTestimonial.id)
     if(res.data.success){
       fetchTestimonialsData();
+      handleClose();
     }
   }
 
   const fetchTestimonialsData = async () => {
-      const res = await Get (endpoint + "?limit=20");
+      const res = await Get (endpoint + "?");
       const { data } = res.data;
       setTestimonialsData(data); 
   };
@@ -34,12 +35,12 @@ const TestimonialsTable = () => {
   }, []);
 
   const handleClickOpen = (user) => {
-    setSelectedMember(user);
+    setSelectedTestimonial(user);
     setOpen(true);
   };
 
   const handleClose = () => {
-    setSelectedMember('');
+    setSelectedTestimonial('');
     setOpen(false);
   };
 
@@ -99,7 +100,7 @@ const TestimonialsTable = () => {
           aria-describedby="alert-dialog-description"
         >
           <DialogContent id="alert-dialog-title">
-            <h2>¿Estas seguro de querer borrar al miembro {selectedMember.name} ?</h2>
+            <h2>¿Estas seguro de querer borrar el testimonio de {selectedTestimonial.name} ?</h2>
           </DialogContent>
           <DialogActions>
             <Button variant="contained" onClick={handleClose}>Cancelar</Button>
