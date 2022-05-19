@@ -10,7 +10,7 @@ export function validateImageFormat(imageUrl = '') {
 }
 
 export function validateHasContent(field = '') {
-    const fieldWithoutSpaces = field.trim();
+    const fieldWithoutSpaces = String(field).trim();
     return fieldWithoutSpaces.length > 0 ?  true : false;
 }
 
