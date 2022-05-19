@@ -47,7 +47,7 @@ const NewsForm = () => {
     const handleChange = (e) => {
             setInitialValues({...initialValues, [e.target.name]: e.target.value})
         }
-    }
+    
     const handleImage = (element) => {
         if(!element||!element.currentTarget.files)
             return;
