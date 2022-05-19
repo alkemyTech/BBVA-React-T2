@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 
 import '../PublicHeader/PublicHeaderStyles.css'
 import getToken from '../../../Services/getToken'
+import logout from '../../../Services/logout'
 
 const PublicHeader = () => {
 
@@ -27,7 +28,7 @@ const PublicHeader = () => {
                 <li className='list-container-header__li'><Link to='/contributes' className='link-public-header'>Contribuye</Link></li>
              </ul>
            </div>
-           {getToken() ? (<div className="container-buttons-header"><button className="button-login-header" type="submit">Sign out</button></div>) : (
+           {getToken() ? (<div className="container-buttons-header"><button className="button-login-header" type="submit" onClick={logout}>Sign out</button></div>) : (
              <div className="container-buttons-header">
              <Link to='/login'><button className="button-login-header" type="submit">Log in</button></Link>
              <Link to='/signup'><button className="button-register-header" type="submit">Registrate</button></Link>
@@ -56,7 +57,7 @@ const PublicHeader = () => {
                 <li className='list-container-header__li'><Link to='/contact' className='link-public-header'>Contacto</Link></li>
                 <li className='list-container-header__li'><Link to='/contributes' className='link-public-header'>Contribuye</Link></li>
                 {getToken() ? (
-                  <li className='list-container-header__li'><button className="button-login-header" type="submit">Sign out</button></li>
+                  <li className='list-container-header__li'><button className="button-login-header" type="submit" onClick={logout}>Sign out</button></li>
                 ) : (
                   <div>
                   <li className='list-container-header__li'><Link to='/login'><button className="button-login-header" type="submit">Log in</button></Link></li>
