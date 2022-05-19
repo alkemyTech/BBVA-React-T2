@@ -28,7 +28,6 @@ const Donation = (props) => {
             console.log(initialValues[keys[i]])
             let str = initialValues[keys[i]];
             if (!str || /^\s*$/.test(str)) {
-                Alert('Error', 'Debes completar todos los campos', 'error');
                 return true;
             }
         }     
@@ -37,20 +36,17 @@ const Donation = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if(isBlank()) {
-            return;
+            return Alert('Error', 'Debes completar todos los campos', 'error');
         }
         //tarjeta de prueba 4111111111111111
         if (!validCardNumber(initialValues.creditNumber)) {
-            Alert('Error', 'el numero de la tarjeta es invalido', 'error')
-            return;
+            return Alert('Error', 'el numero de la tarjeta es invalido', 'error');
         }
         if (!validCodeLength(initialValues.securityCode)) {
-            Alert('Error', 'El codigo de seguridad es invalido', 'error')
-            return;
+            return Alert('Error', 'El codigo de seguridad es invalido', 'error');
         }
         if (!validAmount(initialValues.amount)) {
-            Alert('Error' , 'No puedes ingresar un valor menor a 0', 'error')
-            return;
+            return Alert('Error' , 'No puedes ingresar un valor menor a 0', 'error');
         }
         history.push({
             pathname: '/gracias',
