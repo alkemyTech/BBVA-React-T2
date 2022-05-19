@@ -1,4 +1,4 @@
-import './ActivitiesFrontofficeStyles.css'
+import './ActivitiesStyles.css'
 
 import { Link } from 'react-router-dom';
 

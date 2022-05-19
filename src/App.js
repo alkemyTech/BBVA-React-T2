@@ -8,7 +8,7 @@ import About from "./Components/Frontoffice/About/About";
 import Contact from "./Components/Frontoffice/Contact/Contact";
 import SignUp from "./Components/Frontoffice/SignUp/SignUp";
 import Login from './Components/Frontoffice/Login/Login'
-import ActivitiesFrontoffice from './Components/Frontoffice/ActivitiesFrontoffice/Activities'
+import Activities from './Components/Frontoffice/Activities/Activities'
 //Backoffice
 import BackofficeLayout from "./Components/Layout/BackofficeLayout";
 import UserList from "./Components/Backoffice/Users/UserList";
@@ -53,7 +53,7 @@ function App() {
                 <Route path="/about" component={About} />
                 <Route path="/contact" component={Contact} />
                 <Route path="/login" component={Login} />
-                <Route path="/activities" component={ActivitiesFrontoffice} />
+                <Route path="/activities" component={Activities} />
               </Switch>
             </Layout>
           </Route>
