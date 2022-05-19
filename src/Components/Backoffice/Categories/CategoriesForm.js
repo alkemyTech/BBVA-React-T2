@@ -72,11 +72,11 @@ const CategoriesForm = () => {
         e.preventDefault();
         if(validateForm()) {
             const response=  id ? await Put(endpoint + `/${id}`, initialValues) : await Post(endpoint, initialValues);  
-            const { data } = await response; 
+            const { data } = response; 
+            console.log(response)
             if(data){
                 Alert("Exito", data.message, "success")  
             }else {
-                console.log(response)
                 Alert("Algo salió mal", response.message , "error")
             }
                
