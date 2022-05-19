@@ -110,7 +110,7 @@ const SignUp = () => {
                 <img className="logo-signup" src='./logo.svg' alt="logo-ONG" />
                 <span><input type="checkbox" onClick={checkTheBox}/>He leído y acepto 
                     <Popup trigger={<a className='tyc-link'> los términos y condiciones</a>} position="top center">
-                        <div><ArrowBackIosIcon onClick={previousPage} className='page-button'>Anterior</ArrowBackIosIcon><ArrowForwardIosIcon onClick={nextPage} className='page-button'>Siguiente</ArrowForwardIosIcon></div>
+                        <div><ArrowBackIosIcon onClick={previousPage} className='page-button'></ArrowBackIosIcon><ArrowForwardIosIcon onClick={nextPage} className='page-button'></ArrowForwardIosIcon></div>
                         <p>
                             Page {pageNumber} of {numPages}
                         </p>
