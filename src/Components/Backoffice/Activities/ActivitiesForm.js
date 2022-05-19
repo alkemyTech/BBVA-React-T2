@@ -51,13 +51,13 @@ const ActivitiesForm = () => {
             let str = initialValues[keys[i]];
             if (!str || /^\s*$/.test(str)) {
                 setErrors({[keys[i]]: 'El campo ' + keys[i] + ' no puede estar vacio'})
-                alert('Error: el campo ' + keys[i] + ' no puede estar vacio')
+                Alert('Error', 'Error: el campo ' + keys[i] + ' no puede estar vacio', 'error')
                 return true;
             }
         } 
         if (initialValues.description === "<p> </p>"){
             setErrors({'descripcion': 'El campo descripcion no puede estar vacio'})
-            alert('Error: el campo descripcion no puede estar vacio')
+            Alert('Error', 'Error: el campo descripcion no puede estar vacio', 'error')
             return true;
         }     
     }
@@ -83,14 +83,14 @@ const ActivitiesForm = () => {
         }
         if(!validateImageFormat(initialValues.image)){
             setErrors({'image': 'El fomato de la imagen no es valido. Solo se aceptan jpg y png'});
-            alert('El fomato de la image no es valido. Solo se aceptan jpg y png')
+            Alert('Error', 'El fomato de la image no es valido. Solo se aceptan jpg y png' 'error')
             return;
         }
 
         //caso edit
         if(id){
             Put(url + '/' + id, initialValues);
-            alert("Actividad " + id + "actualizada exitosamente");
+            Alert('Exito', "Actividad " + id + "actualizada exitosamente", 'success');
         }
         //caso create
         else{
