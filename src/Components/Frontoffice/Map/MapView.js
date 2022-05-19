@@ -4,6 +4,7 @@ import { Get } from '../../../Services/privateApiService';
 import {MapContainer, TileLayer, Marker} from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import './MapView.css';
+import { IconLocation } from './IconLocation.js';
 
 const MapView = () => {
     const endpoint = process.env.REACT_APP_BASE_URL + process.env.REACT_APP_ORGANIZATION;
@@ -23,7 +24,9 @@ const MapView = () => {
             <TileLayer url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
                 attribution= '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' 
             />
-            <Marker position={{lat: '-34.6259387', lng: '-58.4535433'}} />
+            <Marker position={{lat: '-34.6259387', lng: '-58.4535433'}} 
+               icon={IconLocation} 
+            />
         </MapContainer>
     )
 }
