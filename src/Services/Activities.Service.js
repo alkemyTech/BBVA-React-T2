@@ -3,14 +3,6 @@ import getCurrentDate from "../Utils/getCurrentDate";
 
 const url = process.env.REACT_APP_BASE_URL + process.env.REACT_APP_ACTIVITIES;
 
-export function createActivity(activityBasics){
-    //La funcion devuelve un objeto con los campos de "Actividad"
-    //Params:
-    //activityBasics: espera un objeto con los campos basicos de la actividad.
-    
-    return {...activityBasics, created_at: '', user_id: 0, updated_at: '', deleted_at: '', slug: ''};
-};
-
 export async function updateActivity(id, updatedActivityFields){
     //La funcion devuelve objeto "Actividad" con la actividad del
     //  id actualizada con los campos recibidos

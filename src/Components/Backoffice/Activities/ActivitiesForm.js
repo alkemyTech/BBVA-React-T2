@@ -79,7 +79,7 @@ const ActivitiesForm = () => {
         }
         //caso create
         else{
-            Post(url, createActivity(initialValues));
+            Post(url, initialValues);
             alert("Actividad creada satisfactoriamente");
         }
 }
