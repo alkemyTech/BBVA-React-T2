@@ -10,7 +10,7 @@ const NewsForm = () => {
     const [initialValues, setInitialValues] = useState({
         name: '',
         image: '',
-        content: '',
+        content: '<p> </p>',
         category_id: ''
     });
     const [errors, setErrors] = useState();
