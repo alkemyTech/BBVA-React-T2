@@ -1,5 +1,4 @@
 import './ActivitiesStyles.css'
-
 import { Link } from 'react-router-dom';
 
 const Activity = ({ id, name, image }) => {
