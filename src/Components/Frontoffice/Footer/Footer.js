@@ -46,6 +46,7 @@ const Footer = () => {
                 <li className='list-container__li'><Link to='/testimonials' className='link-public-header'>Testimonios</Link></li>
                 <li className='list-container__li'><Link to='/contact' className='link-public-header'>Contacto</Link></li>
                 <li className='list-container__li'><Link to='/donar' className='link-public-header'>Contribuye</Link></li>
+                <li className='list-container__li'><Link to='/activities' className='link-public-header'>Actividades</Link></li>
              </ul>
             <hr className="footer-container__hr"/>
             <div className='socialmedia-container'>

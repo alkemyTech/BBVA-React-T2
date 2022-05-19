@@ -2,8 +2,18 @@ import { Link } from 'react-router-dom'
 
 import '../PublicHeader/PublicHeaderStyles.css'
 import getToken from '../../../Services/getToken'
+import { getIsAdmin } from '../../Backoffice/RoutesSecurity/RoutesSecurity'
+import { useState, useEffect } from 'react'
 
 const PublicHeader = () => {
+
+  const [isAdmin, setIsAdmin] = useState(false);
+  
+  useEffect(() => {
+    if(getIsAdmin()) {
+      setIsAdmin(true)
+    }
+  }, [])
 
     return (
         <header className="header-container">
@@ -23,8 +33,9 @@ const PublicHeader = () => {
                 <li className='list-container-header__li'><Link to='/about' className='link-public-header'>Nosotros</Link></li>
                 <li className='list-container-header__li'><Link to='/news' className='link-public-header'>Novedades</Link></li>
                 <li className='list-container-header__li'><Link to='/testimonials' className='link-public-header'>Testimonios</Link></li>
-                <li className='list-container-header__li'><Link to='/contact' className='link-public-header'>Contacto</Link></li>
+                {isAdmin || <li className='list-container-header__li'><Link to='/contact' className='link-public-header'>Contacto</Link></li>}
                 <li className='list-container-header__li'><Link to='/donar' className='link-public-header'>Contribuye</Link></li>
+                <li className='list-container-header__li'><Link to='/activities' className='link-public-header'>Actividades</Link></li>
              </ul>
            </div>
            {getToken() ? (<div className="container-buttons-header"><button className="button-login-header" type="submit">Sign out</button></div>) : (
@@ -55,6 +66,7 @@ const PublicHeader = () => {
                 <li className='list-container-header__li'><Link to='/testimonials' className='link-public-header'>Testimonios</Link></li>
                 <li className='list-container-header__li'><Link to='/contact' className='link-public-header'>Contacto</Link></li>
                 <li className='list-container-header__li'><Link to='/donar' className='link-public-header'>Contribuye</Link></li>
+                <li className='list-container-header__li'><Link to='/activities' className='link-public-header'>Actividades</Link></li>
                 {getToken() ? (
                   <li className='list-container-header__li'><button className="button-login-header" type="submit">Sign out</button></li>
                 ) : (
