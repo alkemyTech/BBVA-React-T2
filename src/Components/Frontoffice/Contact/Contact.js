@@ -8,6 +8,7 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 
 import MapView from '../Map/MapView'
+import Alert from '../../Alerts/Alerts';
 
 const Contact = (props) => {
   const { 
@@ -26,14 +27,14 @@ const Contact = (props) => {
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
-      function (position){
+      (position) => {
         setCoordinates({
           longitude: position.coords.longitude,
           latitude: position.coords.latitude
         })
       },
-      function(error){
-        console.log(error)
+      (error) => {
+        Alert('Error', 'Hubo un error intentando mostrar el mapa. Permite la ubicación y vuelva a intentarlo.', 'error');
       },
       { 
         enableHighAccuracy: true
@@ -42,7 +43,6 @@ const Contact = (props) => {
 
   return (
     <div className='contact-container'>
-      <MapView coordinates={coordinates} /> 
       <div className='contribuir-section'>
         <h1 className='contact-title'>¿Queres contribuir?</h1>
 
@@ -85,7 +85,8 @@ const Contact = (props) => {
       <h2 className='contact-title' >Puedes dejarnos tu consulta:</h2>
      
       <ContactForm/>
-
+      <h3 className='contact-title'>Visitanos! Queremos conocerte</h3>
+      <MapView coordinates={coordinates} /> 
     </div>
   )
 }
