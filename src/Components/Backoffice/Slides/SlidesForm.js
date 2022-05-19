@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Get } from '../../../Services/privateApiService';
 import { Post } from '../../../Services/publicApiService';
-import axios from 'axios'
-import './SlidesForm.css'
+import axios from 'axios';
+import './SlidesForm.css';
+import Alert from '../../Alerts/Alerts';
+
 
 const SlidesForm = () => {
 
@@ -65,6 +67,7 @@ const SlidesForm = () => {
                 try{
                     axios.put(endpoint + '/' + id, body, {});
                     setError('')
+                    Alert('Exito', 'Slide editada con exito', 'success');
                 } 
                 catch(err){
                     setError(err)
@@ -73,6 +76,7 @@ const SlidesForm = () => {
                 try{
                     Post(endpoint, body)
                     setError('')
+                    Alert('Exito', 'Slide creada con exito', 'success');
                 } 
                 catch(err){
                     setError(err)
@@ -96,18 +100,18 @@ const SlidesForm = () => {
 
     function validateImageFormat() {
 
-            const isPng = initialValues.image.substring(11,14) === 'png' 
-                        || initialValues.image.substring(initialValues.image.length -3, initialValues.image.length) === 'png';
-            const isJpg = initialValues.image.substring(11,15) === 'jpeg' 
-                        || initialValues.image.substring(initialValues.image.length -4, initialValues.image.length) === 'jpeg';;
-        
-            if (isPng || isJpg) {
-              return true;
-            } else {
-              setError('Archivo inválido')
-              return false;
-            }
-      }
+        const isPng = initialValues.image.substring(11,14) === 'png' 
+                    || initialValues.image.substring(initialValues.image.length -3, initialValues.image.length) === 'png';
+        const isJpg = initialValues.image.substring(11,15) === 'jpeg' 
+                    || initialValues.image.substring(initialValues.image.length -4, initialValues.image.length) === 'jpeg';;
+    
+        if (isPng || isJpg) {
+            return true;
+        } else {
+            setError('Archivo inválido')
+            return false;
+        }
+    }
 
     return (
         <div className='main'>

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import './Contact.css'
 import ContactForm from './ContactForm'
@@ -10,13 +10,17 @@ import { getIsAdmin } from '../../Backoffice/RoutesSecurity/RoutesSecurity'
 
 
 const Contact = (props) => {
-
   const history = useHistory();
 
-  useEffect(() => {
-    if(getIsAdmin()) {
+  const checkIsAdmin = async () => {
+    let response = await getIsAdmin();
+    if (response === 'true') {
       history.push("/backoffice/dashboard")
     }
+  }
+
+  useEffect(() => {
+    checkIsAdmin();
   }, [])
 
   const { 

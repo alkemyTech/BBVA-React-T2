@@ -1,10 +1,8 @@
 .header-backoffice-container {
     padding: 10px;
     background-color: #1f2333;
-}
-
-.header-backoffice-container>svg[data-testid="MenuIcon"] {
-    visibility: hidden;
+    display: flex;
+    justify-content: space-between;
 }
 
 @media only screen and (max-width: 600px) {
@@ -13,10 +11,5 @@
         justify-content: space-between;
         align-items: center;
         padding: 10px 0 10px 10px;
-    }
-
-    .header-backoffice-container>svg[data-testid="MenuIcon"] {
-        visibility: visible;
-        color:aliceblue
     }
 }

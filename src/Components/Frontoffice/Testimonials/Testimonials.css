@@ -3,10 +3,13 @@
     flex-direction: row;
     flex-wrap: wrap;
     margin: auto;
+    align-items: center;
+    justify-content: center;
 }
 
 .testimonial-card {
     display: flex;
+
     width: 20%;
     margin: 15px
 }
@@ -16,4 +19,15 @@
     font-size: 3.5rem;
     text-align: center;
     margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+    .testimonials-container {
+        flex-direction: column;
+    }
+    .testimonial-card {
+        
+        width: 80%;
+        margin: 15px
+    }
 }

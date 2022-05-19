@@ -3,10 +3,10 @@ import { useParams } from 'react-router-dom';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import {Get, Post, Put} from '../../../Services/privateApiService';
-import {validateImageFormat} from '../../../Services/validatorsService.js';
 import '../../FormStyles.css';
 import './ActivitiesForm.css';
 import './ActivitiesBackOffice.css';
+import Alert from '../../Alerts/Alerts';
 
 const ActivitiesForm = () => {
     const [initialValues, setInitialValues] = useState({
@@ -62,6 +62,18 @@ const ActivitiesForm = () => {
         }     
     }
 
+    function validateImageFormat() {
+
+        const isPng = initialValues.image.substring(11,14) === 'png' 
+                    || initialValues.image.substring(initialValues.image.length -3, initialValues.image.length) === 'png';
+        const isJpg = initialValues.image.substring(11,15) === 'jpeg' 
+                    || initialValues.image.substring(initialValues.image.length -4, initialValues.image.length) === 'jpeg';;
+    
+        if (isPng || isJpg) {
+            return true;
+        } 
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
         if(isBlank()){
@@ -81,9 +93,9 @@ const ActivitiesForm = () => {
         //caso create
         else{
             Post(url, initialValues);
-            alert("Actividad creada satisfactoriamente");
+            Alert('Exito',"Actividad creada satisfactoriamente",'success');
         }
-}
+    }
     const handleImage = (element) => {
         if(!element||!element.currentTarget.files)
             return;

@@ -52,11 +52,13 @@ const Home = () => {
                     <p className='home-text-description'
                         dangerouslySetInnerHTML={{ __html: homeData.long_description }}>
                     </p>
+                    <Link to='contact'>
                     <button
                         type='button'
                         className='primary-button contact__button'>
                         Contactanos
                     </button>
+                    </Link>
                 </div>
 
                 <img className='home-right-container'
