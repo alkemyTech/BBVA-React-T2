@@ -30,6 +30,15 @@ const NewsList = () => {
         getNews()
     },[setNews])
 
+    const getNews = async () => {
+        try {
+            const res = await Get('endpoint');
+            setNews(res.data.data);
+        } catch (err) {
+            Alert("Something went wrong. Please try again", "There was an error loading the userList", "error");
+        }
+    }
+
     useEffect(() => {
         getNews();
     },[])
