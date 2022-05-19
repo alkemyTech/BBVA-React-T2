@@ -14,6 +14,9 @@ const NewsForm = () => {
         category: ''
     });
 
+    const { id } = useParams();
+    const url = process.env.REACT_APP_BASE_URL + process.env.REACT_APP_NEWS;
+
     const handleChange = (e) => {
         if(e.target.name === 'title'){
             setInitialValues({...initialValues, title: e.target.value})
