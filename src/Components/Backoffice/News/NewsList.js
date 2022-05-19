@@ -11,12 +11,8 @@ const NewsList = () => {
     const [news, setNews] = useState([]);
     const endpoint = process.env.REACT_APP_BASE_URL + process.env.REACT_APP_NEWS;
 
-    const getNews = async () => {
-        let res = await Get(endpoint);
-        setNews(res.data.data)
-    }
-
     const handleDelete = async (id) => {
+
         try {
             await Delete(`${endpoint + '/' + id}`);
             await getNews();
@@ -30,9 +26,16 @@ const NewsList = () => {
         getNews()
     },[setNews])
 
-    useEffect(() => {
-        getNews();
-    },[])
+    const getNews = async () => {
+
+        try {
+            await Delete(`${endpoint + '/' + id}`);
+            await getNews();
+            setNews(news.filter(news => news.id !== id));
+        } catch (err) {
+            alert('error')
+        }
+    }
 
     return (
         <>
