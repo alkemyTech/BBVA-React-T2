@@ -77,7 +77,6 @@ function App() {
                 <Route path="/about" component={About} />
                 <Route path="/contact" component={Contact} />
                 <Route path="/testimonials" component={Testimonials} />
-                <Route path="/login" component={Login} />
                 <Route path="/donar" component={Donations} />
                 <Route path="/gracias" component={Thanks} />
               </Switch>
