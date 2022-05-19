@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import './Contact.css'
 import ContactForm from './ContactForm'
@@ -7,7 +7,7 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 
-import Map from './Map';
+import MapView from '../Map/MapView'
 
 const Contact = (props) => {
   const { 
@@ -18,12 +18,31 @@ const Contact = (props) => {
     twitter_url, 
     phone } = props
 
-    const iconProp = { fontSize: 40, margin:1 }
+  const iconProp = { fontSize: 40, margin:1 }
+  const [coordinates, setCoordinates] = useState({
+    longitude: 0,
+    latitude: 0
+  })
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(
+      function (position){
+        setCoordinates({
+          longitude: position.coords.longitude,
+          latitude: position.coords.latitude
+        })
+      },
+      function(error){
+        console.log(error)
+      },
+      { 
+        enableHighAccuracy: true
+      }); 
+    }, [])
 
   return (
     <div className='contact-container'>
-      <Map />
-
+      <MapView coordinates={coordinates} /> 
       <div className='contribuir-section'>
         <h1 className='contact-title'>¿Queres contribuir?</h1>
 
