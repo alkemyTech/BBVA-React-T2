@@ -8,6 +8,7 @@ import About from "./Components/Frontoffice/About/About";
 import Contact from "./Components/Frontoffice/Contact/Contact";
 import SignUp from "./Components/Frontoffice/SignUp/SignUp";
 import Login from './Components/Frontoffice/Login/Login'
+import Testimonials from './Components/Frontoffice/Testimonials/Testimonials'
 import Donations from './Components/Frontoffice/Donations/Donation';
 import Thanks from './Components/Frontoffice/Donations/Thanks';
 //Backoffice
@@ -21,6 +22,7 @@ import UserForm from "./Components/Backoffice/Users/UsersForm";
 import ScreenDashboard from "./Components/Backoffice/ScreenDashboard/ScreenDashboard";
 import SlidesForm from "./Components/Backoffice/Slides/SlidesForm";
 import CategoriesList from './Components/Backoffice/Categories/CategoriesList';
+import NewsList from "./Components/Backoffice/News/NewsList";
 
 function App() {
   return (
@@ -42,6 +44,7 @@ function App() {
                 <Route path="/backoffice/slides/create" component={SlidesForm} />
                 <Route path="/backoffice/slides/edit/:id" component={SlidesForm} />
                 <Route exact path="/backoffice/organization" component={Organization} />
+                <Route path="/backoffice/news" component={NewsList} />
               </Switch>
             </BackofficeLayout>
           </Route>
@@ -53,6 +56,7 @@ function App() {
                 <Route path="/signup" component={SignUp} />
                 <Route path="/about" component={About} />
                 <Route path="/contact" component={Contact} />
+                <Route path="/testimonials" component={Testimonials} />
                 <Route path="/login" component={Login} />
                 <Route path="/donar" component={Donations} />
                 <Route path="/gracias" component={Thanks} />
