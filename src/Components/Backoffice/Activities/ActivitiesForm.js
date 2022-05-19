@@ -4,7 +4,7 @@ import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import {Get, Post, Put} from '../../../Services/privateApiService';
 import {validateImageFormat} from '../../../Services/validatorsService.js';
-import {createActivity, updateActivity} from '../../../Services/Activities.Service';
+import {updateActivity} from '../../../Services/Activities.Service';
 import '../../FormStyles.css';
 import './ActivitiesForm.css';
 import './ActivitiesBackOffice.css';
