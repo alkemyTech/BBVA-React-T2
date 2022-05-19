@@ -9,6 +9,8 @@ import Contact from "./Components/Frontoffice/Contact/Contact";
 import SignUp from "./Components/Frontoffice/SignUp/SignUp";
 import Login from './Components/Frontoffice/Login/Login'
 import Testimonials from './Components/Frontoffice/Testimonials/Testimonials'
+import Donations from './Components/Frontoffice/Donations/Donation';
+import Thanks from './Components/Frontoffice/Donations/Thanks';
 //Backoffice
 import BackofficeLayout from "./Components/Layout/BackofficeLayout";
 import UserList from "./Components/Backoffice/Users/UserList";
@@ -56,6 +58,8 @@ function App() {
                 <Route path="/contact" component={Contact} />
                 <Route path="/testimonials" component={Testimonials} />
                 <Route path="/login" component={Login} />
+                <Route path="/donar" component={Donations} />
+                <Route path="/gracias" component={Thanks} />
               </Switch>
             </Layout>
           </Route>
