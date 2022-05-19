@@ -4,11 +4,13 @@ import './MapView.css';
 import { markerIcon } from './IconLocation.js';
 
 const MapView = ({ coordinates }) => {
+    //se setean las coordenadas de la ong
     const coordsONG = {
         lat: '-34.597486832988814',
         lng: '-58.37740350239873'
     };
 
+    //coordenadas que el mapa va a tomar como centro de la imagen
     const coordsCenter = {
         lat: '-34.5880643', lng: '-58.4615831'
     }

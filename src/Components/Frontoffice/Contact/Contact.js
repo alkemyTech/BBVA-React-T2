@@ -20,12 +20,15 @@ const Contact = (props) => {
     phone } = props
 
   const iconProp = { fontSize: 40, margin:1 }
+  
   const [coordinates, setCoordinates] = useState({
     longitude: 0,
     latitude: 0
   })
 
-  useEffect(() => {
+  //fluj de la obtención de geolocation del usuario
+  const getMapData = () => {
+    //se le pregunta al usuario si permite obtener su ubicación. Si acepta se setean el estado de coordenadas. Si no, se lanza un error.
     navigator.geolocation.getCurrentPosition(
       (position) => {
         setCoordinates({
@@ -37,9 +40,12 @@ const Contact = (props) => {
         Alert('Error', 'Hubo un error intentando mostrar el mapa. Permite la ubicación y vuelva a intentarlo.', 'error');
       },
       { 
-        enableHighAccuracy: true
+        enableHighAccuracy: true //esta linea permite usar la ubicación del gps de los dispositivos para mayor precisión
       }); 
-    }, [])
+  }
+  useEffect(() => {
+    getMapData()
+  }, [])
 
   return (
     <div className='contact-container'>
