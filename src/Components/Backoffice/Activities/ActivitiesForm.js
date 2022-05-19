@@ -28,8 +28,8 @@ const ActivitiesForm = () => {
             setInitialValues({
                 description, image, name
             })
-            setLoading(false);
         }
+        setLoading(false);
     };
      
     // Estimado para obtener la data de edicion 
