@@ -1,31 +1,35 @@
 import { useState } from "react";
+import { useHistory } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import setLogin from "../../../Services/Login.service";
+import getToken from "../../../Services/getToken";
 
 import "./LoginStyle.css";
 
 const Login = () => {
   const [submittedForm, setSubmittedForm] = useState(false);
   const [token, setToken] = useState();
+  let history = useHistory();
 
-  const BASE_URL = process.env.REACT_APP_BASE_URL;
+  const BASE_URL = process.env.REACT_APP_BASE_URL + '/login';
 
   function handleSubmit(user, {resetForm}) {
     
       setLogin(BASE_URL, user)
         .then((res) => {
-          setToken(res.data.token);
-          localStorage.setItem("token", res.data.token);
+          setToken(res.data.data.token);
+          localStorage.setItem("token", res.data.data.token);
         })
-        .catch((err) => {})
-        .finally(() => {});
+        .catch((err) => {return err})
       resetForm();
       setSubmittedForm(true);
       setTimeout(() => setSubmittedForm(false), 5000);
   }
 
   return (
-    <div className="container-login">
+    <>
+    {getToken() ? (history.push('/')) : 
+   ( <div className="container-login">
       <div className="mobile-top-login">
         <div className="logo">
           <div className="container-figures">
@@ -109,7 +113,9 @@ const Login = () => {
           </div>
         </div>
       </div>
-    </div>
+    </div>)
+    }
+    </>
   );
 };
 export default Login;
