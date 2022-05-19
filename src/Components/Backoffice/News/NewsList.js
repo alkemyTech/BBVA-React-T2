@@ -4,17 +4,13 @@ import '../../../general-styles.css';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Delete, Get } from '../../../Services/privateApiService';
+import Alert from '../../Alerts/Alerts';
 
 import News from './News.js';
 
 const NewsList = () => {
     const [news, setNews] = useState([]);
     const endpoint = process.env.REACT_APP_BASE_URL + process.env.REACT_APP_NEWS;
-
-    const getNews = async () => {
-        let res = await Get(endpoint);
-        setNews(res.data.data)
-    }
 
     const handleDelete = async (id) => {
         try {
@@ -40,7 +36,7 @@ const NewsList = () => {
     }
 
     useEffect(() => {
-        handleSpinner();
+        //handleSpinner();
         getNews();
     },[])
 

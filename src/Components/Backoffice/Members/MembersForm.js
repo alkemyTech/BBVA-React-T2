@@ -3,6 +3,7 @@ import '../../FormStyles.css';
 import { validateImageFormat, validateHasContent, validateSocialNetworkUrl, validateLength } from '../../../Services/validatorsService';
 import { Post, Put, Get } from '../../../Services/privateApiService';
 import { useParams } from 'react-router-dom';
+import Alert from '../../Alerts/Alerts';
 
 const MembersForm = () => {
 
@@ -54,7 +55,7 @@ const MembersForm = () => {
   const handleChange = (e) => {
     e.target.name !== "image" 
     ? setFormValues({...formValues, [e.target.name]: e.target.value}) 
-    : imageABase64();
+    : imageABase64(e);
   }
 
   const validateForm = () => {
@@ -92,8 +93,11 @@ const MembersForm = () => {
         id 
         ? response = await Put(path + `/${id}`, formValues)
         : response = await Post(path, formValues);
-        return await response;       
-  } 
+
+       const { data } = await response; 
+
+       Alert("Exito", data.message, "success")     
+  }
 }
   
 
