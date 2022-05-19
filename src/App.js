@@ -16,20 +16,29 @@ import Activities from './Components/Frontoffice/Activities/Activities'
 
 //Backoffice
 import BackofficeLayout from "./Components/Layout/BackofficeLayout";
+import ScreenDashboard from "./Components/Backoffice/ScreenDashboard/ScreenDashboard";
+
 import UserList from "./Components/Backoffice/Users/UserList";
+import UserForm from "./Components/Backoffice/Users/UsersForm";
+
 import Organization from './Components/Backoffice/Organization/Organization';
 import OrganizationForm from "./Components/Backoffice/Organization/OrganizationForm";
+
 import ActivitiesForm from './Components/Backoffice/Activities/ActivitiesForm';
 import ActivitiesBackOffice from './Components/Backoffice/Activities/ActivitiesBackOffice';
-import UserForm from "./Components/Backoffice/Users/UsersForm";
-import ScreenDashboard from "./Components/Backoffice/ScreenDashboard/ScreenDashboard";
-import SlidesForm from "./Components/Backoffice/Slides/SlidesForm";
-import CategoriesList from './Components/Backoffice/Categories/CategoriesList';
+
 import NewsList from "./Components/Backoffice/News/NewsList";
+import SlidesForm from "./Components/Backoffice/Slides/SlidesForm";
+
+import CategoriesList from './Components/Backoffice/Categories/CategoriesList';
+import CategoriesForm from './Components/Backoffice/Categories/CategoriesForm';
+
 import MembersList from './Components/Backoffice/Members/MembersList';
 import MembersForm from './Components/Backoffice/Members/MembersForm';
-import TestimonialForm from "./Components/Backoffice/Testimonials/TestimonialsForm";
+
 import TestimonialsList from './Components/Backoffice/Testimonials/TestimonialsList';
+import TestimonialForm from "./Components/Backoffice/Testimonials/TestimonialsForm";
+
 
 function App() {
   return (
@@ -47,6 +56,8 @@ function App() {
                 <Route path="/backoffice/users/edit/:id" component={UserForm} />
                 
                 <Route exact path="/backoffice/categories" component={CategoriesList} />
+                <Route exact path="/backoffice/categories/create" component={CategoriesForm} />
+                <Route exact path="/backoffice/categories/edit/:id" component={CategoriesForm} />
 
                 <Route exact path="/backoffice/organization" component={Organization} />
                 <Route path="/backoffice/organization/edit" component={OrganizationForm} />
@@ -54,6 +65,7 @@ function App() {
                 <Route exact path="/backoffice/activities" component={ActivitiesBackOffice} />
                 <Route path="/backoffice/activities/edit/:id" component={ActivitiesForm}/>
                 <Route path="/backoffice/activities/create" component={ActivitiesForm} />
+
                 <Route path="/backoffice/slides/create" component={SlidesForm} />
                 <Route path="/backoffice/slides/edit/:id" component={SlidesForm} />
 
