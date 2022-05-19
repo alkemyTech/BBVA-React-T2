@@ -11,13 +11,26 @@ const NewsForm = () => {
         name: '',
         image: '',
         content: '',
-        category: ''
+        category_id: ''
     });
 
     const { id } = useParams();
     const url = process.env.REACT_APP_BASE_URL + process.env.REACT_APP_NEWS;
 
-    
+    const fetchData = async() =>{
+        if(id){
+            const res = await Get(url+'/'+id)
+            const {name, image, content, category_id} = await res.data.data
+            setInitialValues({
+                name, image, content, category_id
+            })
+        }
+    };
+     
+    // Estimado para obtener la data de edicion 
+    useEffect ( () => {
+        fetchData()
+    }, []);
 
     const handleChange = (e) => {
         if(e.target.name === 'name'){
@@ -25,7 +38,7 @@ const NewsForm = () => {
         } if(e.target.name === 'content'){
             setInitialValues({...initialValues, content: e.target.value})
         } if(e.target.name === 'category') {
-            setInitialValues({...initialValues, category: e.target.value})
+            setInitialValues({...initialValues, category_id: e.target.value})
         }
     }
     const handleImage = (element) => {
@@ -53,7 +66,7 @@ const NewsForm = () => {
                 <input className="img-select" type="file" name="image" onChange={handleImage} placeholder="News Image"></input>
             </div>
             <input className="input-field" type="text" name="content" value={initialValues.content || ''} onChange={handleChange}></input>
-            <select className="select-field" name="category" value={initialValues.category || ''} onChange={handleChange}>
+            <select className="select-field" name="category" value={initialValues.category_id || ''} onChange={handleChange}>
                 <option value="" disabled>Select category</option>
                 <option value="1">Demo option 1</option>
                 <option value="2">Demo option 2</option>
