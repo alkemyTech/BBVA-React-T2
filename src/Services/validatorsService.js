@@ -3,9 +3,20 @@ export function validateLength(field = '', minlength = 0) {
   }
 
 export function validateImageFormat(imageUrl = '') {
+  console.log(imageUrl)
 
-  const validFormat = /\.(png|jpg|jpeg)$/
-  return validFormat.test(imageUrl);
+  const isPng = imageUrl.substring(11,14) === 'png' 
+  || imageUrl.substring(imageUrl.length -3, imageUrl.length) === 'png';
+  const isJpg = imageUrl.substring(11,14) === 'jpg' 
+  || imageUrl.substring(imageUrl.length -3, imageUrl.length) === 'jpg';
+  const isJpeg = imageUrl.substring(11,15) === 'jpeg' 
+  || imageUrl.substring(imageUrl.length -4, imageUrl.length) === 'jpeg';;
+
+if (isPng || isJpg || isJpeg) {
+return true;
+} else {
+return false;
+}
   
 }
 

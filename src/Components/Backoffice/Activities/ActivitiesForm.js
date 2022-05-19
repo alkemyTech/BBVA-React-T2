@@ -63,13 +63,15 @@ const ActivitiesForm = () => {
     }
 
     function validateImageFormat() {
-
+        console.log(initialValues.image)
         const isPng = initialValues.image.substring(11,14) === 'png' 
                     || initialValues.image.substring(initialValues.image.length -3, initialValues.image.length) === 'png';
-        const isJpg = initialValues.image.substring(11,15) === 'jpeg' 
+        const isJpg = initialValues.image.substring(11,14) === 'jpg' 
+                    || initialValues.image.substring(initialValues.image.length -3, initialValues.image.length) === 'jpg';
+        const isJpeg = initialValues.image.substring(11,15) === 'jpeg' 
                     || initialValues.image.substring(initialValues.image.length -4, initialValues.image.length) === 'jpeg';;
     
-        if (isPng || isJpg) {
+        if (isPng || isJpeg || isJpg) {
             return true;
         } 
     }
