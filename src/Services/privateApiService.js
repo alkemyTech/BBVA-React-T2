@@ -58,11 +58,4 @@ const Put = async (endpoint, body) => {
     }
 }
 
-<<<<<<< HEAD
-const Put = () => {
-    console.log("PUT")
-}
-
-=======
->>>>>>> 81b23c2e4a16b2a366742cb622c4a29ae768176e
 export { Delete, Get, Post, Put }
