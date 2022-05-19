@@ -77,7 +77,7 @@ const Home = () => {
                 <h3 className='home-title-about-section'>Testimonios</h3>
                 <Link
                     className='link-to-component'
-                    to="/testimonios">
+                    to="/testimonials">
                     Ver todos {`>`}
                 </Link>
             </div>
@@ -99,7 +99,7 @@ const Home = () => {
                 <h3 className='home-title-about-section'>Novedades</h3>
                 <Link
                     className='link-to-component'
-                    to="/novedades">
+                    to="/news">
                     Ver todas {`>`}
                 </Link>
             </div>
