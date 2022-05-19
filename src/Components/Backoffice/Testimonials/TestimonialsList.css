@@ -3,11 +3,11 @@
   overflow: hidden
 }
 
-.testimonials-container {
+.testimonials-backoffice-container {
   width: 90%;
   margin: auto;
 }
-.testimonials-title {
+.testimonials-back-title {
   padding: 5rem 0;
   color: white;
   text-align: center;

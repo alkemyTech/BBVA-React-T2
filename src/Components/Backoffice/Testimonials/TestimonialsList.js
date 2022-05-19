@@ -6,9 +6,9 @@ import TestimonialsTable from './TestimonialsTable'
 const TestimonialsList = () => {
   return (
     <div className='testimonials-screen'>
-      <div className='testimonials-container'>
+      <div className='testimonials-backoffice-container'>
 
-        <h1 className='testimonials-title'>Testimonios</h1>
+        <h1 className='testimonials-back-title'>Testimonios</h1>
 
         <div className='testimonials__upper-bar'>
           <Link to='/backoffice/testimonials/create'>
