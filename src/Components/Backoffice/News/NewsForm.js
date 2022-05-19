@@ -92,7 +92,7 @@ const NewsForm = () => {
         if (isPng || isJpg) {
           return true;
         } else {
-            console.log('false')
+            return false
         }
     }
 

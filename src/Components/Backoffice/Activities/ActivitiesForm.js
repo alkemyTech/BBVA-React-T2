@@ -63,7 +63,6 @@ const ActivitiesForm = () => {
     }
 
     function validateImageFormat() {
-        console.log(initialValues.image)
         const isPng = initialValues.image.substring(11,14) === 'png' 
                     || initialValues.image.substring(initialValues.image.length -3, initialValues.image.length) === 'png';
         const isJpg = initialValues.image.substring(11,14) === 'jpg' 

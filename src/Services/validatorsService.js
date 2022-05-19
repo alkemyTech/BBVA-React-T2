@@ -3,7 +3,6 @@ export function validateLength(field = '', minlength = 0) {
   }
 
 export function validateImageFormat(imageUrl = '') {
-  console.log(imageUrl)
 
   const isPng = imageUrl.substring(11,14) === 'png' 
   || imageUrl.substring(imageUrl.length -3, imageUrl.length) === 'png';
