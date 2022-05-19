@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 import { Delete, Get } from '../../../Services/privateApiService';
 import Alert from '../../Alerts/Alerts';
 
-import Alert from '../../Alerts/Alerts'
 
 import News from './News.js';
 
@@ -38,7 +37,7 @@ const NewsList = () => {
     }
 
     useEffect(() => {
-        // handleSpinner();
+        //handleSpinner();
         getNews();
     },[])
 
