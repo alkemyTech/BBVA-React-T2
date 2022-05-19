@@ -37,7 +37,7 @@ const NewsList = () => {
     }
 
     useEffect(() => {
-        //handleSpinner();
+        handleSpinner();
         getNews();
     },[])
 
