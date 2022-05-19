@@ -7,6 +7,8 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 
+import Map from './Map';
+
 const Contact = (props) => {
   const { 
     address, 
@@ -20,6 +22,8 @@ const Contact = (props) => {
 
   return (
     <div className='contact-container'>
+      <Map />
+
       <div className='contribuir-section'>
         <h1 className='contact-title'>¿Queres contribuir?</h1>
 
