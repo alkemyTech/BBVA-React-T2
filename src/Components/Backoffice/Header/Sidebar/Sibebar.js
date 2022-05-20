@@ -5,7 +5,7 @@ function Sidebar() {
 
     const [isOpen, setIsOpen] = useState(false);
     const stylesShowHideMenu = {
-        transform: isOpen ? 'translateX(0' : 'translateX(-100vw)'
+        transform: isOpen ? 'translateX(0)' : 'translateX(-100vw)'
     }
     return ( 
         <div className="sidebar">
@@ -22,14 +22,14 @@ function Sidebar() {
                 }
             </button>
             <ul style={stylesShowHideMenu} className="sidebar-menu__list">
-                <li><Link to='/backoffice/activities' className="sidebar-menu__link">Actividades</Link></li>
-                <li><Link to='/backoffice/categories' className="sidebar-menu__link">Categorías</Link></li>
-                <li><Link to='/backoffice/members' className="sidebar-menu__link">Miembros</Link></li>
-                <li><Link to='/backoffice/news' className="sidebar-menu__link">Novedades</Link></li>
-                <li><Link to='/backoffice/organization' className="sidebar-menu__link">Organización</Link></li>
-                <li><Link to='/backoffice/slides' className="sidebar-menu__link">Slides</Link></li>
-                <li><Link to='/backoffice/testimonials' className="sidebar-menu__link">Testimonios</Link></li>
-                <li><Link to='/backoffice/users' className="sidebar-menu__link">Usuarios</Link></li>
+                <li><Link to='/backoffice/activities' className="sidebar-menu__link" onClick={() => setIsOpen(false)}>Actividades</Link></li>
+                <li><Link to='/backoffice/categories' className="sidebar-menu__link" onClick={() => setIsOpen(false)}>Categorías</Link></li>
+                <li><Link to='/backoffice/members' className="sidebar-menu__link" onClick={() => setIsOpen(false)}>Miembros</Link></li>
+                <li><Link to='/backoffice/news' className="sidebar-menu__link" onClick={() => setIsOpen(false)}>Novedades</Link></li>
+                <li><Link to='/backoffice/organization' className="sidebar-menu__link" onClick={() => setIsOpen(false)}>Organización</Link></li>
+                <li><Link to='/backoffice/slides' className="sidebar-menu__link" onClick={() => setIsOpen(false)}>Slides</Link></li>
+                <li><Link to='/backoffice/testimonials' className="sidebar-menu__link" onClick={() => setIsOpen(false)}>Testimonios</Link></li>
+                <li><Link to='/backoffice/users' className="sidebar-menu__link" onClick={() => setIsOpen(false)}>Usuarios</Link></li>
             </ul>
         </div>
      );

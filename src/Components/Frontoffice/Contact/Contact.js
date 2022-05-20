@@ -1,13 +1,31 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Link, useHistory } from 'react-router-dom'
 import './Contact.css'
 import ContactForm from './ContactForm'
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
+import { getIsAdmin } from '../../Backoffice/RoutesSecurity/RoutesSecurity'
+
+
+import MapView from '../Map/MapView'
+import Alert from '../../Alerts/Alerts';
 
 const Contact = (props) => {
+  const history = useHistory();
+
+  const checkIsAdmin = async () => {
+    let response = await getIsAdmin();
+    if (response === 'true') {
+      history.push("/backoffice/dashboard")
+    }
+  }
+
+  useEffect(() => {
+    checkIsAdmin();
+  }, [])
+
   const { 
     address, 
     instagram_url, 
@@ -16,7 +34,33 @@ const Contact = (props) => {
     twitter_url, 
     phone } = props
 
-    const iconProp = { fontSize: 40, margin:1 }
+  const iconProp = { fontSize: 40, margin:1 }
+  
+  const [coordinates, setCoordinates] = useState({
+    longitude: 0,
+    latitude: 0
+  })
+
+  //fluj de la obtención de geolocation del usuario
+  const getMapData = () => {
+    //se le pregunta al usuario si permite obtener su ubicación. Si acepta se setean el estado de coordenadas. Si no, se lanza un error.
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        setCoordinates({
+          longitude: position.coords.longitude,
+          latitude: position.coords.latitude
+        })
+      },
+      (error) => {
+        Alert('Tu ubicación no se mostrará', 'Si quieres que tu ubicación se visualice en el mapa, permitela y vuelva a intentarlo.', 'warning');
+      },
+      { 
+        enableHighAccuracy: true //esta linea permite usar la ubicación del gps de los dispositivos para mayor precisión
+      }); 
+  }
+  useEffect(() => {
+    getMapData()
+  }, [])
 
   return (
     <div className='contact-container'>
@@ -62,7 +106,8 @@ const Contact = (props) => {
       <h2 className='contact-title' >Puedes dejarnos tu consulta:</h2>
      
       <ContactForm/>
-
+      <h3 className='contact-title'>Visitanos! Queremos conocerte</h3>
+      <MapView coordinates={coordinates} /> 
     </div>
   )
 }

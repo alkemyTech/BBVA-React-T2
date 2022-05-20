@@ -5,34 +5,55 @@ import './Home.css'
 import MembersList from '../Members/MembersList'
 import Card from '../../Cards/Card/Card'
 import CardNews from '../../Cards/CardNews/CardNews';
+import Spinner from '../../Spinner/Spinner';
+import Alert from '../../Alerts/Alerts';
 // Services
 import { Get } from '../../../Services/publicApiService'
 import { Link } from 'react-router-dom';
 //Header y footer
 import PublicHeader from '../PublicHeader/PublicHeader';
 import Footer from '../Footer/Footer';
+//Slider
+import Slider from './Slider/Slider';
 
 const Home = () => {
     const [homeData, setHomeData] = useState([]);
     const [testimonialsData, setTestimonialsData] = useState([]);
     const [newsData, setNewsData] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     const { REACT_APP_BASE_URL, REACT_APP_ORGANIZATION, REACT_APP_TESTIMONIALS, REACT_APP_NEWS } = process.env
 
     const getHomeData = async () => {
-        const res = await Get(REACT_APP_BASE_URL + REACT_APP_ORGANIZATION);
-        setHomeData(res.data.data);
+        try{
+            const res = await Get(REACT_APP_BASE_URL + REACT_APP_ORGANIZATION);
+            setHomeData(res.data.data);
+            setIsLoading(false);
+        }catch(error){
+            Alert("Algo salio mal. Por favor intente de nuevo", "Hubo un error al hacer las peticiones", "error");
+        }
     };
 
     const getTestimonials = async () => {
-        const res = await Get(REACT_APP_BASE_URL + REACT_APP_TESTIMONIALS + `?limit=5`);
-        setTestimonialsData(res.data.data);
+        try {
+            const res = await Get(REACT_APP_BASE_URL + REACT_APP_TESTIMONIALS + `?limit=5`);
+            setTestimonialsData(res.data.data);
+            setIsLoading(false);
+        } catch (error) {
+            Alert("Algo salio mal. Por favor intente de nuevo", "Hubo un error al hacer las peticiones", "error");
+        }
     };
 
     const getNews = async () => {
-        const res = await Get(REACT_APP_BASE_URL + REACT_APP_NEWS + `?limit=5`);
-        setNewsData(res.data.data);
+        try{
+            const res = await Get(REACT_APP_BASE_URL + REACT_APP_NEWS + `?limit=5`);
+            setNewsData(res.data.data);
+            setIsLoading(false);
+        }catch(error){
+            Alert("Algo salio mal. Por favor intente de nuevo", "Hubo un error al hacer las peticiones", "error");
+        }
     };
+
 
     useEffect(() => {
         getHomeData();
@@ -52,17 +73,16 @@ const Home = () => {
                     <p className='home-text-description'
                         dangerouslySetInnerHTML={{ __html: homeData.long_description }}>
                     </p>
+                    <Link to='contact'>
                     <button
                         type='button'
                         className='primary-button contact__button'>
                         Contactanos
                     </button>
+                    </Link>
                 </div>
 
-                <img className='home-right-container'
-                    src='./images/hands.png'
-                    alt='imagen-de-bienvenida'
-                />
+                <Slider />
             </div>
 
             {/* ABOUT SECTION*/}

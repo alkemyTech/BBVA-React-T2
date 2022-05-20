@@ -2,6 +2,8 @@ import { Link, useHistory } from 'react-router-dom'
 
 import '../PublicHeader/PublicHeaderStyles.css'
 import getToken from '../../../Services/getToken'
+import { getIsAdmin } from '../../Backoffice/RoutesSecurity/RoutesSecurity'
+import { useState, useEffect } from 'react'
 
 const PublicHeader = () => {
     let history = useHistory();
@@ -12,6 +14,19 @@ const PublicHeader = () => {
       
       history.push('/');
     }
+
+  const [isAdmin, setIsAdmin] = useState(false);
+  
+  const checkIsAdmin = async () => {
+    let response = await getIsAdmin();
+    if (response === 'true') {
+      setIsAdmin(true)
+    }
+  }
+
+  useEffect(() => {
+    checkIsAdmin();
+  }, [])
 
     return (
         <header className="header-container">
@@ -28,11 +43,13 @@ const PublicHeader = () => {
            <div className="container-list-header">
              <ul className='list-container-header'>
                 <li className='list-container-header__li'><Link to='/'  className='link-public-header'>Inicio</Link></li>
-                <li className='list-container-header__li'><Link to='/about-us' className='link-public-header'>Nosotros</Link></li>
+                <li className='list-container-header__li'><Link to='/about' className='link-public-header'>Nosotros</Link></li>
                 <li className='list-container-header__li'><Link to='/news' className='link-public-header'>Novedades</Link></li>
                 <li className='list-container-header__li'><Link to='/testimonials' className='link-public-header'>Testimonios</Link></li>
-                <li className='list-container-header__li'><Link to='/contact' className='link-public-header'>Contacto</Link></li>
-                <li className='list-container-header__li'><Link to='/contributes' className='link-public-header'>Contribuye</Link></li>
+                {isAdmin ? (<li className='list-container-header__li'><Link to='/backoffice/dashboard' className='link-public-header'>Backoffice</Link></li>): 
+                (<li className='list-container-header__li'><Link to='/contact' className='link-public-header'>Contacto</Link></li>)}
+                <li className='list-container-header__li'><Link to='/donar' className='link-public-header'>Contribuye</Link></li>
+                <li className='list-container-header__li'><Link to='/activities' className='link-public-header'>Actividades</Link></li>
              </ul>
            </div>
            {getToken() ? (<div className="container-buttons-header"><button className="button-login-header" type="submit" onClick={handleSignOut}>Sign out</button></div>) : (
@@ -58,11 +75,12 @@ const PublicHeader = () => {
               </div>
               <ul className="menu-items">
                 <li className='list-container-header__li'><Link to='/' className='link-public-header'>Inicio</Link></li>
-                <li className='list-container-header__li'><Link to='/about-us' className='link-public-header'>Nosotros</Link></li>
+                <li className='list-container-header__li'><Link to='/about' className='link-public-header'>Nosotros</Link></li>
                 <li className='list-container-header__li'><Link to='/news' className='link-public-header'>Novedades</Link></li>
                 <li className='list-container-header__li'><Link to='/testimonials' className='link-public-header'>Testimonios</Link></li>
                 <li className='list-container-header__li'><Link to='/contact' className='link-public-header'>Contacto</Link></li>
-                <li className='list-container-header__li'><Link to='/contributes' className='link-public-header'>Contribuye</Link></li>
+                <li className='list-container-header__li'><Link to='/donar' className='link-public-header'>Contribuye</Link></li>
+                <li className='list-container-header__li'><Link to='/activities' className='link-public-header'>Actividades</Link></li>
                 {getToken() ? (
                   <li className='list-container-header__li'><button className="button-login-header" type="submit" onClick={handleSignOut}>Sign out</button></li>
                 ) : (

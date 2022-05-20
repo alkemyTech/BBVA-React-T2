@@ -86,6 +86,7 @@ const SignUp = () => {
 
         if(check){
             Post(process.env.REACT_APP_BASE_URL + '/register', registerUser);
+            Alert('Exito', 'Usuario registrado con exito', 'success');
         } else {
             Alert('Error', 'Debe aceptar los términos y condiciones', 'warning')
         }

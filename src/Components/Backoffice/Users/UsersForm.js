@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios'
 import { useParams } from 'react-router-dom';
-import { Get } from '../../../Services/privateApiService';
-import { Post } from '../../../Services/publicApiService';
+import { Get, Put, Post } from '../../../Services/privateApiService';
 import './UsersForm.css'
+import Alert from '../../Alerts/Alerts';
 
 const UserForm = () => {
 
@@ -50,8 +49,9 @@ const UserForm = () => {
             if(validate()) {
                    if(id) {
                        try{
-                           axios.put(endpoint + '/' + id, body)
+                           Put(endpoint + '/' + id, body)
                            setError('')
+                           Alert('Exito', 'Usuario editado con exito', 'success');
                        } 
                        catch(err){
                            setError(err)
@@ -60,6 +60,7 @@ const UserForm = () => {
                    else {
                          try{
                            Post(endpoint, body)
+                           Alert('Exito', 'Usuario creado con exito', 'success');
                            setError('')
                        } 
                        catch(err){

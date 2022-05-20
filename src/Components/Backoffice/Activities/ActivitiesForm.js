@@ -3,10 +3,10 @@ import { useParams } from 'react-router-dom';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import {Get, Post, Put} from '../../../Services/privateApiService';
-import {validateImageFormat} from '../../../Services/validatorsService.js';
 import '../../FormStyles.css';
 import './ActivitiesForm.css';
 import './ActivitiesBackOffice.css';
+import Alert from '../../Alerts/Alerts';
 
 const ActivitiesForm = () => {
     const [initialValues, setInitialValues] = useState({
@@ -51,15 +51,28 @@ const ActivitiesForm = () => {
             let str = initialValues[keys[i]];
             if (!str || /^\s*$/.test(str)) {
                 setErrors({[keys[i]]: 'El campo ' + keys[i] + ' no puede estar vacio'})
-                alert('Error: el campo ' + keys[i] + ' no puede estar vacio')
+                Alert('Error', 'Error: el campo ' + keys[i] + ' no puede estar vacio', 'error')
                 return true;
             }
         } 
         if (initialValues.description === "<p> </p>"){
             setErrors({'descripcion': 'El campo descripcion no puede estar vacio'})
-            alert('Error: el campo descripcion no puede estar vacio')
+            Alert('Error', 'Error: el campo descripcion no puede estar vacio', 'error')
             return true;
         }     
+    }
+
+    function validateImageFormat() {
+        const isPng = initialValues.image.substring(11,14) === 'png' 
+                    || initialValues.image.substring(initialValues.image.length -3, initialValues.image.length) === 'png';
+        const isJpg = initialValues.image.substring(11,14) === 'jpg' 
+                    || initialValues.image.substring(initialValues.image.length -3, initialValues.image.length) === 'jpg';
+        const isJpeg = initialValues.image.substring(11,15) === 'jpeg' 
+                    || initialValues.image.substring(initialValues.image.length -4, initialValues.image.length) === 'jpeg';;
+    
+        if (isPng || isJpeg || isJpg) {
+            return true;
+        } 
     }
 
     const handleSubmit = (e) => {
@@ -69,21 +82,21 @@ const ActivitiesForm = () => {
         }
         if(!validateImageFormat(initialValues.image)){
             setErrors({'image': 'El fomato de la imagen no es valido. Solo se aceptan jpg y png'});
-            alert('El fomato de la image no es valido. Solo se aceptan jpg y png')
+            Alert('Error', 'El fomato de la image no es valido. Solo se aceptan jpg y png', 'error')
             return;
         }
 
         //caso edit
         if(id){
             Put(url + '/' + id, initialValues);
-            alert("Actividad " + id + "actualizada exitosamente");
+            Alert('Exito', "Actividad " + id + "actualizada exitosamente", 'success');
         }
         //caso create
         else{
             Post(url, initialValues);
-            alert("Actividad creada satisfactoriamente");
+            Alert('Exito',"Actividad creada satisfactoriamente",'success');
         }
-}
+    }
     const handleImage = (element) => {
         if(!element||!element.currentTarget.files)
             return;

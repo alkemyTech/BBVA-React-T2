@@ -13,7 +13,7 @@ import Testimonials from './Components/Frontoffice/Testimonials/Testimonials'
 import Donations from './Components/Frontoffice/Donations/Donation';
 import Thanks from './Components/Frontoffice/Donations/Thanks';
 import Activities from './Components/Frontoffice/Activities/Activities'
-
+import News from './Components/Frontoffice/News/News'
 //Backoffice
 import BackofficeLayout from "./Components/Layout/BackofficeLayout";
 import ScreenDashboard from "./Components/Backoffice/ScreenDashboard/ScreenDashboard";
@@ -40,6 +40,7 @@ import MembersForm from './Components/Backoffice/Members/MembersForm';
 
 import TestimonialsList from './Components/Backoffice/Testimonials/TestimonialsList';
 import TestimonialForm from "./Components/Backoffice/Testimonials/TestimonialsForm";
+import SlidesList from './Components/Backoffice/Slides/SlidessList';
 
 
 function App() {
@@ -57,12 +58,12 @@ function App() {
           <Route exact path="/backoffice/*">
             <BackofficeLayout>
               <Switch>
-                <Route exact path="/backoffice" component={ScreenDashboard} />
+                <Route exact path="/backoffice/dashboard" component={ScreenDashboard} />
                 
                 <Route exact path="/backoffice/users" component={UserList} />
                 <Route path="/backoffice/users/create" component={UserForm} />
                 <Route path="/backoffice/users/edit/:id" component={UserForm} />
-                
+
                 <Route exact path="/backoffice/categories" component={CategoriesList} />
                 <Route exact path="/backoffice/categories/create" component={CategoriesForm} />
                 <Route exact path="/backoffice/categories/edit/:id" component={CategoriesForm} />
@@ -71,9 +72,10 @@ function App() {
                 <Route path="/backoffice/organization/edit" component={OrganizationForm} />
 
                 <Route exact path="/backoffice/activities" component={ActivitiesBackOffice} />
-                <Route path="/backoffice/activities/edit/:id" component={ActivitiesForm}/>
+                <Route path="/backoffice/activities/edit/:id" component={ActivitiesForm} />
                 <Route path="/backoffice/activities/create" component={ActivitiesForm} />
 
+                <Route exact path="/backoffice/slides" component={SlidesList} />
                 <Route path="/backoffice/slides/create" component={SlidesForm} />
                 <Route path="/backoffice/slides/edit/:id" component={SlidesForm} />
 
@@ -101,6 +103,7 @@ function App() {
                 <Route path="/donar" component={Donations} />
                 <Route path="/gracias" component={Thanks} />
                 <Route path="/activities" component={Activities} />
+                <Route path="/news" component={News} />
               </Switch>
             </Layout>
           </Route>
