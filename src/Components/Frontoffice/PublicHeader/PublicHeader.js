@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 
 import '../PublicHeader/PublicHeaderStyles.css'
 import getToken from '../../../Services/getToken'
@@ -6,6 +6,14 @@ import { getIsAdmin } from '../../Backoffice/RoutesSecurity/RoutesSecurity'
 import { useState, useEffect } from 'react'
 
 const PublicHeader = () => {
+    let history = useHistory();
+
+    const handleSignOut = () =>{
+      localStorage.removeItem('token');
+      localStorage.removeItem('isAdmin');
+      
+      history.push('/');
+    }
 
   const [isAdmin, setIsAdmin] = useState(false);
   
@@ -44,7 +52,7 @@ const PublicHeader = () => {
                 <li className='list-container-header__li'><Link to='/activities' className='link-public-header'>Actividades</Link></li>
              </ul>
            </div>
-           {getToken() ? (<div className="container-buttons-header"><button className="button-login-header" type="submit">Sign out</button></div>) : (
+           {getToken() ? (<div className="container-buttons-header"><button className="button-login-header" type="submit" onClick={handleSignOut}>Sign out</button></div>) : (
              <div className="container-buttons-header">
              <Link to='/login'><button className="button-login-header" type="submit">Log in</button></Link>
              <Link to='/signup'><button className="button-register-header" type="submit">Registrate</button></Link>
@@ -74,7 +82,7 @@ const PublicHeader = () => {
                 <li className='list-container-header__li'><Link to='/donar' className='link-public-header'>Contribuye</Link></li>
                 <li className='list-container-header__li'><Link to='/activities' className='link-public-header'>Actividades</Link></li>
                 {getToken() ? (
-                  <li className='list-container-header__li'><button className="button-login-header" type="submit">Sign out</button></li>
+                  <li className='list-container-header__li'><button className="button-login-header" type="submit" onClick={handleSignOut}>Sign out</button></li>
                 ) : (
                   <div>
                   <li className='list-container-header__li'><Link to='/login'><button className="button-login-header" type="submit">Log in</button></Link></li>
